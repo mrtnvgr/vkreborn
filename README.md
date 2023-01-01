@@ -1,2 +1,4 @@
-# vkreborn
-Fully modular, asynchronous vk user bot
+# VKReborn
+Fully modular, asynchronous vk user bot.
+
+> Status: In active development

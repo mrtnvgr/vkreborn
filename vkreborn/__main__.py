@@ -3,7 +3,7 @@ import os
 from loguru import logger
 from vkbottle import Bot
 
-from .handlers import labelers
+from vkreborn.handlers import labelers
 
 
 @logger.catch

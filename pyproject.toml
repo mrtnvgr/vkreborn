@@ -6,3 +6,14 @@ requires = ["setuptools", "wheel"]
 name = "VKReborn"
 version = "never-ending"
 dependencies = ["vkbottle"]
+
+[project.optional-dependencies]
+test = [
+	"black",
+	"flake8",
+	"flake8-isort",
+]
+
+[flake8]
+max-line-length = 98
+ignore = ["F403", "F405"]

@@ -1,10 +1,8 @@
-
 import os
 
 from vkbottle import Bot
 
 from .handlers import labelers
-
 
 if __name__ == "__main__":
 

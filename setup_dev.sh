@@ -1,3 +1,3 @@
 #!/bin/sh
-pip install -r requirements-dev.txt
+pip install .[tests]
 git config --local core.hooksPath .github/hooks

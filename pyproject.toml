@@ -4,7 +4,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "VKReborn"
-version = "never-ending"
+version = "0.0.0"
 dependencies = ["vkbottle"]
 
 [project.optional-dependencies]

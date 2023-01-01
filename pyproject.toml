@@ -5,7 +5,10 @@ requires = ["setuptools", "wheel"]
 [project]
 name = "vkreborn"
 version = "0.0.0"
-dependencies = ["vkbottle"]
+dependencies = [
+	"vkbottle",
+	"loguru",
+]
 
 [project.scripts]
 vkreborn = "vkreborn:__main__.py"

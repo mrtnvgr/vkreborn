@@ -1,7 +1,7 @@
 from vkreborn.handlers import test
 
 labelers = {
-    test.Labeler,
+    test.labeler,
 }
 
 __all__ = ["labelers"]

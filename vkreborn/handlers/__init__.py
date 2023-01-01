@@ -1,7 +1,7 @@
-from vkreborn.handlers import test
+from vkreborn.handlers import fixlayout
 
 labelers = {
-    test.labeler,
+    fixlayout.labeler,
 }
 
 __all__ = ["labelers"]

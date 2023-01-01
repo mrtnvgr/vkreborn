@@ -1,20 +1,16 @@
 import os
 
 from loguru import logger
-from vkbottle import Bot
+from vkbottle import User
 
 from vkreborn.handlers import labelers
 
 
 @logger.catch
 def main():
-    bot = Bot(os.environ["VKTOKEN"])
+    user = User(os.environ["VKTOKEN"])
 
     for labeler in labelers:
-        bot.labeler.load(labeler)
+        user.labeler.load(labeler)
 
-    bot.run_forever()
-
-
-if __name__ == "__main__":
-    main()
+    user.run_forever()

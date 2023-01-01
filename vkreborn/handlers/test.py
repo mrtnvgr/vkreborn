@@ -1,6 +1,6 @@
-from vkbottle.bot import BotLabeler, Message
+from vkbottle.user import Message, UserLabeler
 
-labeler = BotLabeler()
+labeler = UserLabeler()
 
 
 @labeler.message(text="%проверка")

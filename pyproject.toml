@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-vkreborn = "vkreborn:__main__.py"
+vkreborn = "vkreborn.__main__:main"
 
 [project.optional-dependencies]
 test = [

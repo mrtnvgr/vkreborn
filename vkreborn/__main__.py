@@ -10,6 +10,8 @@ from vkreborn.handlers import labelers
 def main():
     user = User(os.environ["VKTOKEN"])
 
+    user.labeler.vbml_ignore_case = True
+
     for labeler in labelers:
         user.labeler.load(labeler)
 

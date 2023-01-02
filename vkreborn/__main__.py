@@ -16,3 +16,7 @@ def main():
         user.labeler.load(labeler)
 
     user.run_forever()
+
+
+if __name__ == "__main__":
+    main()

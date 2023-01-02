@@ -63,7 +63,7 @@ def translate(string: str):
 labeler = UserLabeler()
 
 
-@labeler.message(ReplyMessageRule, command="fixlayout")
+@labeler.message(ReplyMessageRule(), command="fixlayout")
 async def fixlayout_handler(message: Message):
     text = message.reply_message.text
     await message.reply(f'"{translate(text)}"')

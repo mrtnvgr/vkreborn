@@ -18,10 +18,10 @@ vkreborn = "vkreborn.__main__:main"
 [project.optional-dependencies]
 test = [
 	"black",
-	"flake8",
-	"flake8-isort",
+	"flakeheaven",
 ]
 
-[flake8]
-max-line-length = 98
-ignore = ["F403", "F405"]
+[tool.flakeheaven]
+format = "grouped"
+max_line_length = 98
+pyflakes = ["+*", "-F403", "-F405"]

@@ -3,5 +3,5 @@
 black --check vkreborn/*.py vkreborn/*/*.py || exit 1
 echo "BLACK CHECK: OK"
 
-flake8 vkreborn/*.py vkreborn/*/*.py || exit 1
-echo "FLAKE8 CHECK: OK"
+flakeheaven lint vkreborn/ || exit 1
+echo "FLAKE CHECK: OK"

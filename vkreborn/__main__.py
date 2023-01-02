@@ -1,14 +1,17 @@
-import os
-
 from loguru import logger
 from vkbottle import User
+from vkbottle.tools.dev.loop_wrapper import LoopWrapper
 
+from vkreborn.config import VKTOKEN
+from vkreborn.database.initialize import setup_db
 from vkreborn.handlers import labelers
 
 
 @logger.catch
 def main():
-    user = User(os.environ["VKTOKEN"])
+
+    loop_wrapper = LoopWrapper(on_startup=[setup_db()])
+    user = User(VKTOKEN, loop_wrapper=loop_wrapper)
 
     user.labeler.vbml_ignore_case = True
 

@@ -1,0 +1,18 @@
+from os import environ
+
+VKTOKEN = environ["VKTOKEN"]
+
+
+POSTGRES_HOST = environ.get("POSTGRES_HOST", default="localhost")
+POSTGRES_PORT = environ.get("POSTGRES_PORT", default=5432)
+POSTGRES_DB = environ.get("POSTGRES_DB", default="vkreborn")
+POSTGRES_USER = environ.get("POSTGRES_USER", default="postgres")
+
+POSTGRES_PASSWORD = environ["POSTGRES_PASSWORD"]
+
+
+SQLALCHEMY_DATABASE_URI = "postgresql+asyncpg://"
+SQLALCHEMY_DATABASE_URI += f"{POSTGRES_USER}:{POSTGRES_PASSWORD}"
+SQLALCHEMY_DATABASE_URI += f"@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -8,6 +8,8 @@ version = "0.0.0"
 dependencies = [
 	"vkbottle",
 	"loguru",
+	"SQLAlchemy",
+	"asyncpg",
 ]
 
 [project.scripts]

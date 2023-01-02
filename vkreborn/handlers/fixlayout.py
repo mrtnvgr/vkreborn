@@ -1,3 +1,4 @@
+from vkbottle.dispatch.rules.base import ReplyMessageRule
 from vkbottle.user import Message, UserLabeler
 
 dictionary = {
@@ -51,8 +52,6 @@ dictionary = {
     "?": ",",
 }
 
-labeler = UserLabeler()
-
 
 def translate(string: str):
     return "".join(
@@ -61,8 +60,10 @@ def translate(string: str):
     )
 
 
-@labeler.message(text="%fixlayout")
-async def test_handler(message: Message):
-    if message.reply_message:
-        text = message.reply_message.text
-        await message.reply(f'"{translate(text)}"')
+labeler = UserLabeler()
+
+
+@labeler.message(ReplyMessageRule, command="fixlayout")
+async def fixlayout_handler(message: Message):
+    text = message.reply_message.text
+    await message.reply(f'"{translate(text)}"')

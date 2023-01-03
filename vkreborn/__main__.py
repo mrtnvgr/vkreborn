@@ -5,6 +5,7 @@ from vkbottle.tools.dev.loop_wrapper import LoopWrapper
 from vkreborn.config import VKTOKEN
 from vkreborn.database.initialize import setup_db
 from vkreborn.handlers import labelers
+from vkreborn.middlewares import middlewares
 
 
 @logger.catch
@@ -17,6 +18,9 @@ def main():
 
     for labeler in labelers:
         user.labeler.load(labeler)
+
+    for middleware in middlewares:
+        user.labeler.message_view.register_middleware(middleware)
 
     user.run_forever()
 

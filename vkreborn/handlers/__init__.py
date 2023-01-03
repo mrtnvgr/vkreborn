@@ -1,7 +1,6 @@
-from vkreborn.handlers import fixlayout, new_user, whoami
+from vkreborn.handlers import fixlayout, whoami
 
 labelers = {
-    new_user.labeler,
     fixlayout.labeler,
     whoami.labeler,
 }

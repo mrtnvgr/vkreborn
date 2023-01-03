@@ -1,7 +1,7 @@
 from vkbottle import BaseMiddleware
-from vkbottle.bot import Message
+from vkbottle.user import Message
 
-from vkreborn.repositories.user import UserRepository
+from vkreborn.repositories import UserRepository
 
 
 class NewUserMiddleware(BaseMiddleware[Message]):

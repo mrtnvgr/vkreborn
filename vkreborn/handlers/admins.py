@@ -6,7 +6,7 @@ labeler = UserLabeler()
 
 
 @labeler.message(command="admins")
-async def make_admin_handler(message: Message):
+async def admins_handler(message: Message):
     repo = UserRepository(user_id=message.from_id)
     admin_ids = await repo.get_admin_ids()
 

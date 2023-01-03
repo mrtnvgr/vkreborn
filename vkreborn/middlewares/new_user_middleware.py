@@ -10,5 +10,6 @@ class NewUserMiddleware(BaseMiddleware[Message]):
         is_user_new = await repo.get_user() is None
 
         if is_user_new:
-            is_admin = repo.user_id == 355466183
+            account = await self.event.ctx_api.users.get()
+            is_admin = repo.user_id == account[0].id
             await repo.add_user(is_admin=is_admin)

@@ -1,16 +1,7 @@
 from vkbottle.user import Message, UserLabeler
 from vkbottle.dispatch.rules.base import VBMLRule
-from vbml import Patcher
-import shlex
+from vkreborn.vbml import patcher
 import random
-
-patcher = Patcher()
-
-
-@patcher.validator("list")
-def list_validator(value: str):
-    return shlex.split(value, posix=True)
-
 
 labeler = UserLabeler()
 

@@ -1,8 +1,6 @@
-from vkbottle.user import Message, UserLabeler
-
+from vkbottle.user import Message
+from vkreborn.vkbottle import labeler
 from vkreborn.repositories import UserRepository
-
-labeler = UserLabeler()
 
 
 @labeler.message(command="whoami")

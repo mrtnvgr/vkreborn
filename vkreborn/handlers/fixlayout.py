@@ -1,5 +1,6 @@
+from vkbottle.user import Message
 from vkbottle.dispatch.rules.base import ReplyMessageRule
-from vkbottle.user import Message, UserLabeler
+from vkreborn.vkbottle import labeler
 
 dictionary = {
     "`": "ё",
@@ -58,9 +59,6 @@ def translate(string: str):
         dictionary.get(ch) or dictionary.get(ch.lower(), "").upper() or ch
         for ch in string
     )
-
-
-labeler = UserLabeler()
 
 
 @labeler.message(ReplyMessageRule(), command="fixlayout")

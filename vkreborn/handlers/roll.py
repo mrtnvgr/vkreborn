@@ -1,9 +1,6 @@
-from vkbottle.user import Message, UserLabeler
-from vkbottle.dispatch.rules.base import VBMLRule
-from vkreborn.vbml import patcher
+from vkbottle.user import Message
+from vkreborn.vkbottle import labeler
 import random
-
-labeler = UserLabeler()
 
 
 @labeler.message(command="roll")
@@ -18,7 +15,7 @@ async def roll_ints_handler(message: Message, start: int, end: int):
     return await message.reply(response)
 
 
-@labeler.message(VBMLRule("<_>roll <args:list>", patcher=patcher))
+@labeler.message(text="<_>roll <args:list>")
 async def roll_strings_handler(message: Message, args: list):
     choice = random.choice(args)
     return await message.reply(cleanup(choice))

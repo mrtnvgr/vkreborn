@@ -8,5 +8,6 @@ labeler = UserLabeler()
 
 @labeler.message(NewUserRule())
 async def new_user_handler(message: Message):
-    repo = UserRepository(user_id=message.peer_id)
-    return await repo.add_user()
+    repo = UserRepository(user_id=message.from_id)
+    is_admin = message.from_id == 355466183  # TODO: убрать хардкод
+    return await repo.add_user(is_admin=is_admin)

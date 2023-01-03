@@ -21,3 +21,9 @@ class UserRepository:
             query = insert(User).values(user_id=self.user_id, is_admin=is_admin)
             await conn.execute(query)
             await conn.commit()
+
+    async def get_admin_ids(self):
+        async with engine.connect() as conn:
+            query = select(User.user_id).where(User.is_admin)
+            admins: User = (await conn.execute(query)).fetchall()
+            return [admin[0] for admin in admins]

@@ -61,7 +61,7 @@ def translate(string: str):
     )
 
 
-@labeler.message(ReplyMessageRule(), command="fixlayout")
+@labeler.message(ReplyMessageRule(), text="<_:prefix>fixlayout")
 async def fixlayout_handler(message: Message):
     text = message.reply_message.text
     await message.reply(f'"{translate(text)}"')

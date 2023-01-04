@@ -23,4 +23,5 @@ def mention_validator(value: str):
 
 @patcher.validator("prefix")
 def prefix_validator(value: str):
-    return value in ["%!"]
+    if value == "%!":
+        return True

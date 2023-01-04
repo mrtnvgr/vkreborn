@@ -3,7 +3,7 @@ from vkreborn.vkbottle import labeler
 import random
 
 
-@labeler.message(command="roll")
+@labeler.message(text="<_:prefix>roll")
 async def roll_default_handler(message: Message):
     response = random.randint(1, 100)
     return await message.reply(response)

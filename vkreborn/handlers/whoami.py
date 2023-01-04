@@ -3,7 +3,7 @@ from vkreborn.vkbottle import labeler
 from vkreborn.repositories import UserRepository
 
 
-@labeler.message(command="whoami")
+@labeler.message(text="<_:prefix>whoami")
 async def whoami_handler(message: Message):
     repo = UserRepository(user_id=message.from_id)
     user_info = await repo.get_user()

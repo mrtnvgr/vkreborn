@@ -3,7 +3,7 @@ from vkreborn.vkbottle import labeler
 from vkreborn.repositories import UserRepository
 
 
-@labeler.message(command="admins")
+@labeler.message(text="<_:prefix>admins")
 async def admins_handler(message: Message):
     repo = UserRepository(user_id=message.from_id)
     admin_ids = await repo.get_admin_ids()

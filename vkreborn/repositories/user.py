@@ -30,7 +30,9 @@ class UserRepository:
     async def mute_user_until(self, date: Optional[datetime | None]):
         async with engine.connect() as conn:
             query = (
-                update(User).where(User.user_id == self.user_id).value(muted_until=date)
+                update(User)
+                .where(User.user_id == self.user_id)
+                .values(muted_until=date)
             )
             await conn.execute(query)
             await conn.commit()

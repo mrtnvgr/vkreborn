@@ -16,6 +16,6 @@ def mention_validator(value: str):
     if pattern.match(value):
         value = value.split("|")
         return {
-            "id": value[0].removeprefix("["),
+            "id": int(value[0].removeprefix("[id")),
             "domain": value[1].removesuffix("]"),
         }

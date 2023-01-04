@@ -1,7 +1,3 @@
-from vkreborn.middlewares import new_user_middleware
+middlewares = {}
 
-middlewares = {
-    new_user_middleware.NewUserMiddleware,
-}
-
-__all__ = ["middlewares"]
+__all__ = {"middlewares"}

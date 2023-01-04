@@ -4,11 +4,8 @@ from vkbottle.user import Message
 from vkreborn.repositories import UserRepository
 
 
-class AdminRule(ABCRule[Message]):
-    def __init__(self, is_admin: bool = True):
-        self.is_admin = is_admin
-
+class NewUserRule(ABCRule[Message]):
     async def check(self, message: Message):
         repo = UserRepository(user_id=message.from_id)
         user = await repo.get_user()
-        return self.is_admin is (user.is_admin is not None)
+        return user is None

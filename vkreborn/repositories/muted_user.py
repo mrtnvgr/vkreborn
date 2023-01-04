@@ -44,11 +44,16 @@ class MutedUserRepository:
 
     async def update(self):
         async with engine.connect() as conn:
-            query = update(MutedUser).where(
-                MutedUser.user_id == self.user.id,
-                MutedUser.muted_where == self.muted_where,
-                MutedUser.muted_by == self.muted_by,
-                MutedUser.muted_until == self.muted_until,
+            query = (
+                update(MutedUser)
+                .where(
+                    MutedUser.user_id == self.user_id,
+                    MutedUser.muted_where == self.muted_where,
+                )
+                .values(
+                    muted_by=self.muted_by,
+                    muted_until=self.muted_until,
+                )
             )
             await conn.execute(query)
             await conn.commit()
@@ -66,6 +71,15 @@ class MutedUserRepository:
         async with engine.connect() as conn:
             query = select(MutedUser.user_id).where(
                 MutedUser.muted_where == self.muted_where
+            )
+            users = (await conn.execute(query)).fetchall()
+            return [user[0] for user in users]
+
+    async def list_by_muted_by(self):
+        async with engine.connect() as conn:
+            query = select(MutedUser.user_id).where(
+                MutedUser.muted_where == self.muted_where,
+                MutedUser.muted_by == self.muted_by,
             )
             users = (await conn.execute(query)).fetchall()
             return [user[0] for user in users]

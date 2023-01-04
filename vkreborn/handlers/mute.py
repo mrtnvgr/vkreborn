@@ -58,6 +58,24 @@ async def muted_here_handler(message: Message):
     text = ["В муте:"]
 
     for user in users:
-        text.append(f"{user.first_name} {user.last_name} ({user.domain})")
+        text.append(f"{user.first_name} {user.last_name} (@{user.domain})")
+
+    return await message.reply("\n".join(text))
+
+
+@labeler.chat_message(text="<_>mutedby <user:mention>")
+async def muted_by_handler(message: Message, user: dict):
+    repo = MutedUserRepository(muted_where=message.chat_id, muted_by=user["id"])
+    ids = await repo.list_by_muted_by()
+
+    if len(ids) == 0:
+        return
+
+    users = await message.ctx_api.users.get(ids, fields=["domain"])
+
+    text = [f"В муте (админом {user['domain']}):"]
+
+    for user in users:
+        text.append(f"{user.first_name} {user.last_name} (@{user.domain})")
 
     return await message.reply("\n".join(text))

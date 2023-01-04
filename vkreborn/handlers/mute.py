@@ -23,7 +23,7 @@ async def muted_user_handler(message: Message):
         logger.debug(ex.description)
 
 
-@labeler.chat_message(text="<_>mute <user:mention> <minutes:float>", admin=True)
+@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:float>", admin=True)
 async def mute_user_handler(message: Message, user: dict, minutes: float):
     muted_until = datetime.now() + timedelta(minutes=minutes)
     repo = MutedUserRepository(
@@ -38,14 +38,14 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
     )
 
 
-@labeler.chat_message(text="<_>unmute <user:mention>", admin=True)
+@labeler.chat_message(text="<_:prefix>unmute <user:mention>", admin=True)
 async def unmute_user_handler(message: Message, user: dict):
     repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
     await repo.delete()
     return await message.reply(f"Пользователь {user['domain']} размучен")
 
 
-@labeler.chat_message(text="<_>muted")
+@labeler.chat_message(text="<_:prefix>muted")
 async def muted_here_handler(message: Message):
     repo = MutedUserRepository(muted_where=message.chat_id)
     ids = await repo.list_by_muted_where()
@@ -63,7 +63,7 @@ async def muted_here_handler(message: Message):
     return await message.reply("\n".join(text))
 
 
-@labeler.chat_message(text="<_>mutedby <user:mention>")
+@labeler.chat_message(text="<_:prefix>mutedby <user:mention>")
 async def muted_by_handler(message: Message, user: dict):
     repo = MutedUserRepository(muted_where=message.chat_id, muted_by=user["id"])
     ids = await repo.list_by_muted_by()

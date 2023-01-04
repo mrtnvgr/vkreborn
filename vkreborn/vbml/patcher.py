@@ -19,3 +19,8 @@ def mention_validator(value: str):
             "id": int(value[0].removeprefix("[id")),
             "domain": value[1].removesuffix("]"),
         }
+
+
+@patcher.validator("prefix")
+def prefix_validator(value: str):
+    return value in ["%!"]

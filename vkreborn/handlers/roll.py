@@ -9,13 +9,13 @@ async def roll_default_handler(message: Message):
     return await message.reply(response)
 
 
-@labeler.message(text="<_>roll <start:int>-<end:int>")
+@labeler.message(text="<_:prefix>roll <start:int>-<end:int>")
 async def roll_ints_handler(message: Message, start: int, end: int):
     response = random.randint(start, end)
     return await message.reply(response)
 
 
-@labeler.message(text="<_>roll <args:list>")
+@labeler.message(text="<_:prefix>roll <args:list>")
 async def roll_strings_handler(message: Message, args: list):
     choice = random.choice(args)
     return await message.reply(cleanup(choice))

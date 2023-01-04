@@ -27,7 +27,10 @@ async def muted_user_handler(message: Message):
 async def mute_user_handler(message: Message, user: dict, minutes: float):
     muted_until = datetime.now() + timedelta(minutes=minutes)
     repo = MutedUserRepository(
-        user_id=user["id"], muted_where=message.chat_id, muted_until=muted_until
+        user_id=user["id"],
+        muted_where=message.chat_id,
+        muted_by=message.from_id,
+        muted_until=muted_until,
     )
     await repo.mute()
     return await message.reply(

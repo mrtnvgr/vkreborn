@@ -10,10 +10,12 @@ class MutedUserRepository:
         self,
         user_id: Optional[int | None] = None,
         muted_where: Optional[int | None] = None,
+        muted_by: Optional[int | None] = None,
         muted_until: Optional[datetime | None] = None,
     ):
         self.user_id = user_id
         self.muted_where = muted_where
+        self.muted_by = muted_by
         self.muted_until = muted_until
 
     async def get(self) -> MutedUser:
@@ -34,6 +36,7 @@ class MutedUserRepository:
             query = insert(MutedUser).values(
                 user_id=self.user_id,
                 muted_where=self.muted_where,
+                muted_by=self.muted_by,
                 muted_until=self.muted_until,
             )
             await conn.execute(query)
@@ -44,6 +47,7 @@ class MutedUserRepository:
             query = update(MutedUser).where(
                 MutedUser.user_id == self.user.id,
                 MutedUser.muted_where == self.muted_where,
+                MutedUser.muted_by == self.muted_by,
                 MutedUser.muted_until == self.muted_until,
             )
             await conn.execute(query)

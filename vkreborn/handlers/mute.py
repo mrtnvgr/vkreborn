@@ -1,10 +1,29 @@
 from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
 from vkreborn.repositories import MutedUserRepository
+from vkbottle.exception_factory import VKAPIError
 from datetime import datetime, timedelta
+from loguru import logger
 
 
-@labeler.message(text="<_>mute <user:mention> <minutes:float>", admin=True)
+@labeler.chat_message(muted=True)
+async def muted_user_handler(message: Message):
+    repo = MutedUserRepository(user_id=message.from_id, muted_where=message.chat_id)
+    user = await repo.get()
+    if user.muted_until < datetime.now():
+        return await repo.delete()
+
+    try:
+        await message.ctx_api.messages.delete(
+            peer_id=message.peer_id,
+            cmids=message.conversation_message_id,
+            delete_for_all=True,
+        )
+    except VKAPIError[15] as ex:
+        logger.debug(ex.description)
+
+
+@labeler.chat_message(text="<_>mute <user:mention> <minutes:float>", admin=True)
 async def mute_user_handler(message: Message, user: dict, minutes: float):
     muted_until = datetime.now() + timedelta(minutes=minutes)
     repo = MutedUserRepository(
@@ -16,7 +35,7 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
     )
 
 
-@labeler.message(text="<_>unmute <user:mention>", admin=True)
+@labeler.chat_message(text="<_>unmute <user:mention>", admin=True)
 async def unmute_user_handler(message: Message, user: dict):
     repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
     await repo.delete()

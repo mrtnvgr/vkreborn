@@ -58,7 +58,7 @@ async def muted_here_handler(message: Message):
     text = ["В муте:"]
 
     for user in users:
-        text.append(f"{user.first_name} {user.last_name} (@{user.domain})")
+        text.append(f"{user.first_name} {user.last_name} ({user.domain})")
 
     return await message.reply("\n".join(text))
 
@@ -76,6 +76,6 @@ async def muted_by_handler(message: Message, user: dict):
     text = [f"В муте (админом {user['domain']}):"]
 
     for user in users:
-        text.append(f"{user.first_name} {user.last_name} (@{user.domain})")
+        text.append(f"{user.first_name} {user.last_name} ({user.domain})")
 
     return await message.reply("\n".join(text))

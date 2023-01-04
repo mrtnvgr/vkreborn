@@ -11,7 +11,7 @@ async def admins_handler(message: Message):
     admins_info = await message.ctx_api.users.get(admin_ids, fields=["domain"])
 
     admins = [
-        f"{admin.first_name} {admin.last_name} (@{admin.domain})"
+        f"{admin.first_name} {admin.last_name} ({admin.domain})"
         for admin in admins_info
     ]
     admins.insert(0, "Администраторы:" if len(admins) > 1 else "Администратор:")

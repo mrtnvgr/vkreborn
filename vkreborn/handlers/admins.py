@@ -5,7 +5,7 @@ from vkreborn.repositories import UserRepository
 
 @labeler.message(text="<_:prefix>admins")
 async def admins_handler(message: Message):
-    repo = UserRepository(user_id=message.from_id)
+    repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)
     admin_ids = await repo.get_admin_ids()
 
     admins_info = await message.ctx_api.users.get(admin_ids, fields=["domain"])

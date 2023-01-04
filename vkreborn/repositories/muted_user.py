@@ -8,8 +8,8 @@ from datetime import datetime
 class MutedUserRepository:
     def __init__(
         self,
-        user_id: int,
-        muted_where: int,
+        user_id: Optional[int | None] = None,
+        muted_where: Optional[int | None] = None,
         muted_until: Optional[datetime | None] = None,
     ):
         self.user_id = user_id
@@ -57,3 +57,11 @@ class MutedUserRepository:
             )
             await conn.execute(query)
             await conn.commit()
+
+    async def list_by_muted_where(self):
+        async with engine.connect() as conn:
+            query = select(MutedUser.user_id).where(
+                MutedUser.muted_where == self.muted_where
+            )
+            users = (await conn.execute(query)).fetchall()
+            return [user[0] for user in users]

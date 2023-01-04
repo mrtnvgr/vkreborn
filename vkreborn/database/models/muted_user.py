@@ -11,7 +11,7 @@ class MutedUser(Base):
     __tablename__ = "muted_users"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, nullable=False)
+    user_id = Column(Integer)
     muted_where = Column(Integer, nullable=False)
     muted_until = Column(DateTime)
 

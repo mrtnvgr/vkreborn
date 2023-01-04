@@ -19,6 +19,7 @@ class UserRepository:
         async with engine.connect() as conn:
             query = insert(User).values(user_id=self.user_id, is_admin=is_admin)
             await conn.execute(query)
+            await conn.commit()
 
     async def get_admin_ids(self):
         async with engine.connect() as conn:
@@ -32,3 +33,4 @@ class UserRepository:
                 update(User).where(User.user_id == self.user_id).value(muted_until=date)
             )
             await conn.execute(query)
+            await conn.commit()

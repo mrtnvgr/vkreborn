@@ -1,6 +1,6 @@
 from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
-from vkreborn.repositories import MutedUserRepository
+from vkreborn.repositories import UserRepository, MutedUserRepository
 from vkbottle.exception_factory import VKAPIError
 from datetime import datetime, timedelta
 from loguru import logger
@@ -25,6 +25,12 @@ async def muted_user_handler(message: Message):
 
 @labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:float>", admin=True)
 async def mute_user_handler(message: Message, user: dict, minutes: float):
+
+    repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
+    user = await repo.get_user()
+    if user.is_admin:
+        return
+
     muted_until = datetime.now() + timedelta(minutes=minutes)
     repo = MutedUserRepository(
         user_id=user["id"],

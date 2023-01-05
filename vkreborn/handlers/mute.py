@@ -40,8 +40,11 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
         muted_until=muted_until,
     )
     await repo.mute()
+
+    formatted_date = muted_until.strftime("%H:%M:%S %d.%m.%Y")
+
     return await message.reply(
-        f"Пользователь {user['domain']} замучен до {muted_until.isoformat()}"
+        f"Пользователь {user['domain']} замучен до {formatted_date}",
     )
 
 

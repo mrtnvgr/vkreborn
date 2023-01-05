@@ -27,8 +27,9 @@ async def muted_user_handler(message: Message):
 async def mute_user_handler(message: Message, user: dict, minutes: float):
 
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
-    user = await repo.get_user()
-    if user.is_admin:
+    repo_user = await repo.get_user()
+
+    if repo_user and repo_user.is_admin:
         return
 
     muted_until = datetime.now() + timedelta(minutes=minutes)

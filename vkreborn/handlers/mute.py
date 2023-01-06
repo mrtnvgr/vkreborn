@@ -2,11 +2,13 @@ from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
 from vkreborn.repositories import UserRepository, MutedUserRepository
 from vkbottle.exception_factory import VKAPIError
+from vkreborn.error_handler import error_handler
 from datetime import datetime, timedelta
 from loguru import logger
 
 
 @labeler.chat_message(muted=True)
+@error_handler.catch
 async def muted_user_handler(message: Message):
     repo = MutedUserRepository(user_id=message.from_id, muted_where=message.chat_id)
     user = await repo.get()
@@ -24,6 +26,7 @@ async def muted_user_handler(message: Message):
 
 
 @labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:float>", admin=True)
+@error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: float):
 
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
@@ -49,6 +52,7 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
 
 
 @labeler.chat_message(text="<_:prefix>unmute <user:mention>", admin=True)
+@error_handler.catch
 async def unmute_user_handler(message: Message, user: dict):
     repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
     await repo.delete()
@@ -56,6 +60,7 @@ async def unmute_user_handler(message: Message, user: dict):
 
 
 @labeler.chat_message(text="<_:prefix>muted")
+@error_handler.catch
 async def muted_here_handler(message: Message):
     repo = MutedUserRepository(muted_where=message.chat_id)
     ids = await repo.list_by_muted_where()
@@ -74,6 +79,7 @@ async def muted_here_handler(message: Message):
 
 
 @labeler.chat_message(text="<_:prefix>mutedby <user:mention>")
+@error_handler.catch
 async def muted_by_handler(message: Message, user: dict):
     repo = MutedUserRepository(muted_where=message.chat_id, muted_by=user["id"])
     ids = await repo.list_by_muted_by()

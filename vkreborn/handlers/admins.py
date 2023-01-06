@@ -1,9 +1,11 @@
 from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
 from vkreborn.repositories import UserRepository
+from vkreborn.error_handler import error_handler
 
 
 @labeler.message(text="<_:prefix>admins")
+@error_handler.catch
 async def admins_handler(message: Message):
     repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)
     admin_ids = await repo.get_admin_ids()

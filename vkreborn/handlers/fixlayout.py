@@ -1,6 +1,7 @@
 from vkbottle.user import Message
 from vkbottle.dispatch.rules.base import ReplyMessageRule
 from vkreborn.vkbottle import labeler
+from vkreborn.error_handler import error_handler
 
 dictionary = {
     "`": "ё",
@@ -62,6 +63,7 @@ def translate(string: str):
 
 
 @labeler.message(ReplyMessageRule(), text="<_:prefix>fixlayout")
+@error_handler.catch
 async def fixlayout_handler(message: Message):
     text = message.reply_message.text
     await message.reply(f'"{translate(text)}"')

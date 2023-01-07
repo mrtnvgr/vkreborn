@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy.sql import insert, select
+from sqlalchemy.sql import insert, select, update
 from vkreborn.database import engine
 from vkreborn.database.models import User
 
@@ -32,3 +32,18 @@ class UserRepository:
             )
             admins: User = (await conn.execute(query)).fetchall()
             return [admin[0] for admin in admins]
+
+    async def set_admin(self, value: bool):
+        async with engine.connect() as conn:
+
+            user = await self.get_user()
+            if not user:
+                await self.add_user()
+
+            query = (
+                update(User)
+                .values(is_admin=value)
+                .where(User.user_id == self.user_id, User.chat_id == self.chat_id)
+            )
+            await conn.execute(query)
+            await conn.commit()

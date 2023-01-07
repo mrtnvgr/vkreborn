@@ -6,6 +6,7 @@ from vkreborn.handlers import (
     roll,
     mute,
     giveadmin,
+    takeadmin,
     trans,
 )
 
@@ -13,6 +14,7 @@ labelers = {
     new_user.labeler,
     mute.labeler,
     giveadmin.labeler,
+    takeadmin.labeler,
     fixlayout.labeler,
     whoami.labeler,
     admins.labeler,

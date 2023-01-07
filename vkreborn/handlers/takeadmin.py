@@ -13,6 +13,12 @@ async def takeadmin_handler(message: Message, user: dict):
     if repo.user_id == account[0].id:
         return await message.reply("...")
 
+    admins = await repo.get_admin_ids()
+    if repo.user_id not in admins:
+        return await message.reply(
+            f"Пользователь {user['domain']} не является администратором этой беседы!"
+        )
+
     await repo.set_admin(False)
 
     return await message.reply(

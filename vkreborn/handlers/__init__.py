@@ -4,19 +4,14 @@ from vkreborn.handlers import (
     whoami,
     admins,
     roll,
-    mute,
-    giveadmin,
-    takeadmin,
-    invite_forceinvite_kick,
     trans,
 )
 
+from vkreborn.handlers.for_admins import admin_labelers
+
 labelers = {
+    *admin_labelers,
     new_user.labeler,
-    mute.labeler,
-    giveadmin.labeler,
-    takeadmin.labeler,
-    invite_forceinvite_kick.labeler,
     fixlayout.labeler,
     whoami.labeler,
     admins.labeler,

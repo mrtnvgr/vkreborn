@@ -8,7 +8,13 @@ from vkreborn.error_handler import error_handler
 @error_handler.catch
 async def takeadmin_handler(message: Message, user: dict):
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
+
+    account = await message.ctx_api.users.get()
+    if repo.user_id == account[0].id:
+        return await message.reply("...")
+
     await repo.set_admin(False)
+
     return await message.reply(
         f"Пользователь {user['domain']} снят с должности администратора этой беседы!"
     )

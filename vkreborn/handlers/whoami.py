@@ -4,7 +4,7 @@ from vkreborn.repositories import UserRepository
 from vkreborn.error_handler import error_handler
 
 
-@labeler.message(text="<_:prefix>whoami")
+@labeler.chat_message(text="<_:prefix>whoami")
 @error_handler.catch
 async def whoami_handler(message: Message):
     repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)

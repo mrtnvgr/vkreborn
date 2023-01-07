@@ -11,7 +11,7 @@ async def kick_handler(message: Message, user: dict):
     kick_resp = await kick(message=message, user=user)
     if not kick_resp:
         return kick_resp
-    await message.reply(f"Пользователь {user['domain']} был исключен из этой беседы!")
+    await message.reply(f"Пользователь {user['domain']} был исключен из этой беседы")
 
 
 @labeler.chat_message(text="<_:prefix>invite <user:mention>", admin=True)

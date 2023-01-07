@@ -7,6 +7,7 @@ from vkreborn.handlers import (
     mute,
     giveadmin,
     takeadmin,
+    invite_forceinvite_kick,
     trans,
 )
 
@@ -15,6 +16,7 @@ labelers = {
     mute.labeler,
     giveadmin.labeler,
     takeadmin.labeler,
+    invite_forceinvite_kick.labeler,
     fixlayout.labeler,
     whoami.labeler,
     admins.labeler,

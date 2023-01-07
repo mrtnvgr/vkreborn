@@ -12,11 +12,11 @@ async def giveadmin_handler(message: Message, user: dict):
     admins = await repo.get_admin_ids()
     if repo.user_id in admins:
         return await message.reply(
-            f"Пользователь {user['domain']} уже является администратором данной беседы"
+            f"Пользователь {user['domain']} уже является администратором"
         )
 
     await repo.set_admin(True)
 
     return await message.reply(
-        f"Пользователь {user['domain']} теперь админ в этой беседе"
+        f"Пользователь {user['domain']} теперь администратор"
     )

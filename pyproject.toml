@@ -10,6 +10,7 @@ dependencies = [
 	"loguru",
 	"SQLAlchemy",
 	"asyncpg",
+	"async_google_trans_new",
 ]
 
 [project.scripts]

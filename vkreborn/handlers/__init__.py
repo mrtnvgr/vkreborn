@@ -5,6 +5,7 @@ from vkreborn.handlers import (
     admins,
     roll,
     trans,
+    shazam,
 )
 
 from vkreborn.handlers.for_admins import admin_labelers
@@ -19,6 +20,7 @@ labelers = {
     admins.labeler,
     roll.labeler,
     trans.labeler,
+    shazam.labeler,
 }
 
 __all__ = ["labelers"]

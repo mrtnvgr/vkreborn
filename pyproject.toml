@@ -11,6 +11,7 @@ dependencies = [
 	"SQLAlchemy",
 	"asyncpg",
 	"async_google_trans_new",
+	"shazamio",
 ]
 
 [project.scripts]

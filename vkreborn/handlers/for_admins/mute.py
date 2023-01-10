@@ -47,7 +47,7 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
     formatted_date = muted_until.strftime("%H:%M:%S %d.%m.%Y")
 
     return await message.reply(
-        f"Пользователь {user['domain']} замучен до {formatted_date}",
+        f"Пользователь {user['domain']} замьючен до {formatted_date}",
     )
 
 
@@ -56,4 +56,4 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
 async def unmute_user_handler(message: Message, user: dict):
     repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
     await repo.delete()
-    return await message.reply(f"Пользователь {user['domain']} размучен")
+    return await message.reply(f"Пользователь {user['domain']} размьючен")

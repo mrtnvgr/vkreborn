@@ -5,7 +5,7 @@ from async_google_trans_new import AsyncTranslator
 from async_google_trans_new import TransError
 
 
-@labeler.message(text="<_:prefix>trans", reply=True)
+@labeler.message(text="<_:prefix>trans", reply=True, blocking=False)
 @error_handler.catch
 async def trans_handler(message: Message):
     content = message.reply_message.text
@@ -13,7 +13,7 @@ async def trans_handler(message: Message):
     return await message.reply(response)
 
 
-@labeler.message(text="<_:prefix>trans <to>", reply=True)
+@labeler.message(text="<_:prefix>trans <to>", reply=True, blocking=False)
 @error_handler.catch
 async def trans_to_handler(message: Message, to: str):
     content = message.reply_message.text

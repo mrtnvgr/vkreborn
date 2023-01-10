@@ -1,5 +1,6 @@
 from vkreborn.handlers import (
     new_user,
+    muted,
     fixlayout,
     whoami,
     admins,
@@ -15,6 +16,7 @@ labelers = {
     *owner_labelers,
     *admin_labelers,
     new_user.labeler,
+    muted.labeler,
     fixlayout.labeler,
     whoami.labeler,
     admins.labeler,

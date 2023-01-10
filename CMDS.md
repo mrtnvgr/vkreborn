@@ -62,6 +62,11 @@
 	  - `mute @id1 30` (`mute <user:mention> <minutes:float>`)
 	    > Мут пользователя @id1 на 30 минут
 
+  - `unmute` - отмена действия команды `mute` на пользователя
+
+    - Примеры использования:
+	  - `unmute @id1` (`unmute <user:mention>`)
+
 </details>
 
 > NOTE: знаки <> являются пояснениями аргумента функции \

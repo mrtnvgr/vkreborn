@@ -38,7 +38,7 @@
   - `mutedby` - список замьюченных в беседе администратором
 
     - Примеры использования:
-	  - `mutedby @id1` (`mutedby <user:mention>`)
+       - `mutedby @id1` (`mutedby <user:mention>`)
   
 </details>
 
@@ -48,31 +48,36 @@
   - `giveadmin` - добавление пользователя в администраторы беседы
   
     - Примеры использования:
-	  - `giveadmin @id1` (`giveadmin <user:mention>`)
+      - `giveadmin @id1` (`giveadmin <user:mention>`)
 
   - `kick` - исключение пользователя из беседы
 
-	- Примеры использования:
-	  - `kick @id1` (`kick <user:mention>`)
+    - Примеры использования:
+      - `kick @id1` (`kick <user:mention>`)
 
   - `invite` - приглашение пользователя в беседу
     
-	- Примеры использования:
-	  - `invite @id1` (`invite <user:mention>`)
+    - Примеры использования:
+      - `invite @id1` (`invite <user:mention>`)
 
   - `forceinvite` - форсированное приглашение пользователя в беседу
     > Сработает если у пользователя разрешены приглашения в настройках приватности
 
-  -	`mute` - автоматическое удаление сообщений пользователя
+  - `mute` - автоматическое удаление сообщений пользователя
     
-	- Примеры использования:
-	  - `mute @id1 30` (`mute <user:mention> <minutes:float>`)
-	    > Мут пользователя @id1 на 30 минут
+    - Примеры использования:
+      - `mute @id1 30` (`mute <user:mention> <minutes:float>`)
+        > Мут пользователя @id1 на 30 минут
 
   - `unmute` - отмена действия команды `mute` на пользователя
 
     - Примеры использования:
-	  - `unmute @id1` (`unmute <user:mention>`)
+      - `unmute @id1` (`unmute <user:mention>`)
+
+  - `takeadmin` - удаление пользователя из администраторов беседы
+
+    - Примеры использования:
+      - `takeadmin @id1` (`takeadmin <user:mention>`)
 
 </details>
 

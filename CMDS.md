@@ -40,6 +40,8 @@
     - Примеры использования:
        - `mutedby @id1` (`mutedby <user:mention>`)
 
+  - `help` - ссылка на этот документ
+
 </details>
 
 <details>

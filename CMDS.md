@@ -22,13 +22,15 @@
     > Бэкенд: [Shazam](http://shazam.com) ([shazamio](dotX12/ShazamIO))
   
   - `trans` - перевод текста сообщений
-    > (Язык текста определяется автоматически)
-    > Бэкенд: []
+    > (Язык текста определяется автоматически) \
+    > Бэкенд: [Google Translate](https://translate.google.com) ([async-google-trans-new](sevenc-nanashi/async-google-trans-new))
     
     - Примеры использования:
       - `trans`
         > Перевод текста на английский
       - `trans de` (`trans <lang_code>`)
         > Перевод текста на немецкий
+  
+  - `whoami` - роль пользователя в беседе
   
 </details>

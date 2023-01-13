@@ -8,7 +8,7 @@ from vkreborn.handlers import (
     trans,
     shazam,
     wallhaven,
-    help,
+    helphandler,
 )
 
 from vkreborn.handlers.for_admins import admin_labelers
@@ -26,7 +26,7 @@ labelers = {
     trans.labeler,
     shazam.labeler,
     wallhaven.labeler,
-    help.labeler,
+    helphandler.labeler,
 }
 
 __all__ = ["labelers"]

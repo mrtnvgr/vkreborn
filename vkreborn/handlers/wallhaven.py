@@ -16,6 +16,16 @@ async def wh_noargs_handler(message: Message):
     return await message.reply(attachment=attachment)
 
 
+@labeler.message(text="<_:prefix>wh <q>", blocking=False)
+@error_handler.catch
+async def wh_query_handler(message: Message, q: str):
+    photo = await get_random_picture(q=q)
+    attachment = await PhotoMessageUploader(message.ctx_api).upload(
+        photo, message.peer_id
+    )
+    return await message.reply(attachment=attachment)
+
+
 async def get_random_picture(**kwargs):
     seed = random.randint(1, 999999)
     search = await wh_search(seed=seed, **kwargs)

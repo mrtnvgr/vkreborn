@@ -19,8 +19,8 @@ async def wh_noargs_handler(message: Message):
 async def get_random_picture(**kwargs):
     seed = random.randint(1, 999999)
     search = await wh_search(seed=seed, **kwargs)
-    picture = random.choice(search)
-    return picture["path"]
+    picture = random.choice(search)["path"]
+    return await AiohttpClient().request_content(picture)
 
 
 async def wh_search(
@@ -37,4 +37,4 @@ async def wh_search(
     }
 
     content = await client.request_json(url, data=payload)
-    return content
+    return content["data"]

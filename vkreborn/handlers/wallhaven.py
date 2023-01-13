@@ -48,5 +48,5 @@ async def wh_search(
         "purity": purity,
     }
 
-    content = await client.request_json(url, data=payload)
+    content = await client.request_json(url, params=payload)
     return content["data"]

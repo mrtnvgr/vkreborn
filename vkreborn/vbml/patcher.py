@@ -26,9 +26,10 @@ def prefix_validator(value: str):
     if value == "%!":
         return True
 
+
 @patcher.validator("wh-switches")
 def wh_switches_validator(value: str):
-    if len(value) not in [3,6]: # "000" or "0 0 0"
+    if len(value) not in [3, 6]:  # "000" or "0 0 0"
         return
 
     if " " in value:

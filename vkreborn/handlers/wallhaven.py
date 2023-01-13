@@ -10,5 +10,5 @@ async def wh_noargs_handler(message: Message):
     return await message.reply(attachment=attachment)
 
 
-async def get_picture(q:str = "", categories: str = "", purity: str = "100"):
+async def get_picture(q: str = "", categories: str = "", purity: str = "100"):
     pass

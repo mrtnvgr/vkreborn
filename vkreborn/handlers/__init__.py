@@ -7,6 +7,7 @@ from vkreborn.handlers import (
     roll,
     trans,
     shazam,
+    wallhaven,
     help,
 )
 
@@ -24,6 +25,7 @@ labelers = {
     roll.labeler,
     trans.labeler,
     shazam.labeler,
+    wallhaven.labeler,
     help.labeler,
 }
 

@@ -27,14 +27,17 @@ async def wh_query_handler(message: Message, q: str):
 
 
 async def get_random_picture(**kwargs):
-    seed = random.randint(1, 999999)
-    search = await wh_search(seed=seed, **kwargs)
+    search = await wh_search(sorting="random", **kwargs)
     picture = random.choice(search)["path"]
     return await AiohttpClient().request_content(picture)
 
 
 async def wh_search(
-    q: str = "", categories: str = "111", purity: str = "100", seed: str = ""
+    q: str = "",
+    categories: str = "111",
+    purity: str = "100",
+    sorting: str = "date_added",
+    seed: str = "",
 ):
     url = "https://wallhaven.cc/api/v1/search"
     client = AiohttpClient()
@@ -42,6 +45,7 @@ async def wh_search(
     payload = {
         "q": q,
         "categories": categories,
+        "sorting": sorting,
         "purity": purity,
         "seed": seed,
     }

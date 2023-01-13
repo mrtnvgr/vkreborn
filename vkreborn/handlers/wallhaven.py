@@ -37,7 +37,6 @@ async def wh_search(
     categories: str = "111",
     purity: str = "100",
     sorting: str = "date_added",
-    seed: str = "",
 ):
     url = "https://wallhaven.cc/api/v1/search"
     client = AiohttpClient()
@@ -47,7 +46,6 @@ async def wh_search(
         "categories": categories,
         "sorting": sorting,
         "purity": purity,
-        "seed": seed,
     }
 
     content = await client.request_json(url, data=payload)

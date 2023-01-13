@@ -12,7 +12,7 @@ import random
 async def wh_noargs_handler(message: Message):
     photo = await get_random_picture(message)
     attachment = await PhotoMessageUploader(message.ctx_api).upload(
-        photo, message.peer_id
+        photo, message.chat_id
     )
     return await message.reply(attachment=attachment)
 
@@ -22,7 +22,7 @@ async def wh_noargs_handler(message: Message):
 async def wh_query_handler(message: Message, q: str):
     photo = await get_random_picture(message, q=q)
     attachment = await PhotoMessageUploader(message.ctx_api).upload(
-        photo, message.peer_id
+        photo, message.chat_id
     )
     return await message.reply(attachment=attachment)
 

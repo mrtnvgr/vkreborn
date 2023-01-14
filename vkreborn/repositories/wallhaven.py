@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy.sql import insert
+from sqlalchemy.sql import insert, select
 from vkreborn.database import engine
 from vkreborn.database.models import WHPicture
 
@@ -22,3 +22,13 @@ class WHPictureRepository:
             )
             await conn.execute(query)
             await conn.commit()
+
+    async def get(self) -> WHPicture:
+        async with engine.connect() as conn:
+            query = select(WHPicture).where(
+                WHPicture.picture_id == self.picture_id,
+                WHPicture.where_id == self.where_id,
+                WHPicture.from_id == self.from_id,
+            )
+            user: Optional[WHPicture] = (await conn.execute(query)).fetchall()
+            return user

@@ -11,6 +11,8 @@ import random
 @error_handler.catch
 async def wh_noargs_handler(message: Message):
     photo = await get_random_picture(message)
+    if not photo:
+        return
     attachment = await PhotoMessageUploader(message.ctx_api).upload(
         photo, message.chat_id
     )
@@ -21,6 +23,8 @@ async def wh_noargs_handler(message: Message):
 @error_handler.catch
 async def wh_query_handler(message: Message, q: str):
     photo = await get_random_picture(message, q=q)
+    if not photo:
+        return
     attachment = await PhotoMessageUploader(message.ctx_api).upload(
         photo, message.chat_id
     )
@@ -29,9 +33,28 @@ async def wh_query_handler(message: Message, q: str):
 
 async def get_random_picture(message: Message, **kwargs):
     search = await wh_search(sorting="random", **kwargs)
-    picture = random.choice(search)
+    picture = await pick_random_picture(message, search)
+    if not picture:
+        await message.reply("К сожалению, фотографии по такому запросу закончились")
+        return
     await register_picture(message, picture["id"])
     return await AiohttpClient().request_content(picture["path"])
+
+
+async def pick_random_picture(message: Message, search: list):
+    picture = None
+    while len(search) > 0:
+        picture = random.choice(search)
+        search.remove(picture)
+
+        repo = WHPictureRepository(
+            picture_id=picture["id"], where_id=message.chat_id, from_id=message.from_id
+        )
+        if await repo.get():
+            picture = None
+            break
+
+    return picture
 
 
 async def register_picture(message: Message, picture_id: int):

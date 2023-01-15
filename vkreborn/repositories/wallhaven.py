@@ -7,7 +7,7 @@ from vkreborn.database.models import WHPicture
 class WHPictureRepository:
     def __init__(
         self,
-        picture_id: Optional[str | None],
+        picture_id: Optional[str | None] = None,
         where_id: Optional[int | None] = None,
         from_id: Optional[int | None] = None,
     ):

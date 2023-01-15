@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy.sql import insert, select
+from sqlalchemy.sql import insert, select, delete
 from vkreborn.database import engine
 from vkreborn.database.models import WHPicture
 
@@ -7,7 +7,7 @@ from vkreborn.database.models import WHPicture
 class WHPictureRepository:
     def __init__(
         self,
-        picture_id: str,
+        picture_id: Optional[str | None],
         where_id: Optional[int | None] = None,
         from_id: Optional[int | None] = None,
     ):
@@ -32,3 +32,9 @@ class WHPictureRepository:
             )
             user: Optional[WHPicture] = (await conn.execute(query)).fetchall()
             return user
+
+    async def reset_chat(self):
+        async with engine.connect() as conn:
+            query = delete(WHPicture).where(WHPicture.where_id == self.where_id)
+            await conn.execute(query)
+            await conn.commit()

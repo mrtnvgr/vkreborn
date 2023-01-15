@@ -29,11 +29,8 @@ def prefix_validator(value: str):
 
 @patcher.validator("wh-switches")
 def wh_switches_validator(value: str):
-    if len(value) not in [3, 6]:  # "000" or "0 0 0"
+    if len(value) != 3:  # "000"
         return
-
-    if " " in value:
-        value = value.replace(" ", "")
 
     for numba in value:
         if not numba.isdigit():

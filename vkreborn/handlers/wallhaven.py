@@ -31,6 +31,18 @@ async def wh_query_handler(message: Message, q: str):
     return await message.reply(attachment=attachment)
 
 
+@labeler.message(text="<_:prefix>wh <q> <categories:wh-switches>", blocking=False)
+@error_handler.catch
+async def wh_query_categories_handler(message: Message, q: str, categories: str):
+    photo = await get_random_picture(message, q=q, categories=categories)
+    if not photo:
+        return
+    attachment = await PhotoMessageUploader(message.ctx_api).upload(
+        photo, message.chat_id
+    )
+    return await message.reply(attachment=attachment)
+
+
 async def get_random_picture(message: Message, **kwargs):
     search = await wh_search(sorting="random", **kwargs)
     picture = await pick_random_picture(message, search)

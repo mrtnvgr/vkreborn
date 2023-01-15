@@ -36,6 +36,7 @@
     - Примеры использования:
 	  - `wh`
 	  - `wh Abstract` (`wh <query>`)
+	  - `wh Abstract 100` (`wh <q> <categories:wh-switches>`)
 
   - `whoami` - роль пользователя в беседе
 

@@ -38,7 +38,7 @@
 	  - `wh`
 	  - `wh Abstract` (`wh <query>`)
         > Картинка по запросу "Abstract"
-	  - `wh Abstract 100` (`wh <q> <categories:wh-switches>`)
+	  - `wh Abstract 100` (`wh <q> <categories:wh_switches>`)
         > Картинка по запросу "Abstract" с категорией "General"
 
   - `whoami` - роль пользователя в беседе

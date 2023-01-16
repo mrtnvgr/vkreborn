@@ -27,7 +27,7 @@ def prefix_validator(value: str):
         return True
 
 
-@patcher.validator("wh-switches")
+@patcher.validator("wh_switches")
 def wh_switches_validator(value: str):
     if len(value) != 3:  # "000"
         return

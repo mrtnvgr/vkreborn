@@ -19,7 +19,7 @@ async def wh_query_handler(message: Message, q: str):
     return await send_random_single(message, q=q)
 
 
-@labeler.message(text="<_:prefix>wh <q> <categories:wh-switches>", blocking=False)
+@labeler.message(text="<_:prefix>wh <q> <categories:wh_switches>", blocking=False)
 @error_handler.catch
 async def wh_query_categories_handler(message: Message, q: str, categories: str):
     return await send_random_single(message, q=q, categories=categories)

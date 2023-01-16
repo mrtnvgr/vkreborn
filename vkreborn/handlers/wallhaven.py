@@ -10,31 +10,23 @@ import random
 @labeler.message(text="<_:prefix>wh", blocking=False)
 @error_handler.catch
 async def wh_noargs_handler(message: Message):
-    photo = await get_random_picture(message)
-    if not photo:
-        return
-    attachment = await PhotoMessageUploader(message.ctx_api).upload(
-        photo, message.chat_id
-    )
-    return await message.reply(attachment=attachment)
+    return await send_random_single(message)
 
 
 @labeler.message(text="<_:prefix>wh <q>", blocking=False)
 @error_handler.catch
 async def wh_query_handler(message: Message, q: str):
-    photo = await get_random_picture(message, q=q)
-    if not photo:
-        return
-    attachment = await PhotoMessageUploader(message.ctx_api).upload(
-        photo, message.chat_id
-    )
-    return await message.reply(attachment=attachment)
+    return await send_random_single(message, q=q)
 
 
 @labeler.message(text="<_:prefix>wh <q> <categories:wh-switches>", blocking=False)
 @error_handler.catch
 async def wh_query_categories_handler(message: Message, q: str, categories: str):
-    photo = await get_random_picture(message, q=q, categories=categories)
+    return await send_random_single(message, q=q, categories=categories)
+
+
+async def send_random_single(message: Message, **kwargs):
+    photo = await get_random_picture(message, **kwargs)
     if not photo:
         return
     attachment = await PhotoMessageUploader(message.ctx_api).upload(

@@ -25,6 +25,17 @@ async def wh_query_categories_handler(message: Message, q: str, categories: str)
     return await send_random_single(message, q=q, categories=categories)
 
 
+@labeler.message(
+    text="<_:prefix>wh <q> <categories:wh_switches> <purity:wh_switches>",
+    blocking=False,
+)
+@error_handler.catch
+async def wh_query_categories_purity_handler(
+    message: Message, q: str, categories: str, purity: str
+):
+    return await send_random_single(message, q=q, categories=categories, purity=purity)
+
+
 async def send_random_single(message: Message, **kwargs):
     photo = await get_random_picture(message, **kwargs)
     if not photo:

@@ -40,6 +40,8 @@
         > Картинка по запросу "Abstract"
 	  - `wh Abstract 100` (`wh <q> <categories:wh_switches>`)
         > Картинка по запросу "Abstract" с категорией "General"
+	  - `wh Abstract 100 100` (`wh <q> <categories:wh_switches> <purity:wh_categories>`)
+	    > Картинка по запросу "Abstract" с категорией "General", только SFW
 
   - `whoami` - роль пользователя в беседе
 

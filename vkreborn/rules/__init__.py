@@ -5,11 +5,11 @@ from vkreborn.rules.reply import ReplyMessageRule
 from vkreborn.rules.owner import OwnerRule
 from vkreborn.rules.reply_attachment import ReplyAttachmentRule
 
-__all__ = {
-    NewUserRule,
-    AdminRule,
-    MutedRule,
-    ReplyMessageRule,
-    ReplyAttachmentRule,
-    OwnerRule,
-}
+__all__ = [
+    "NewUserRule",
+    "AdminRule",
+    "MutedRule",
+    "ReplyMessageRule",
+    "ReplyAttachmentRule",
+    "OwnerRule",
+]

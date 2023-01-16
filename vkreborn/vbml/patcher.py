@@ -25,3 +25,15 @@ def mention_validator(value: str):
 def prefix_validator(value: str):
     if value == "%!":
         return True
+
+
+@patcher.validator("wh_switches")
+def wh_switches_validator(value: str):
+    if len(value) != 3:  # "000"
+        return
+
+    for numba in value:
+        if numba not in ["0", "1"]:
+            return
+
+    return value

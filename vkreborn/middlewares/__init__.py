@@ -1,3 +1,3 @@
 middlewares = {}
 
-__all__ = {"middlewares"}
+__all__ = ["middlewares"]

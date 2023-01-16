@@ -12,8 +12,13 @@ class WHPictureRepository:
         from_id: Optional[int | None] = None,
     ):
         self.picture_id = picture_id
-        self.where_id = where_id if int(where_id) > 0 else None
-        self.from_id = from_id if int(where_id) < 0 else None
+
+        if type(where_id) is int:
+            self.where_id = where_id if where_id > 0 else None
+            self.from_id = from_id if where_id < 0 else None
+        else:
+            self.where_id = where_id
+            self.from_id = from_id
 
     async def create(self):
         async with engine.connect() as conn:
@@ -36,5 +41,11 @@ class WHPictureRepository:
     async def reset_chat(self):
         async with engine.connect() as conn:
             query = delete(WHPicture).where(WHPicture.where_id == self.where_id)
+            await conn.execute(query)
+            await conn.commit()
+
+    async def reset_all(self):
+        async with engine.connect() as conn:
+            query = delete(WHPicture)
             await conn.execute(query)
             await conn.commit()

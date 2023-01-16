@@ -1,3 +1,3 @@
 #!/bin/sh
-pip install .[tests]
+pip install .[test]
 git config --local core.hooksPath .github/hooks

@@ -6,7 +6,7 @@ requires = ["setuptools", "wheel"]
 name = "vkreborn"
 version = "0.0.0"
 dependencies = [
-	"git+https://github.com/vkbottle/vkbottle@dev",
+	"vkbottle",
 	"loguru",
 	"SQLAlchemy",
 	"asyncpg",

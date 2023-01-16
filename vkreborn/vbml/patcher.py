@@ -33,7 +33,7 @@ def wh_switches_validator(value: str):
         return
 
     for numba in value:
-        if not numba.isdigit():
+        if numba not in ["0", "1"]:
             return
 
     return value

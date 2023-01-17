@@ -6,6 +6,7 @@ from vkreborn.config import VKTOKEN
 from vkreborn.database.initialize import setup_db
 from vkreborn.handlers import labelers
 from vkreborn.middlewares import middlewares
+from vkreborn.response_validator import CaptchaResponseValidator
 
 
 @logger.catch
@@ -21,6 +22,8 @@ def main():
 
     for middleware in middlewares:
         user.labeler.message_view.register_middleware(middleware)
+
+    user.api.response_validators.insert(1, CaptchaResponseValidator())
 
     user.run_forever()
 

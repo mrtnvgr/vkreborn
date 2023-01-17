@@ -33,4 +33,4 @@ async def make(message: Message, **fx):
         )
         new_attachments.append(new_attachment)
 
-    return new_attachments
+    return await message.reply(attachments=new_attachments)

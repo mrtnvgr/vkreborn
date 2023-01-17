@@ -1,5 +1,6 @@
 from vkbottle.dispatch.rules import ABCRule
 from vkbottle.user import Message
+from vkreborn.tools import get_attachments
 from typing import Union, List
 
 
@@ -10,10 +11,7 @@ class AttachmentRule(ABCRule[Message]):
         self.attachment_types = attachment_types
 
     async def check(self, event: Message) -> bool:
-        attachments = []
-        attachments.extend(event.attachments)
-        if event.reply_message:
-            attachments.extend(event.reply_message.attachments)
+        attachments = get_attachments(event)
 
         if not attachments:
             return False

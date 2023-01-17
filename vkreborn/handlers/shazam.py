@@ -1,6 +1,7 @@
 from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
+from vkreborn.tools import get_attachments
 from vkbottle.http import AiohttpClient
 from shazamio import Shazam
 
@@ -10,7 +11,7 @@ from shazamio import Shazam
 )
 @error_handler.catch
 async def shazam_attachment_handler(message: Message):
-    return await shazam_func(message, message.attachments)
+    return await shazam_func(message, get_attachments(message))
 
 
 async def shazam_func(message: Message, attachments: list):

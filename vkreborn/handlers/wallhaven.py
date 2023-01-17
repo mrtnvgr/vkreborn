@@ -5,6 +5,7 @@ from vkbottle import PhotoMessageUploader
 from vkbottle.http import AiohttpClient
 from vkreborn.repositories import WHPictureRepository
 from vkreborn.config import WALLHAVEN_API_KEY
+from loguru import logger
 import random
 
 
@@ -98,6 +99,8 @@ async def wh_search(
 
     if WALLHAVEN_API_KEY:
         payload["apikey"] = WALLHAVEN_API_KEY
+    else:
+        logger.warning("Please provide your WALLHAVEN_API_KEY in .env file")
 
     content = await client.request_json(url, params=payload)
     return content["data"]

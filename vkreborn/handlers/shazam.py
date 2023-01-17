@@ -1,7 +1,7 @@
 from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
-from vkreborn.tools import get_attachments, get_url_bytes
+from vkreborn.tools import get_attachments, download_attachment
 from shazamio import Shazam
 
 
@@ -21,14 +21,7 @@ async def shazam_func(message: Message, attachments: list):
 
     for attachment in attachments:
 
-        if attachment.audio:
-            link: str = attachment.audio.url
-        elif attachment.audio_message:
-            link: str = attachment.audio_message.link_mp3
-        else:
-            continue
-
-        data: bytes = await get_url_bytes(link)
+        data = download_attachment(attachment)
 
         shazam_response: str = await shazam.recognize_song(data)
 

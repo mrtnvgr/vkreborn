@@ -14,3 +14,14 @@ async def get_url_bytes(url: str):
     client = AiohttpClient()
     content = await client.request_content(url)
     return content
+
+
+async def download_attachment(attachment):
+    if attachment.audio:
+        link: str = attachment.audio.url
+    elif attachment.audio_message:
+        link: str = attachment.audio_message.link_mp3
+    else:
+        raise Exception("NOT SUPPORTED")
+
+    return await get_url_bytes(link)

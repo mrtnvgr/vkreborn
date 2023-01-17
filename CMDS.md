@@ -8,7 +8,7 @@
   <br>
 
   - `fixlayout` - изменение раскладки текста
-    > Идея взята с программы [Punto Switcher](https://yandex.ru/soft/punto/win/)
+    > Спасибо [Punto Switcher](https://yandex.ru/soft/punto/win/)!
 
   <br>
 
@@ -20,40 +20,39 @@
       - `roll 7-27` (`roll <start:int>-<end:int>`)
         > Случайное число из промежутка чисел
       - `roll foo, bar, baz, "Item with spaces"` (`roll <items:list>`)
-        > Случайный элемент из списка
+        > Случайный элемент списка
 	
   <br>
 
   - `shazam` - определение аудио
-    > Работает на музыке и голосовых сообщениях \
-    > (Также учитываются и ответы на сообщения содержащие вложения) \
+    > Поддерживаемые типы вложений: музыка, голосовые сообщения \
     > Бэкенд: [Shazam](http://shazam.com) ([shazamio](dotX12/ShazamIO))
   
   <br>
 
   - `trans` - перевод текста сообщений
-    > (Язык текста определяется автоматически) \
+    > Список доступных языков: [тут](https://cloud.google.com/translate/docs/languages) \
     > Бэкенд: [Google Translate](https://translate.google.com) ([async-google-trans-new](sevenc-nanashi/async-google-trans-new))
-    
+
     - Примеры использования:
       - `trans`
-        > Перевод текста на английский
+        > Перевод текста на английский язык
       - `trans de` (`trans <lang_code>`)
-        > Перевод текста на немецкий
+        > Перевод текста на немецкий язык
   
   <br>
 
   - `wh` - отправка картинок с сайта [wallhaven](https://wallhaven.cc)
-    > Документация по параметрам: [тут](https://wallhaven.cc/help/api)
+    > Официальная документация: [тут](https://wallhaven.cc/help/api)
 
     - Примеры использования:
 	  - `wh`
 	  - `wh Abstract` (`wh <query>`)
         > Картинка по запросу "Abstract"
 	  - `wh Abstract 100` (`wh <q> <categories:wh_switches>`)
-        > Картинка по запросу "Abstract" с категорией "General"
+        > Картинка по запросу "Abstract", категория "General"
 	  - `wh Abstract 100 100` (`wh <q> <categories:wh_switches> <purity:wh_categories>`)
-	    > Картинка по запросу "Abstract" с категорией "General", только SFW
+	    > Картинка по запросу "Abstract", категория "General", только SFW
   
   <br>
 
@@ -62,7 +61,7 @@
   <br>
 
   - `whreset` - очистка кэша чата команды `wh`
-    > NOTE: Работает только в личных сообщениях \
+  > NOTE: Работает только в личных сообщениях \
 	> (для использования в беседах, требуются права администратора)
   
   <br>
@@ -71,14 +70,14 @@
   
   <br>
 
-  - `mutedby` - список замьюченных в беседе администратором
+  - `mutedby` - список замьюченных в беседе конкретным администратором
 
     - Примеры использования:
        - `mutedby @id1` (`mutedby <user:mention>`)
   
   <br>
 
-  - `help` - ссылка на этот документ
+  - `help` - ссылка на этот файл
   
   <br>
 
@@ -137,7 +136,7 @@
   
   <br>
 
-  - `whreset` - очистка кэша беседы команды `wh`
+  - `whreset` - очистка кэша команды `wh` в беседе
   
   <br>
 

@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class CaptchaRequestRescheduler(ABCRequestRescheduler):
-    def __init__(self, delay: int = 10):
+    def __init__(self, delay: int = 5):
         self.delay = delay
 
     async def reschedule(

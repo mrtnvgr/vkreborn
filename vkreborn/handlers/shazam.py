@@ -1,8 +1,7 @@
 from vkbottle.user import Message
 from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
-from vkreborn.tools import get_attachments
-from vkbottle.http import AiohttpClient
+from vkreborn.tools import get_attachments, get_url_bytes
 from shazamio import Shazam
 
 
@@ -29,7 +28,7 @@ async def shazam_func(message: Message, attachments: list):
         else:
             continue
 
-        data: bytes = await get_bytes(link)
+        data: bytes = await get_url_bytes(link)
 
         shazam_response: str = await shazam.recognize_song(data)
 
@@ -37,12 +36,6 @@ async def shazam_func(message: Message, attachments: list):
 
     if response:
         return await message.reply("\n".join(response))
-
-
-async def get_bytes(url: str):
-    client = AiohttpClient()
-    content = await client.request_content(url)
-    return content
 
 
 async def format_data(resp: dict):

@@ -11,7 +11,7 @@ class AttachmentRule(ABCRule[Message]):
         self.attachment_types = attachment_types
 
     async def check(self, event: Message) -> bool:
-        attachments = get_attachments(event)
+        attachments = await get_attachments(event)
 
         if not attachments:
             return False

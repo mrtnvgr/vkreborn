@@ -10,7 +10,8 @@ from shazamio import Shazam
 )
 @error_handler.catch
 async def shazam_attachment_handler(message: Message):
-    return await shazam_func(message, get_attachments(message))
+    attachments = await get_attachments(message)
+    return await shazam_func(message, attachments)
 
 
 async def shazam_func(message: Message, attachments: list):
@@ -21,7 +22,7 @@ async def shazam_func(message: Message, attachments: list):
 
     for attachment in attachments:
 
-        data = download_attachment(attachment)
+        data = await download_attachment(attachment)
 
         shazam_response: str = await shazam.recognize_song(data)
 

@@ -13,12 +13,12 @@ from vkreborn.thirdparty import ffmpeg
 )
 @error_handler.catch
 async def nc_handler(message: Message, speed: float):
-    return await make(message, core=speed)
+    return await make(message, speed=speed)
 
 
 async def make(message: Message, **fx):
 
-    attachments = get_attachments(message)
+    attachments = await get_attachments(message)
 
     new_attachments = []
 

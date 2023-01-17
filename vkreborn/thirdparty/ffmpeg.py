@@ -16,18 +16,19 @@ async def ffmpeg(content: bytes, **fx: dict):
         source_file.write(content)
 
         output = os.path.join(
-            os.path.dirname(source_file), "out_" + os.path.basename(source_file)
+            os.path.dirname(source_file.name),
+            "out_" + os.path.basename(source_file.name),
         )
 
         sample_rate = await get_sample_rate(source_file.name)
 
-        filters = await generate_filters(fx, sample_rate)
+        filters = await generate_filters(fx, sample_rate=sample_rate)
 
         run(
             [
                 "ffmpeg",
                 "-i",
-                source_file,
+                source_file.name,
                 "-ab",
                 "320k",
                 "-filter:a",

@@ -15,11 +15,9 @@ class AttachmentRule(ABCRule[Message]):
         if event.reply_message:
             attachments.extend(event.reply_message.attachments)
 
-        return (
-            all(
-                attachment.type.value in self.attachment_types
-                for attachment in attachments
-            )
-            if attachments
-            else False
+        if not attachments:
+            return False
+
+        return all(
+            attachment.type.value in self.attachment_types for attachment in attachments
         )

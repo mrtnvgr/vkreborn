@@ -4,7 +4,6 @@ from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
 from vkreborn.thirdparty import ffmpeg
-from vkreborn.config import FX_NIGHTCORE_SPEED, FX_DAYCORE_SPEED
 
 defaults = {"attachment": ["audio", "audio_message"], "blocking": False}
 
@@ -23,14 +22,14 @@ async def core_handler(message: Message, speed: float):
 @labeler.message(text="<_:prefix>nightcore", **defaults)
 @error_handler.catch
 async def nightcore_handler(message: Message):
-    return await make(message, speed=FX_NIGHTCORE_SPEED)
+    return await make(message, nightcore=True)
 
 
 @labeler.message(text="<_:prefix>dc", **defaults)
 @labeler.message(text="<_:prefix>daycore", **defaults)
 @error_handler.catch
 async def daycore_handler(message: Message):
-    return await make(message, speed=FX_DAYCORE_SPEED)
+    return await make(message, daycore=True)
 
 
 async def make(message: Message, **fx):

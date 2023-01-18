@@ -1,13 +1,20 @@
 from tempfile import NamedTemporaryFile
 from subprocess import check_output, run, DEVNULL
-from vkreborn.config import FX_DAYCORE_SPEED
+from vkreborn.config import FX_NIGHTCORE_SPEED, FX_DAYCORE_SPEED
 import json
 import os
 
 
 FILTERS = {"speed": "asetrate={}*{sample_rate}"}
+FILTERS["nightcore"] = FILTERS["speed"].replace("{}", str(FX_NIGHTCORE_SPEED), 1)
+FILTERS["daycore"] = FILTERS["speed"].replace("{}", str(FX_DAYCORE_SPEED), 1)
+
 FILTER_NAME_FUNCS = {
-    "speed": lambda speed: "daycore" if speed <= FX_DAYCORE_SPEED else "nightcore"
+    "speed": lambda speed: f"daycore x{speed}"
+    if speed <= FX_DAYCORE_SPEED
+    else f"nightcore x{speed}",
+    "nightcore": lambda _: "nightcore",
+    "daycore": lambda _: "daycore",
 }
 
 

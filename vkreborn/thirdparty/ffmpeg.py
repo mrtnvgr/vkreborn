@@ -1,11 +1,14 @@
 from tempfile import NamedTemporaryFile
 from subprocess import check_output, run, DEVNULL
+from vkreborn.config import FX_DAYCORE_SPEED
 import json
 import os
 
 
 FILTERS = {"speed": "asetrate={}*{sample_rate}"}
-FILTER_NAME_FUNCS = {"speed": lambda speed: "nightcore" if speed > 1 else "daycore"}
+FILTER_NAME_FUNCS = {
+    "speed": lambda speed: "daycore" if speed <= FX_DAYCORE_SPEED else "nightcore"
+}
 
 
 async def apply_fx(content: bytes, **fx: dict):

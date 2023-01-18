@@ -5,15 +5,27 @@ from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
 from vkreborn.thirdparty import ffmpeg
 
+defaults = {"attachment": ["audio", "audio_message"], "blocking": False}
 
-@labeler.message(
-    text="<_:prefix>nc <speed:float>",
-    attachment=["audio", "audio_message"],
-    blocking=False,
-)
+
+@labeler.message(text="<_:prefix>nc <speed:float>", **defaults)
+@labeler.message(text="<_:prefix>nightcore <speed:float>", **defaults)
+@labeler.message(text="<_:prefix>dc <speed:float>", **defaults)
+@labeler.message(text="<_:prefix>daycore <speed:float>", **defaults)
+@labeler.message(text="<_:prefix>core <speed:float>", **defaults)
 @error_handler.catch
-async def nc_handler(message: Message, speed: float):
+async def core_handler(message: Message, speed: float):
     return await make(message, speed=speed)
+
+
+# @labeler.message(
+#     text="<_:prefix>nc",
+#     attachment=["audio", "audio_message"],
+#     blocking=False,
+# )
+# @error_handler.catch
+# async def core_default_handler(message: Message, speed: float):
+#     return await make(message, speed=FX_NIGHTCORE_SPEED)
 
 
 async def make(message: Message, **fx):

@@ -5,6 +5,7 @@ import os
 
 
 FILTERS = {"speed": "asetrate={}*{sample_rate}"}
+FILTER_NAME_FUNCS = {"speed": lambda speed: "nightcore" if speed > 1 else "daycore"}
 
 
 async def apply_fx(content: bytes, **fx: dict):
@@ -46,6 +47,11 @@ async def apply_fx(content: bytes, **fx: dict):
     os.remove(output)
 
     return data
+
+
+async def make_title(title: str, **fx: dict):
+    filters = [FILTER_NAME_FUNCS[name](value) for name, value in fx.items()]
+    return f"{title} +| {', '.join(filters)}"
 
 
 async def generate_filters(fx: dict, **kwargs):

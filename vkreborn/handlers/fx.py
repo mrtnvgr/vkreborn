@@ -25,12 +25,26 @@ async def make(message: Message, **fx):
     for attachment in attachments:
 
         content = await download_attachment(attachment)
+        title = await get_audio_title(attachment)
 
         new_content = await ffmpeg.apply_fx(content, **fx)
 
+        new_title = await ffmpeg.make_title(title, **fx)
+
         new_attachment = await AudioUploader(message.ctx_api).upload(
-            "PLACEHOLDER ARTIST", "PLACEHOLDER TITLE", new_content
+            "vkr @p13d3z", new_title, new_content
         )
         new_attachments.append(new_attachment)
 
     return await message.reply(attachment=new_attachments)
+
+
+async def get_audio_title(attachment) -> str:
+    if attachment.audio:
+        return "PLACEHOLDER"
+
+    elif attachment.audio_message:
+        # TODO: vkbottle_types#39
+        # if attachment.audio_message.transcript:
+        #     return attachment.audio_message.transcript
+        return "Голосовое сообщение"

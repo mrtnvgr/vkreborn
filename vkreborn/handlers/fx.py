@@ -26,7 +26,7 @@ async def make(message: Message, **fx):
 
         content = await download_attachment(attachment)
 
-        new_content = await ffmpeg(content, **fx)
+        new_content = await ffmpeg.apply_fx(content, **fx)
 
         new_attachment = await AudioUploader(message.ctx_api).upload(
             "PLACEHOLDER ARTIST", "PLACEHOLDER TITLE", new_content

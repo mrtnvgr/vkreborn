@@ -7,7 +7,7 @@ import os
 FILTERS = {"speed": "asetrate={}*{sample_rate}"}
 
 
-async def ffmpeg(content: bytes, **fx: dict):
+async def apply_fx(content: bytes, **fx: dict):
 
     with NamedTemporaryFile(suffix=".mp3") as source_file:
 

@@ -37,3 +37,9 @@ def wh_switches_validator(value: str):
             return
 
     return value
+
+
+@patcher.validator("float")
+def custom_float_validator(value: str):
+    value = value.replace(",", "").replace(".", "")
+    return value.isdigit()

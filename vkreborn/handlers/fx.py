@@ -34,8 +34,14 @@ async def daycore_handler(message: Message):
 
 @labeler.message(text="<_:prefix>reverb", **defaults)
 @error_handler.catch
-async def reverb_handler(message: Message):
-    return await make(message, reverb=True)
+async def reverb_default_handler(message: Message):
+    return await make(message, reverb_def=True)
+
+
+@labeler.message(text="<_:prefix>reverb <wet:percentage>", **defaults)
+@error_handler.catch
+async def reverb_handler(message: Message, wet: int):
+    return await make(message, reverb=wet)
 
 
 async def make(message: Message, **fx):

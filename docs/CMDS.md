@@ -1,13 +1,4 @@
 <details>
-<summary>Команды</summary>
-  
-  <br>
-
-  
-
-</details>
-
-<details>
 <summary>Команды для администраторов бесед</summary>
   
   <br>

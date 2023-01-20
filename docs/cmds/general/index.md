@@ -11,33 +11,7 @@
 
 - [Перевод текста сообщений](list/trans.md)
 
-<br>
-
-- `trans` - перевод текста сообщений
-  > Список доступных языков: [тут](https://cloud.google.com/translate/docs/languages) \
-  > Бэкенд: [Google Translate](https://translate.google.com) ([async-google-trans-new](sevenc-nanashi/async-google-trans-new))
-
-  - Примеры использования:
-    - `trans`
-	  > Перевод текста на английский язык
-    - `trans de` (`trans <lang_code>`)
-	  > Перевод текста на немецкий язык
-
-<br>
-
-- `wh` - отправка картинок с сайта [wallhaven](https://wallhaven.cc)
-  > Официальная документация: [тут](https://wallhaven.cc/help/api)
-
-  - Примеры использования:
-    - `wh`
-    - `wh Abstract` (`wh <query>`)
-	  > Картинка по запросу "Abstract"
-    - `wh Abstract 100` (`wh <q> <categories:wh_switches>`)
-	  > Картинка по запросу "Abstract", категория "General"
-    - `wh Abstract 100 100` (`wh <q> <categories:wh_switches> <purity:wh_categories>`)
-	  > Картинка по запросу "Abstract", категория "General", только SFW
-
-<br>
+- [отправка картинок с сайта [wallhaven](https://wallhaven.cc)](list/wh.md)
 
 - `whoami` - роль пользователя в беседе
 

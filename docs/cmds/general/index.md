@@ -11,11 +11,9 @@
 
 - [Перевод текста сообщений](list/trans.md)
 
-- [отправка картинок с сайта [wallhaven](https://wallhaven.cc)](list/wh.md)
+- [Отправка картинок с сайта [wallhaven](https://wallhaven.cc)](list/wh.md)
 
-- `whoami` - роль пользователя в беседе
-
-<br>
+- [Роль пользователя в беседе](list/whoami.md)
 
 - `whreset` - очистка кэша чата команды `wh`
   > NOTE: Работает только в личных сообщениях \

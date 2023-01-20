@@ -32,6 +32,12 @@ async def daycore_handler(message: Message):
     return await make(message, daycore=True)
 
 
+@labeler.message(text="<_:prefix>reverb", **defaults)
+@error_handler.catch
+async def reverb_handler(message: Message):
+    return await make(message, reverb=True)
+
+
 async def make(message: Message, **fx):
 
     attachments = await get_attachments(message)

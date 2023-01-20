@@ -20,6 +20,7 @@ async def core_handler(message: Message, speed: float):
 
 @labeler.message(text="<_:prefix>nc", **defaults)
 @labeler.message(text="<_:prefix>nightcore", **defaults)
+@labeler.message(text="<_:prefix>core", **defaults)
 @error_handler.catch
 async def nightcore_handler(message: Message):
     return await make(message, nightcore=True)

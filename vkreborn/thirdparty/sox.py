@@ -18,7 +18,7 @@ FILTER_NAME_FUNCS = {
 async def apply_fx(content: bytes, **fx: dict):
     filters = await generate_filters(fx)
     return check_output(
-        ["sox", "-t", "mp3", "-", "-t", "mp3", "-"] + filters, input=content
+        ["sox", "-G", "-t", "mp3", "-", "-t", "mp3", "-"] + filters, input=content
     )
 
 

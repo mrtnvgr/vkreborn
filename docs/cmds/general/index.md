@@ -11,7 +11,7 @@
 
 - [Перевод текста сообщений](list/trans.md)
 
-- [Отправка картинок с сайта [wallhaven](https://wallhaven.cc)](list/wh.md)
+- [Отправка картинок](list/wh.md) ([wallhaven](https://wallhaven.cc))
 
 - [Роль пользователя в беседе](list/whoami.md)
 

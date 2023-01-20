@@ -9,5 +9,5 @@ from vkreborn.error_handler import error_handler
 async def whoami_handler(message: Message):
     repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)
     user_info = await repo.get_user()
-    response = "Админ" if user_info.is_admin else "Пользователь"
+    response = "Модератор" if user_info.is_moder else "Пользователь"
     return await message.reply(response)

@@ -2,5 +2,5 @@
 <br>
 
 - [Общедоступные](general/index.md)
-- [Для администраторов бесед](admin/index.md)
+- [Для модераторов бесед](moders/index.md)
 - *[Для овнера](owner/index.md)*

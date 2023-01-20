@@ -5,7 +5,7 @@ from vkreborn.repositories import UserRepository
 from vkreborn.error_handler import error_handler
 
 
-@labeler.chat_message(text="<_:prefix>kick <user:mention>", admin=True)
+@labeler.chat_message(text="<_:prefix>kick <user:mention>", moder=True)
 @error_handler.catch
 async def kick_handler(message: Message, user: dict):
     kick_resp = await kick(message=message, user=user)
@@ -14,14 +14,14 @@ async def kick_handler(message: Message, user: dict):
     await message.reply(f"Пользователь {user['domain']} исключен")
 
 
-@labeler.chat_message(text="<_:prefix>invite <user:mention>", admin=True)
+@labeler.chat_message(text="<_:prefix>invite <user:mention>", moder=True)
 @error_handler.catch
 async def invite_handler(message: Message, user: dict):
     await invite(message=message, user_id=user["id"])
     return await message.reply(f"Пользователь {user['domain']} приглашен")
 
 
-@labeler.chat_message(text="<_:prefix>forceinvite <user:mention>", admin=True)
+@labeler.chat_message(text="<_:prefix>forceinvite <user:mention>", moder=True)
 @error_handler.catch
 async def forceinvite_handler(message: Message, user: dict):
     await kick(message=message, user_id=user["id"])
@@ -31,9 +31,9 @@ async def forceinvite_handler(message: Message, user: dict):
 async def kick(message: Message, user: dict):
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
 
-    admins = await repo.get_admin_ids()
-    if repo.user_id in admins:
-        await message.reply("Администратора нельзя исключить из беседы")
+    moders = await repo.get_moder_ids()
+    if repo.user_id in moders:
+        await message.reply("Модератора нельзя исключить из беседы")
         return False
 
     try:

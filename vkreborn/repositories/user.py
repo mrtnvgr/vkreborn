@@ -17,23 +17,23 @@ class UserRepository:
             user: Optional[User] = (await conn.execute(query)).fetchone()
             return user
 
-    async def add_user(self, is_admin=False):
+    async def add_user(self, is_moder=False):
         async with engine.connect() as conn:
             query = insert(User).values(
-                user_id=self.user_id, chat_id=self.chat_id, is_admin=is_admin
+                user_id=self.user_id, chat_id=self.chat_id, is_moder=is_moder
             )
             await conn.execute(query)
             await conn.commit()
 
-    async def get_admin_ids(self):
+    async def get_moder_ids(self):
         async with engine.connect() as conn:
             query = select(User.user_id).where(
-                User.chat_id == self.chat_id, User.is_admin
+                User.chat_id == self.chat_id, User.is_moder
             )
-            admins: User = (await conn.execute(query)).fetchall()
-            return [admin[0] for admin in admins]
+            moders: User = (await conn.execute(query)).fetchall()
+            return [moder[0] for moder in moders]
 
-    async def set_admin(self, value: bool):
+    async def set_moder(self, value: bool):
         async with engine.connect() as conn:
 
             user = await self.get_user()
@@ -42,7 +42,7 @@ class UserRepository:
 
             query = (
                 update(User)
-                .values(is_admin=value)
+                .values(is_moder=value)
                 .where(User.user_id == self.user_id, User.chat_id == self.chat_id)
             )
             await conn.execute(query)

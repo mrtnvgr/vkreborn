@@ -4,7 +4,7 @@ from vkreborn.repositories import WHPictureRepository
 from vkreborn.error_handler import error_handler
 
 
-@labeler.chat_message(text="<_:prefix>whreset", admin=True)
+@labeler.chat_message(text="<_:prefix>whreset", moder=True)
 @error_handler.catch
 async def whreset_handler(message: Message):
     repo = WHPictureRepository(where_id=message.chat_id)

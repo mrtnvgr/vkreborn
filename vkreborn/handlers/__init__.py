@@ -3,7 +3,7 @@ from vkreborn.handlers import (
     muted,
     fixlayout,
     whoami,
-    admins,
+    moders,
     roll,
     trans,
     shazam,
@@ -11,17 +11,17 @@ from vkreborn.handlers import (
     helphandler,
 )
 
-from vkreborn.handlers.for_admins import admin_labelers
+from vkreborn.handlers.for_moders import moder_labelers
 from vkreborn.handlers.for_owner import owner_labelers
 
 labelers = {
     *owner_labelers,
-    *admin_labelers,
+    *moder_labelers,
     new_user.labeler,
     muted.labeler,
     fixlayout.labeler,
     whoami.labeler,
-    admins.labeler,
+    moders.labeler,
     roll.labeler,
     trans.labeler,
     shazam.labeler,

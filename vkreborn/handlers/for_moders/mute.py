@@ -5,14 +5,14 @@ from vkreborn.error_handler import error_handler
 from datetime import datetime, timedelta
 
 
-@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:float>", admin=True)
+@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:float>", moder=True)
 @error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: float):
 
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
     repo_user = await repo.get_user()
 
-    if repo_user and repo_user.is_admin:
+    if repo_user and repo_user.is_moder:
         return
 
     muted_until = datetime.now() + timedelta(minutes=minutes)
@@ -31,7 +31,7 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
     )
 
 
-@labeler.chat_message(text="<_:prefix>unmute <user:mention>", admin=True)
+@labeler.chat_message(text="<_:prefix>unmute <user:mention>", moder=True)
 @error_handler.catch
 async def unmute_user_handler(message: Message, user: dict):
     repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)

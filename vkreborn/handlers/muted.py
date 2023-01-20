@@ -55,7 +55,7 @@ async def muted_by_handler(message: Message, user: dict):
 
     users = await message.ctx_api.users.get(ids, fields=["domain"])
 
-    text = [f"В муте (админом {user['domain']}):"]
+    text = [f"В муте (модером {user['domain']}):"]
 
     for user in users:
         text.append(f"{user.first_name} {user.last_name} ({user.domain})")

@@ -3,7 +3,7 @@ from vkbottle import AudioUploader
 from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
-from vkreborn.thirdparty import ffmpeg
+from vkreborn.thirdparty import sox
 
 defaults = {"attachment": ["audio", "audio_message"], "blocking": False}
 
@@ -43,9 +43,9 @@ async def make(message: Message, **fx):
         content = await download_attachment(attachment)
         title = await get_audio_title(attachment)
 
-        new_content = await ffmpeg.apply_fx(content, **fx)
+        new_content = await sox.apply_fx(content, **fx)
 
-        new_title = await ffmpeg.make_title(title, **fx)
+        new_title = await sox.make_title(title, **fx)
 
         new_attachment = await AudioUploader(message.ctx_api).upload(
             "vkr @p13d3z", new_title, new_content

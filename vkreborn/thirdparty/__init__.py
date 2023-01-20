@@ -1,3 +1,3 @@
-from vkreborn.thirdparty import ffmpeg
+from vkreborn.thirdparty import sox
 
-__all__ = ["ffmpeg"]
+__all__ = ["sox"]

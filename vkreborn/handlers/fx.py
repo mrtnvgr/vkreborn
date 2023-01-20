@@ -60,7 +60,7 @@ async def make(message: Message, **fx):
         new_title = await sox.make_title(title, **fx)
 
         new_attachment = await AudioUploader(message.ctx_api).upload(
-            "vkr @p13d3z", new_title, new_content
+            "vkr", new_title, new_content
         )
         new_attachments.append(new_attachment)
 

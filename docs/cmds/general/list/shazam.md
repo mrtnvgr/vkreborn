@@ -18,5 +18,5 @@
 
 
 #### **Благодарности**:
-> [shazamio](dotX12/ShazamIO)
-> [Shazam](http://shazam.com)
+> - [shazamio](dotX12/ShazamIO)
+> - [Shazam](http://shazam.com)

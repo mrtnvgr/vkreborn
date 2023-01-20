@@ -57,7 +57,7 @@ async def make(message: Message, **fx):
 
 async def get_audio_title(attachment) -> str:
     if attachment.audio:
-        return "PLACEHOLDER"
+        return attachment.audio.title
 
     elif attachment.audio_message:
         # TODO: vkbottle_types#39

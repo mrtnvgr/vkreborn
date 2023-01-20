@@ -3,10 +3,7 @@
 
 - [Список администраторов беседы](list/admins.md)
 
-<br>
-
-- `fixlayout` - изменение раскладки текста
-  > Спасибо [Punto Switcher](https://yandex.ru/soft/punto/win/)!
+- [Изменение раскладки текста](list/fixlayout.md)
 
 <br>
 

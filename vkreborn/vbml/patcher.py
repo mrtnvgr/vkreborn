@@ -43,7 +43,8 @@ def wh_switches_validator(value: str):
 def custom_float_validator(value: str):
     value = value.replace(",", "").replace(".", "")
     if value.isdigit():
-        return value
+        return int(value)
+
 
 @patcher.validator("percentage")
 def percentage_validator(value: str):
@@ -59,3 +60,4 @@ def percentage_validator(value: str):
     elif value > 100:
         return 100
     else:
+        return value

@@ -3,11 +3,11 @@ from vkbottle.http import AiohttpClient
 
 
 async def get_attachments(message: Message):
-    attachments = []
-    attachments.extend(message.attachments)
-    if message.reply_message:
-        attachments.extend(message.reply_message.attachments)
-    return attachments
+    # NOTE: Check FAQ
+    if message.attachments:
+        return message.attachments
+    if message.reply_message and message.reply_message.attachments:
+        return message.reply_message.attachments
 
 
 async def get_url_bytes(url: str):

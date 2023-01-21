@@ -1,27 +1,39 @@
 from vkbottle.user import Message
 from vkbottle.http import AiohttpClient
+from vkbottle_types.objects import MessagesMessageAttachment
 
 
-async def get_attachments(message: Message):
+async def get_attachments(message: Message, unpack=True):
     # NOTE: Check FAQ
-    attachments = await _get_attachments(message)
-    if attachments:
-        return attachments
-
-    if message.fwd_messages:
-        attachments = []
-        for msg in message.fwd_messages:
-            attachments.extend(await _get_attachments(msg))
-        return attachments
-    return []
-
-
-async def _get_attachments(message: Message):
+    attachments = []
     if message.attachments:
-        return message.attachments
-    if message.reply_message and message.reply_message.attachments:
-        return message.reply_message.attachments
-    return []
+        attachments = message.attachments
+    elif message.reply_message and message.reply_message.attachments:
+        attachments = message.reply_message.attachments
+    elif message.fwd_messages:
+        for msg in message.fwd_messages:
+            attachments.extend(await get_attachments(msg))
+
+    # Unpack attachments from wallposts
+    if unpack:
+        attachments = await convert_wall_attachments(attachments)
+
+    return attachments
+
+
+async def convert_wall_attachments(attachments):
+    for attachment in attachments[:]:
+        if attachment.wall:
+            for wall_attach in attachment.wall.attachments:
+                # Convert WallWallpostAttachment -> MessagesMessageAttachment
+                wall_attach = wall_attach.__dict__
+                wall_attach_type = wall_attach["type"].value
+                wall_attach_data = {wall_attach_type: wall_attach[wall_attach_type]}
+                attach = MessagesMessageAttachment(
+                    type=wall_attach_type, **wall_attach_data
+                )
+                attachments.append(attach)
+    return attachments
 
 
 async def get_url_bytes(url: str):

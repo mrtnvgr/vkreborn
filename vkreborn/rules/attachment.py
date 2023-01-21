@@ -16,6 +16,6 @@ class AttachmentRule(ABCRule[Message]):
         if not attachments:
             return False
 
-        return all(
+        return any(
             attachment.type.value in self.attachment_types for attachment in attachments
         )

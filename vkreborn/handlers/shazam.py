@@ -4,13 +4,15 @@ from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
 from shazamio import Shazam
 
+SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
+
 
 @labeler.message(
-    text="<_:prefix>shazam", attachment=["audio", "audio_message"], blocking=False
+    text="<_:prefix>shazam", attachment=SUPPORTED_ATTACHMENTS, blocking=False
 )
 @error_handler.catch
 async def shazam_attachment_handler(message: Message):
-    attachments = await get_attachments(message)
+    attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)
     return await shazam_func(message, attachments)
 
 

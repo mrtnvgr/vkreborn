@@ -40,7 +40,8 @@ async def convert_wall_attachments(attachments: list):
                 attach = MessagesMessageAttachment(
                     type=wall_attach_type, **wall_attach_data
                 )
-                attachments.append(attach)
+                if attach not in attachments:
+                    attachments.append(attach)
     return attachments
 
 

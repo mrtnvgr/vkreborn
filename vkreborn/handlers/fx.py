@@ -3,7 +3,8 @@ from vkbottle import AudioUploader
 from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
-from vkreborn.thirdparty import sox
+from vkreborn.thirdparty.sox import apply_fx, make_title
+from vkreborn.thirdparty.sox.effects import BaseEffect, SpeedEffect
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
@@ -16,7 +17,7 @@ defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 @labeler.message(text="<_:prefix>core <speed:float>", **defaults)
 @error_handler.catch
 async def core_handler(message: Message, speed: float):
-    return await make(message, speed=speed)
+    return await make(message, SpeedEffect(speed=speed))
 
 
 @labeler.message(text="<_:prefix>nc", **defaults)
@@ -24,29 +25,29 @@ async def core_handler(message: Message, speed: float):
 @labeler.message(text="<_:prefix>core", **defaults)
 @error_handler.catch
 async def nightcore_handler(message: Message):
-    return await make(message, nightcore=True)
+    return await make(message, SpeedEffect(speed="nightcore"))
 
 
 @labeler.message(text="<_:prefix>dc", **defaults)
 @labeler.message(text="<_:prefix>daycore", **defaults)
 @error_handler.catch
 async def daycore_handler(message: Message):
-    return await make(message, daycore=True)
+    return await make(message, SpeedEffect(speed="daycore"))
 
 
-@labeler.message(text="<_:prefix>reverb", **defaults)
-@error_handler.catch
-async def reverb_default_handler(message: Message):
-    return await make(message, reverb_def=True)
+# @labeler.message(text="<_:prefix>reverb", **defaults)
+# @error_handler.catch
+# async def reverb_default_handler(message: Message):
+#     return await make(message, reverb_def=True)
 
 
-@labeler.message(text="<_:prefix>reverb <wet:percentage>", **defaults)
-@error_handler.catch
-async def reverb_handler(message: Message, wet: int):
-    return await make(message, reverb=wet)
+# @labeler.message(text="<_:prefix>reverb <wet:percentage>", **defaults)
+# @error_handler.catch
+# async def reverb_handler(message: Message, wet: int):
+#     return await make(message, reverb=wet)
 
 
-async def make(message: Message, **fx):
+async def make(message: Message, *fx: list[BaseEffect]):
 
     attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)
 
@@ -57,9 +58,9 @@ async def make(message: Message, **fx):
         content = await download_attachment(attachment)
         title = await get_audio_title(attachment)
 
-        new_content = await sox.apply_fx(content, **fx)
+        new_content = await apply_fx(content, *fx)
 
-        new_title = await sox.make_title(title, **fx)
+        new_title = await make_title(title, *fx)
 
         new_attachment = await AudioUploader(message.ctx_api).upload(
             "vkr", new_title, new_content

@@ -5,7 +5,8 @@ from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
 from vkreborn.thirdparty import sox
 
-defaults = {"attachment": ["audio", "audio_message"], "blocking": False}
+SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
+defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
 @labeler.message(text="<_:prefix>nc <speed:float>", **defaults)
@@ -47,7 +48,7 @@ async def reverb_handler(message: Message, wet: int):
 
 async def make(message: Message, **fx):
 
-    attachments = await get_attachments(message)
+    attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)
 
     new_attachments = []
 

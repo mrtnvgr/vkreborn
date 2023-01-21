@@ -2,7 +2,11 @@ from subprocess import check_output
 from vkreborn.config import FX_NIGHTCORE_SPEED, FX_DAYCORE_SPEED
 
 
-FILTERS = {"speed": "speed {}", "reverb": "reverb {}", "reverb_def": "reverb 80"}
+FILTERS = {
+    "speed": "speed {}",
+    "reverb": "reverb {} 50 100 100 25",
+    "reverb_def": "reverb 45 50 100 100 25",
+}
 FILTERS["nightcore"] = FILTERS["speed"].replace("{}", str(FX_NIGHTCORE_SPEED), 1)
 FILTERS["daycore"] = FILTERS["speed"].replace("{}", str(FX_DAYCORE_SPEED), 1)
 

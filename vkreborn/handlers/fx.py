@@ -9,10 +9,17 @@ from vkreborn.thirdparty.sox.effects import (
     SpeedEffect,
     BassEffect,
     ReverseEffect,
+    RawEffect,
 )
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
+
+
+@labeler.message(text="<_:prefix>fx <effects>", **defaults)
+@error_handler.catch
+async def fx_handler(message: Message, effects: str):
+    return await make(message, RawEffect(effects=effects))
 
 
 @labeler.message(text="<_:prefix>nc <speed:abs_float>", **defaults)

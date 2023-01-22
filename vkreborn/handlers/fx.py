@@ -4,17 +4,17 @@ from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
 from vkreborn.thirdparty.sox import apply_fx, make_title
-from vkreborn.thirdparty.sox.effects import BaseEffect, SpeedEffect
+from vkreborn.thirdparty.sox.effects import BaseEffect, SpeedEffect, BassEffect
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
-@labeler.message(text="<_:prefix>nc <speed:float>", **defaults)
-@labeler.message(text="<_:prefix>nightcore <speed:float>", **defaults)
-@labeler.message(text="<_:prefix>dc <speed:float>", **defaults)
-@labeler.message(text="<_:prefix>daycore <speed:float>", **defaults)
-@labeler.message(text="<_:prefix>core <speed:float>", **defaults)
+@labeler.message(text="<_:prefix>nc <speed:abs_float>", **defaults)
+@labeler.message(text="<_:prefix>nightcore <speed:abs_float>", **defaults)
+@labeler.message(text="<_:prefix>dc <speed:abs_float>", **defaults)
+@labeler.message(text="<_:prefix>daycore <speed:abs_float>", **defaults)
+@labeler.message(text="<_:prefix>core <speed:abs_float>", **defaults)
 @error_handler.catch
 async def core_handler(message: Message, speed: float):
     return await make(message, SpeedEffect(speed=speed))
@@ -33,6 +33,17 @@ async def nightcore_handler(message: Message):
 @error_handler.catch
 async def daycore_handler(message: Message):
     return await make(message, SpeedEffect(speed="daycore"))
+
+
+@labeler.message(text="<_:prefix>bassboost <gain:float>", **defaults)
+@error_handler.catch
+async def bassboost_handler(message: Message, gain: float):
+    return await make(message, BassEffect(gain=gain))
+
+
+@labeler.message(text="<_:prefix>bassboost", **defaults)
+async def bassboost_default_handler(message: Message):
+    return await make(message, BassEffect())
 
 
 # @labeler.message(text="<_:prefix>reverb", **defaults)

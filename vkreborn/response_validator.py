@@ -19,9 +19,12 @@ class CaptchaResponseValidator(ABCResponseValidator):
             return response
         if ctx_api.ignore_errors:
             return None
-        if response["error"]["error_code"] != 14:
+        if response["error"]["error_code"] == 14:
+            logger.info("Captcha catched! Rescheduling event...")
+        elif response["error"]["error_code"] == 6:
+            logger.info("Too many requests per second catched! Rescheduling event...")
+        else:
             return response
-        logger.info("Captcha catched! Rescheduling event...")
         return await CaptchaRequestRescheduler().reschedule(
             ctx_api, method, data, response
         )

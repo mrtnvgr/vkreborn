@@ -4,7 +4,12 @@ from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
 from vkreborn.tools import get_attachments, download_attachment
 from vkreborn.thirdparty.sox import apply_fx, make_title
-from vkreborn.thirdparty.sox.effects import BaseEffect, SpeedEffect, BassEffect
+from vkreborn.thirdparty.sox.effects import (
+    BaseEffect,
+    SpeedEffect,
+    BassEffect,
+    ReverseEffect,
+)
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
@@ -42,8 +47,15 @@ async def bassboost_handler(message: Message, gain: float):
 
 
 @labeler.message(text="<_:prefix>bassboost", **defaults)
+@error_handler.catch
 async def bassboost_default_handler(message: Message):
     return await make(message, BassEffect())
+
+
+@labeler.message(text="<_:prefix>reverse", **defaults)
+@error_handler.catch
+async def reverse_handler(message: Message):
+    return await make(message, ReverseEffect())
 
 
 # @labeler.message(text="<_:prefix>reverb", **defaults)

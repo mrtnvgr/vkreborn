@@ -48,12 +48,16 @@ async def daycore_handler(message: Message):
 
 
 @labeler.message(text="<_:prefix>bassboost <gain:float>", **defaults)
+@labeler.message(text="<_:prefix>basscut <gain:float>", **defaults)
+@labeler.message(text="<_:prefix>bass <gain:float>", **defaults)
 @error_handler.catch
 async def bassboost_handler(message: Message, gain: float):
     return await make(message, BassEffect(gain=gain))
 
 
 @labeler.message(text="<_:prefix>bassboost", **defaults)
+@labeler.message(text="<_:prefix>basscut", **defaults)
+@labeler.message(text="<_:prefix>bass", **defaults)
 @error_handler.catch
 async def bassboost_default_handler(message: Message):
     return await make(message, BassEffect())

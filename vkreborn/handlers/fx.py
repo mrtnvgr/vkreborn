@@ -1,18 +1,14 @@
 from vkbottle.user import Message
-from vkbottle import AudioUploader
 from vkreborn.vkbottle import labeler
 from vkreborn.error_handler import error_handler
-from vkreborn.tools import get_attachments, download_attachment
-from vkreborn.thirdparty.sox import apply_fx, make_title
+from vkreborn.thirdparty.sox import SUPPORTED_ATTACHMENTS, make
 from vkreborn.thirdparty.sox.effects import (
-    BaseEffect,
     SpeedEffect,
     BassEffect,
     ReverseEffect,
     RawEffect,
 )
 
-SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
@@ -79,37 +75,3 @@ async def reverse_handler(message: Message):
 # @error_handler.catch
 # async def reverb_handler(message: Message, wet: int):
 #     return await make(message, reverb=wet)
-
-
-async def make(message: Message, *fx: list[BaseEffect]):
-
-    attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)
-
-    new_attachments = []
-
-    for attachment in attachments:
-
-        content = await download_attachment(attachment)
-        title = await get_audio_title(attachment)
-
-        new_content = await apply_fx(content, *fx)
-
-        new_title = await make_title(title, *fx)
-
-        new_attachment = await AudioUploader(message.ctx_api).upload(
-            "vkr", new_title, new_content
-        )
-        new_attachments.append(new_attachment)
-
-    return await message.reply(attachment=new_attachments)
-
-
-async def get_audio_title(attachment) -> str:
-    if attachment.audio:
-        return attachment.audio.title
-
-    elif attachment.audio_message:
-        # TODO: vkbottle_types#39
-        # if attachment.audio_message.transcript:
-        #     return attachment.audio_message.transcript
-        return "Голосовое сообщение"

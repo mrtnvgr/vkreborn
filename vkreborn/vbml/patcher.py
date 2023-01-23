@@ -17,7 +17,7 @@ def mention_validator(value: str):
         value = value.split("|")
         return {
             "id": int(value[0].removeprefix("[id")),
-            "domain": value[1].removesuffix("]"),
+            "domain": value[1].removesuffix("]").removeprefix("@"),
         }
 
 

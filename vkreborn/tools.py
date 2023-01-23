@@ -1,6 +1,6 @@
 from vkbottle.user import Message
 from vkbottle.http import AiohttpClient
-from vkbottle_types.objects import MessagesMessageAttachment
+from vkbottle_types.objects import MessagesMessageAttachment, WallWallpostAttachment
 from typing import Optional
 
 
@@ -21,7 +21,7 @@ async def get_attachments(
 
     # Unpack attachments from wallposts
     if unpack:
-        attachments = await convert_wall_attachments(attachments)
+        attachments = await _convert_wall_attachments(attachments)
 
     if attachment_types:
         attachments = await cleanup_attachments(attachments, attachment_types)
@@ -29,20 +29,30 @@ async def get_attachments(
     return attachments
 
 
-async def convert_wall_attachments(attachments: list):
+async def _convert_wall_attachments(attachments: list):
     for attachment in attachments[:]:
+
         if attachment.wall:
-            for wall_attach in attachment.wall.attachments:
-                # Convert WallWallpostAttachment -> MessagesMessageAttachment
-                wall_attach = wall_attach.__dict__
-                wall_attach_type = wall_attach["type"].value
-                wall_attach_data = {wall_attach_type: wall_attach[wall_attach_type]}
-                attach = MessagesMessageAttachment(
-                    type=wall_attach_type, **wall_attach_data
-                )
-                if attach not in attachments:
-                    attachments.append(attach)
+            wall_attachments = attachment.wall.attachments
+        elif attachment.wall_reply:
+            wall_attachments = attachment.wall_reply.attachments
+        else:
+            continue
+
+        # Convert WallWallpostAttachment -> MessagesMessageAttachment
+        for wall_attach in wall_attachments:
+            attach = await _convert_wall_attachment(wall_attach)
+            if attach not in attachments:
+                attachments.append(attach)
+
     return attachments
+
+
+async def _convert_wall_attachment(attachment: WallWallpostAttachment):
+    attachment = attachment.__dict__
+    attachment_type = attachment["type"].value
+    attachment_data = {attachment_type: attachment[attachment_type]}
+    return MessagesMessageAttachment(type=attachment_type, **attachment_data)
 
 
 async def cleanup_attachments(attachments: list, attachment_types: list):

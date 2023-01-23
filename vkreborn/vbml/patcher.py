@@ -69,21 +69,3 @@ def percentage_validator(value: str):
         return 100
     else:
         return value
-
-
-@patcher.validator("safe")
-def safe_validator(value: str):
-    banned_chars = (
-        ";",
-        "&",
-        "|",
-        "$",
-        "(",
-        ")",
-        "<",
-        ">",
-    )
-    for char in banned_chars:
-        if char in value:
-            return
-    return value

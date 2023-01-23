@@ -5,7 +5,7 @@ from vkreborn.error_handler import error_handler
 from datetime import datetime, timedelta
 
 
-@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:float>", moder=True)
+@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:abs_float>", moder=True)
 @error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: float):
 

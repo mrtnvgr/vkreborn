@@ -5,4 +5,6 @@
 
 - [Эффект изменения громкости баса](list/bass.md)
 
+- [Эффект реверса](list/reverse.md)
+
 - *[RAW SoX Эффекты](list/fx.md)*

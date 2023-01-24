@@ -21,4 +21,5 @@ poetry install
 
 
 #### Сторонние зависимости
+- Любая SQL БД
 - [SoX](https://sox.sourceforge.net/) (для аудио эффектов)

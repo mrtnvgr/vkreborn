@@ -61,3 +61,17 @@ async def muted_by_handler(message: Message, user: dict):
         text.append(f"{user.first_name} {user.last_name} ({user.domain})")
 
     return await message.reply("\n".join(text))
+
+
+@labeler.chat_message(text="<_:prefix>whomuted <user:mention>")
+@error_handler.catch
+async def whomuted_handler(message: Message, user: dict):
+    repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
+    user_info = await repo.get()
+
+    if not user_info:
+        return await message.reply(f"Пользователь {user['domain']} не замьючен")
+
+    moder = (await message.ctx_api.users.get(user_info.muted_by, fields=["domain"]))[0]
+    moder_info = f"{moder.first_name} {moder.last_name} ({moder.domain})"
+    return await message.reply(f"Пользователя {user['domain']} замьютил:\n{moder_info}")

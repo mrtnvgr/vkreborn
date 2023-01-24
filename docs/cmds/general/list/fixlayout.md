@@ -2,16 +2,16 @@
 <br>
 
 #### **Алиасы**:
-> `fixlayout`
+`fixlayout`
 
 
 #### **Параметры**:
-> Нет.
+Нет.
 
 
 #### **Описание**:
-> Например, ghbdtn -> привет.
+Например, ghbdtn -> привет.
 
 
 #### **Благодарности**:
-> Спасибо [Punto Switcher](https://yandex.ru/soft/punto/win/)!
+Спасибо [Punto Switcher](https://yandex.ru/soft/punto/win/)!

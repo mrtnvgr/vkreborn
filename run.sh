@@ -1,3 +1,3 @@
 #!/bin/bash
 source .env
-python -m vkreborn
+poetry run python -m vkreborn

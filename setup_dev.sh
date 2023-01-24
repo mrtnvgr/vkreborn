@@ -1,3 +1,3 @@
 #!/bin/sh
-pip install .[test]
+poetry install --all-extras
 git config --local core.hooksPath .github/hooks

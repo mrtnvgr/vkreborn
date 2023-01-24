@@ -1,29 +1,30 @@
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools", "wheel"]
-
-[project]
+[tool.poetry]
 name = "vkreborn"
-version = "0.0.0"
-dependencies = [
-	"vkbottle",
-	"loguru",
-	"SQLAlchemy",
-	"asyncpg",
-	"async_google_trans_new",
-	"shazamio",
-]
+version = "0.1.0"
+description = ""
+authors = ["mrtnvgr <martynovegorOF@yandex.ru>"]
+license = "GPL-3.0"
+readme = "README.md"
 
-[project.scripts]
-vkreborn = "vkreborn.__main__:main"
+[tool.poetry.dependencies]
+python = "^3.11"
+vkbottle = {git = "https://github.com/vkbottle/vkbottle.git"}
+loguru = "^0.6.0"
+SQLAlchemy = "^1.4.46"
+async-google-trans-new = "^1.4.6"
+shazamio = "^0.3.1.1"
+asyncpg = "^0.27.0"
 
-[project.optional-dependencies]
-test = [
-	"black",
-	"flakeheaven",
-]
+[tool.poetry.group.test.dependencies]
+flakeheaven = "^3.2.1"
+black = "^22.12.0"
 
 [tool.flakeheaven]
 format = "grouped"
 max_line_length = 98
 pyflakes = ["+*", "-F403", "-F405"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

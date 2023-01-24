@@ -11,6 +11,8 @@ from vkreborn.handlers import (
     helphandler,
 )
 
+from vkreborn.handlers.fx import fx_labelers
+
 from vkreborn.handlers.for_moders import moder_labelers
 from vkreborn.handlers.for_owner import owner_labelers
 
@@ -19,6 +21,7 @@ labelers = {
     *moder_labelers,
     new_user.labeler,
     muted.labeler,
+    *fx_labelers,
     fixlayout.labeler,
     whoami.labeler,
     moders.labeler,

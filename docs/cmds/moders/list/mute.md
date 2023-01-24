@@ -6,7 +6,7 @@
 
 
 #### **Примеры использования**:
-> - `mute @id1 30` (`mute <user:mention> <minutes:float>`)
+> - `mute @id1 30` (`mute <user:mention> <minutes:abs_float>`)
 >   > Мут пользователя @id1 на 30 минут
 
 

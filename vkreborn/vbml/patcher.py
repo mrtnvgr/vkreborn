@@ -39,8 +39,33 @@ def wh_switches_validator(value: str):
     return value
 
 
+@patcher.validator("abs_float")
+def custom_abs_float_validator(value: str):
+    value = value.replace(",", ".", 1)
+    value2 = value.replace(".", "", 1)
+    if value2.isdigit():
+        return float(value)
+
+
 @patcher.validator("float")
 def custom_float_validator(value: str):
-    value = value.replace(",", "").replace(".", "")
-    if value.isdigit():
-        return int(value)
+    value2 = value.replace("-", "", 1).replace("+", "", 1)
+    if custom_abs_float_validator(value2):
+        return float(value)
+
+
+@patcher.validator("percentage")
+def percentage_validator(value: str):
+    value = value.removesuffix("%")
+
+    if not value.isdigit():
+        return
+
+    value = int(value)
+
+    if value < 0:
+        return 0
+    elif value > 100:
+        return 100
+    else:
+        return value

@@ -26,29 +26,25 @@ def mention_validator(value: str):
 
 @patcher.validator("prefix")
 def prefix_validator(value: str):
-    if value == "%!":
-        return True
+    return True if value == "%!" else None
 
 
 @patcher.validator("wh_switches")
 def wh_switches_validator(value: str):
     pattern = re.compile(r"^[01]{3}$", re.IGNORECASE)
-    if pattern.match(value):
-        return value
+    return value if pattern.match(value) else None
 
 
 @patcher.validator("abs_float")
 def custom_abs_float_validator(value: str):
     pattern = re.compile(r"^{ABS_FLOAT_RE}$", re.IGNORECASE)
-    if pattern.match(value):
-        return str_to_float(value)
+    return str_to_float(value) if pattern.match(value) else None
 
 
 @patcher.validator("float")
 def custom_float_validator(value: str):
     pattern = re.compile(f"^[+-]?{ABS_FLOAT_RE}$", re.IGNORECASE)
-    if pattern.match(value):
-        return str_to_float(value)
+    return str_to_float(value) if pattern.match(value) else None
 
 
 @patcher.validator("percentage")
@@ -72,10 +68,8 @@ def percentage_validator(value: str):
 @patcher.validator("gain")
 def gain_validator(value: str):
     pattern = re.compile(f"^[+-]?{ABS_FLOAT_RE}(db)?$", re.IGNROECASE)
-    if pattern.match(value):
-        return value
+    return value if pattern.match(value) else None
 
 
 def str_to_float(value: str):
-    value = value.replace(",", ".")
-    return float(value)
+    return float(value.replace(",", "."))

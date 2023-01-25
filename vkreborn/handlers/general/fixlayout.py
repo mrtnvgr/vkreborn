@@ -4,63 +4,15 @@ from vkbottle.user import Message
 from vkreborn.error_handler import error_handler
 from vkreborn.vkbottle import labeler
 
-dictionary = {
-    "`": "ё",
-    "~": "Ё",
-    "@": '"',
-    "#": "№",
-    "$": ";",
-    "^": ":",
-    "&": "?",
-    "q": "й",
-    "w": "ц",
-    "e": "у",
-    "r": "к",
-    "t": "е",
-    "y": "н",
-    "u": "г",
-    "i": "ш",
-    "o": "щ",
-    "p": "з",
-    "х": "[",
-    "Х": "{",
-    "]": "ъ",
-    "}": "Ъ",
-    "\\": "/",
-    "a": "ф",
-    "s": "ы",
-    "d": "в",
-    "f": "а",
-    "g": "п",
-    "h": "р",
-    "j": "о",
-    "k": "л",
-    "l": "д",
-    ";": "ж",
-    ":": "Ж",
-    "'": "э",
-    '"': "Э",
-    "z": "я",
-    "x": "ч",
-    "c": "с",
-    "v": "м",
-    "b": "и",
-    "n": "т",
-    "m": "ь",
-    ",": "б",
-    "<": "Б",
-    ".": "ю",
-    ">": "Ю",
-    "/": ".",
-    "?": ",",
-}
-
 
 def translate(string: str):
-    return "".join(
-        dictionary.get(ch) or dictionary.get(ch.lower(), "").upper() or ch
-        for ch in string
-    )
+    ru = """ёйцукенгшщзхъфывапролджэячсмитьбю.Ё"№;%:?ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"""
+    en = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~@#$%^&QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?"""
+    if any(i in string for i in ru):
+        change = string.maketrans(ru, en)
+    else:
+        change = string.maketrans(en, ru)
+    return string.translate(change)
 
 
 @labeler.message(ReplyMessageRule(), text="<_:prefix>fixlayout", blocking=False)

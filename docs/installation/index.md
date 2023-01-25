@@ -3,6 +3,7 @@
 
 #### **Установка**:
 ```console
+pip install poetry
 git clone https://github.com/mrtnvgr/vkreborn
 cd vkreborn
 poetry install
@@ -20,6 +21,6 @@ poetry install
 ```
 
 
-#### **Сторонние зависимости**:
-- Любая **SQL** БД
+#### **Зависимости**:
+- **PostgreSQL**
 - [SoX](https://sox.sourceforge.net/) (для аудио эффектов)

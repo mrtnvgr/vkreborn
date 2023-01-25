@@ -1,4 +1,4 @@
-from vkreborn.handlers.fx import bass, core, fx, reverse
+from vkreborn.handlers.general.fx import bass, core, fx, reverse
 
 fx_labelers = {
     fx.labeler,

@@ -3,7 +3,7 @@ import shlex
 
 from vbml import Patcher
 
-ABS_FLOAT_RE = r"(?=[\.\,]\d|\d)(?:\d+)?(?:[\.\,]?\d*))(?:[eE]([+-]?\d+)"
+ABS_FLOAT_RE = r"(?:\d+?)(?:[\.\,]?\d*)"
 
 patcher = Patcher()
 

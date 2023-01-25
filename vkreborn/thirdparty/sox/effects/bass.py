@@ -1,10 +1,11 @@
+from typing import Optional
+
 from vkreborn.config import FX_BASS_GAIN
 from vkreborn.thirdparty.sox.effects import BaseEffect
-from typing import Optional
 
 
 class BassEffect(BaseEffect):
-    def __init__(self, gain: Optional[float|None]):
+    def __init__(self, gain: Optional[float | None]):
         if gain is None:
             self.gain = FX_BASS_GAIN
             self.default = True

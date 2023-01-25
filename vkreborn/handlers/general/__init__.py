@@ -1,14 +1,14 @@
 from vkreborn.handlers.general import (
-    new_user,
-    muted,
     fixlayout,
-    whoami,
-    moders,
-    roll,
-    trans,
-    shazam,
-    wallhaven,
     helphandler,
+    moders,
+    muted,
+    new_user,
+    roll,
+    shazam,
+    trans,
+    wallhaven,
+    whoami,
 )
 from vkreborn.handlers.general.fx import fx_labelers
 

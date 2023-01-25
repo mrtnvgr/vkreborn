@@ -3,6 +3,8 @@ import shlex
 
 from vbml import Patcher
 
+ABS_FLOAT_RE = r"(?=[\.\,]\d|\d)(?:\d+)?(?:[\.\,]?\d*))(?:[eE]([+-]?\d+)"
+
 patcher = Patcher()
 
 
@@ -30,29 +32,23 @@ def prefix_validator(value: str):
 
 @patcher.validator("wh_switches")
 def wh_switches_validator(value: str):
-    if len(value) != 3:  # "000"
-        return
-
-    for numba in value:
-        if numba not in ["0", "1"]:
-            return
-
-    return value
+    pattern = re.compile(r"^([01]{3})?$", re.IGNORECASE)
+    if pattern.match(value):
+        return value
 
 
 @patcher.validator("abs_float")
 def custom_abs_float_validator(value: str):
-    value = value.replace(",", ".", 1)
-    value2 = value.replace(".", "", 1)
-    if value2.isdigit():
-        return float(value)
+    pattern = re.compile(r"^({ABS_FLOAT_RE})$", re.IGNORECASE)
+    if pattern.match(value):
+        return str_to_float(value)
 
 
 @patcher.validator("float")
 def custom_float_validator(value: str):
-    value2 = value.replace("-", "", 1).replace("+", "", 1)
-    if custom_abs_float_validator(value2):
-        return float(value)
+    pattern = re.compile(f"^([+-]?{ABS_FLOAT_RE})?$", re.IGNORECASE)
+    if pattern.match(value):
+        return str_to_float(value)
 
 
 @patcher.validator("percentage")
@@ -70,3 +66,7 @@ def percentage_validator(value: str):
         return 100
     else:
         return value
+
+def str_to_float(value: str):
+    value = value.replace(",", ".")
+    return float(value)

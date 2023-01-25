@@ -67,6 +67,7 @@ def percentage_validator(value: str):
     else:
         return value
 
+
 def str_to_float(value: str):
     value = value.replace(",", ".")
     return float(value)

@@ -6,29 +6,24 @@ from vkreborn.tools import download_attachment, get_attachments
 from vkreborn.vkbottle import labeler
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
+defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
-@labeler.message(
-    text="<_:prefix>shazam", attachment=SUPPORTED_ATTACHMENTS, blocking=False
-)
+@labeler.message(text="<_:prefix>shazam", *defaults)
 @error_handler.catch
-async def shazam_attachment_handler(message: Message):
+async def shazam_handler(message: Message):
     attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)
     return await shazam_func(message, attachments)
 
 
 async def shazam_func(message: Message, attachments: list):
-
     shazam = Shazam()
 
     response = []
 
     for attachment in attachments:
-
         data = await download_attachment(attachment)
-
         shazam_response: str = await shazam.recognize_song(data)
-
         response.append(await format_data(shazam_response))
 
     if response:

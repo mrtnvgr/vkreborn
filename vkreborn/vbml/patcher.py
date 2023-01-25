@@ -53,18 +53,19 @@ def custom_float_validator(value: str):
 
 @patcher.validator("percentage")
 def percentage_validator(value: str):
-    value = value.removesuffix("%")
+    pattern = re.compile(
+        r"^[+]?(?:\d+(?:\.\d*)?)|(?:\d*[\.\,]\d+)|[%]?$", re.IGNORECASE
+    )
+    if pattern.match(value):
+        value = value.removeprefix("+").removesuffix("%")
+        value = value.replace(",", ".", 1)
+        value = float(value)
 
-    if not value.isdigit():
-        return
+        if value > 100:
+            return 100
+        elif value < 0:
+            return 0
 
-    value = int(value)
-
-    if value < 0:
-        return 0
-    elif value > 100:
-        return 100
-    else:
         return value
 
 

@@ -35,7 +35,7 @@ def wh_switches_validator(value: str):
 
 @patcher.validator("abs_float")
 def custom_abs_float_validator(value: str):
-    pattern = re.compile(r"^{ABS_FLOAT_RE}$", re.IGNORECASE)
+    pattern = re.compile(f"^{ABS_FLOAT_RE}$", re.IGNORECASE)
     return str_to_float(value) if pattern.match(value) else None
 
 

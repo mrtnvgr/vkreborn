@@ -6,6 +6,7 @@ from vkreborn.handlers.general import (
     new_user,
     roll,
     shazam,
+    tiktok,
     trans,
     wallhaven,
     whoami,
@@ -22,6 +23,7 @@ general_labelers = {
     roll.labeler,
     trans.labeler,
     shazam.labeler,
+    tiktok.labeler,
     wallhaven.labeler,
     helphandler.labeler,
 }

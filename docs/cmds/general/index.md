@@ -25,4 +25,6 @@
 
 - [Имя модератора замьютившего пользователя](list/whomuted.md)
 
+- [Скачивание видео с](list/tiktok.md) [TikTok](https://tiktok.com)
+
 - [Помощь](list/help.md)

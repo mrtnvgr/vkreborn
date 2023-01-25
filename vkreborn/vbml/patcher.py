@@ -71,5 +71,23 @@ def gain_validator(value: str):
     return value if pattern.match(value) else None
 
 
+@patcher.validator("tt_url")
+def tt_url_validator(value: str):
+    pattern = re.compile(
+        r"""(?x)^
+        https?://
+        (?:
+           (?:www|m)\.
+           (?:tiktok.com)\/
+           (?:v|embed|trending|h5/share/usr/|share/user/|@[a-zA-Z]*/video)
+           (?:\/)?
+           (?:\?shareId=)?
+        )
+        (?P<id>[\da-z]+)$
+    """
+    )
+    return value if pattern.match(value) else None
+
+
 def str_to_float(value: str):
     return float(value.replace(",", "."))

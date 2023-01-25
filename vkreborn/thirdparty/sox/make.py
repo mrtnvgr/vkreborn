@@ -1,9 +1,10 @@
-from vkbottle import AudioUploader
-from vkbottle.user import Message
-from vkreborn.tools import get_attachments, download_attachment
-from vkreborn.thirdparty.sox.effects import BaseEffect
 from subprocess import check_output
 
+from vkbottle import AudioUploader
+from vkbottle.user import Message
+
+from vkreborn.thirdparty.sox.effects import BaseEffect
+from vkreborn.tools import download_attachment, get_attachments
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 

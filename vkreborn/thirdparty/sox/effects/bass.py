@@ -1,5 +1,5 @@
-from vkreborn.thirdparty.sox.effects import BaseEffect
 from vkreborn.config import FX_BASS_GAIN
+from vkreborn.thirdparty.sox.effects import BaseEffect
 
 
 class BassEffect(BaseEffect):

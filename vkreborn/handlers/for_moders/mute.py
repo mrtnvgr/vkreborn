@@ -1,11 +1,15 @@
-from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
-from vkreborn.repositories import UserRepository, MutedUserRepository
-from vkreborn.error_handler import error_handler
 from datetime import datetime, timedelta
 
+from vkbottle.user import Message
 
-@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:abs_float>", moder=True)
+from vkreborn.error_handler import error_handler
+from vkreborn.repositories import MutedUserRepository, UserRepository
+from vkreborn.vkbottle import labeler
+
+
+@labeler.chat_message(
+    text="<_:prefix>mute <user:mention> <minutes:abs_float>", moder=True
+)
 @error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: float):
 

@@ -1,6 +1,7 @@
 from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
+
 from vkreborn.error_handler import error_handler
+from vkreborn.vkbottle import labeler
 
 
 @labeler.message(text="<_:prefix>help", blocking=False)

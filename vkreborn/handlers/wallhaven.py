@@ -1,12 +1,14 @@
-from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
-from vkreborn.error_handler import error_handler
+import random
+
+from loguru import logger
 from vkbottle import PhotoMessageUploader
 from vkbottle.http import AiohttpClient
-from vkreborn.repositories import WHPictureRepository
+from vkbottle.user import Message
+
 from vkreborn.config import WALLHAVEN_API_KEY
-from loguru import logger
-import random
+from vkreborn.error_handler import error_handler
+from vkreborn.repositories import WHPictureRepository
+from vkreborn.vkbottle import labeler
 
 
 @labeler.message(text="<_:prefix>wh", blocking=False)

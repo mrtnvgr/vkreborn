@@ -1,10 +1,12 @@
-from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
-from vkreborn.repositories import MutedUserRepository
-from vkbottle.exception_factory import VKAPIError
-from vkreborn.error_handler import error_handler
 from datetime import datetime
+
 from loguru import logger
+from vkbottle.exception_factory import VKAPIError
+from vkbottle.user import Message
+
+from vkreborn.error_handler import error_handler
+from vkreborn.repositories import MutedUserRepository
+from vkreborn.vkbottle import labeler
 
 
 @labeler.chat_message(muted=True)

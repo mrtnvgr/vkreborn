@@ -16,14 +16,23 @@ shazamio = "^0.3.1.1"
 asyncpg = "^0.27.0"
 
 [tool.poetry.group.test.dependencies]
-flakeheaven = "^3.2.1"
-black = "^22.12.0"
+flakeheaven = {git = "https://github.com/flakeheaven/flakeheaven.git"}
+flake8-isort = "^6.0.0"
+pylint = "^2.15.10"
+flake8-black = "^0.3.6"
+
+[tool.isort]
+profile = "black"
 
 [tool.flakeheaven]
 format = "grouped"
 max_line_length = 98
-pyflakes = ["+*", "-F403", "-F405"]
+show_source = true
 
+[tool.flakeheaven.plugins]
+pyflakes = ["+*", "-F403", "-F405"]
+"flake8-*" = ["+*"]
+flake8-isort = ["-*"]
 
 [build-system]
 requires = ["poetry-core"]

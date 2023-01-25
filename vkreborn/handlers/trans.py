@@ -1,8 +1,8 @@
+from async_google_trans_new import AsyncTranslator, TransError
 from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
+
 from vkreborn.error_handler import error_handler
-from async_google_trans_new import AsyncTranslator
-from async_google_trans_new import TransError
+from vkreborn.vkbottle import labeler
 
 
 @labeler.message(text="<_:prefix>trans", reply=True, blocking=False)

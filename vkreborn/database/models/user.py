@@ -1,8 +1,4 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    Boolean,
-)
+from sqlalchemy import Boolean, Column, Integer
 
 from vkreborn.database import Base
 

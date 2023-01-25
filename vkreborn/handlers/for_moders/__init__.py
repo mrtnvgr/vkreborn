@@ -1,8 +1,8 @@
 from vkreborn.handlers.for_moders import (
     givemoder,
-    takemoder,
     invite_forceinvite_kick,
     mute,
+    takemoder,
     whreset,
 )
 

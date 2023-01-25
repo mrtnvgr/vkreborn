@@ -1,11 +1,12 @@
 from vkbottle.user import UserLabeler
+
 from vkreborn.rules import (
-    ModerRule,
-    NewUserRule,
-    MutedRule,
-    ReplyMessageRule,
     AttachmentRule,
+    ModerRule,
+    MutedRule,
+    NewUserRule,
     OwnerRule,
+    ReplyMessageRule,
 )
 from vkreborn.vbml import patcher
 

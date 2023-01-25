@@ -1,20 +1,18 @@
 from vkreborn.handlers import (
-    new_user,
-    muted,
     fixlayout,
-    whoami,
-    moders,
-    roll,
-    trans,
-    shazam,
-    wallhaven,
     helphandler,
+    moders,
+    muted,
+    new_user,
+    roll,
+    shazam,
+    trans,
+    wallhaven,
+    whoami,
 )
-
-from vkreborn.handlers.fx import fx_labelers
-
 from vkreborn.handlers.for_moders import moder_labelers
 from vkreborn.handlers.for_owner import owner_labelers
+from vkreborn.handlers.fx import fx_labelers
 
 labelers = {
     *owner_labelers,

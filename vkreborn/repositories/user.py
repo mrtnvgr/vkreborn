@@ -1,5 +1,7 @@
 from typing import Optional
+
 from sqlalchemy.sql import insert, select, update
+
 from vkreborn.database import engine
 from vkreborn.database.models import User
 

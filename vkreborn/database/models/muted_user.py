@@ -1,8 +1,4 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    DateTime,
-)
+from sqlalchemy import Column, DateTime, Integer
 
 from vkreborn.database import Base
 

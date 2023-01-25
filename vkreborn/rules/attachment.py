@@ -1,7 +1,9 @@
+from typing import List, Union
+
 from vkbottle.dispatch.rules import ABCRule
 from vkbottle.user import Message
+
 from vkreborn.tools import get_attachments
-from typing import Union, List
 
 
 class AttachmentRule(ABCRule[Message]):

@@ -1,8 +1,9 @@
-from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
-from vkreborn.error_handler import error_handler
-from vkreborn.tools import get_attachments, download_attachment
 from shazamio import Shazam
+from vkbottle.user import Message
+
+from vkreborn.error_handler import error_handler
+from vkreborn.tools import download_attachment, get_attachments
+from vkreborn.vkbottle import labeler
 
 SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 

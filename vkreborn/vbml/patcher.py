@@ -1,6 +1,7 @@
-from vbml import Patcher
-import shlex
 import re
+import shlex
+
+from vbml import Patcher
 
 patcher = Patcher()
 

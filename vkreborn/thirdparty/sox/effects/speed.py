@@ -1,6 +1,7 @@
-from vkreborn.config import FX_NIGHTCORE_SPEED, FX_DAYCORE_SPEED
-from vkreborn.thirdparty.sox.effects import BaseEffect
 from typing import Optional
+
+from vkreborn.config import FX_DAYCORE_SPEED, FX_NIGHTCORE_SPEED
+from vkreborn.thirdparty.sox.effects import BaseEffect
 
 
 class SpeedEffect(BaseEffect):

@@ -1,7 +1,8 @@
-from vkbottle.user import Message
-from vkbottle.http import AiohttpClient
-from vkbottle_types.objects import MessagesMessageAttachment, WallWallpostAttachment
 from typing import Optional
+
+from vkbottle.http import AiohttpClient
+from vkbottle.user import Message
+from vkbottle_types.objects import MessagesMessageAttachment, WallWallpostAttachment
 
 
 async def get_attachments(

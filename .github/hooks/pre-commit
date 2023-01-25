@@ -1,7 +1,4 @@
 #!/bin/sh
 
-black --check vkreborn/*.py vkreborn/*/*.py || exit 1
-echo "BLACK CHECK: OK"
-
-flakeheaven lint vkreborn/ || exit 1
-echo "FLAKE CHECK: OK"
+poetry run isort vkreborn/ || exit 1
+poetry run flakeheaven lint || exit 1

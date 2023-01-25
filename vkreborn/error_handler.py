@@ -1,6 +1,6 @@
+from loguru import logger
 from vkbottle import ErrorHandler
 from vkbottle.user import Message
-from loguru import logger
 
 error_handler = ErrorHandler(redirect_arguments=True)
 

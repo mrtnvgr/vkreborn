@@ -1,7 +1,9 @@
 from typing import TYPE_CHECKING, Any, NoReturn, Union
-from vkbottle import ABCResponseValidator
-from vkreborn.request_rescheduler import CaptchaRequestRescheduler
+
 from loguru import logger
+from vkbottle import ABCResponseValidator
+
+from vkreborn.request_rescheduler import CaptchaRequestRescheduler
 
 if TYPE_CHECKING:
     from vkbottle.api import ABCAPI, API

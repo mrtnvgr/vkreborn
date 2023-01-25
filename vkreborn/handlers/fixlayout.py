@@ -1,7 +1,8 @@
-from vkbottle.user import Message
 from vkbottle.dispatch.rules.base import ReplyMessageRule
-from vkreborn.vkbottle import labeler
+from vkbottle.user import Message
+
 from vkreborn.error_handler import error_handler
+from vkreborn.vkbottle import labeler
 
 dictionary = {
     "`": "ё",

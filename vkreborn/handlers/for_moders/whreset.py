@@ -1,7 +1,8 @@
 from vkbottle.user import Message
-from vkreborn.vkbottle import labeler
-from vkreborn.repositories import WHPictureRepository
+
 from vkreborn.error_handler import error_handler
+from vkreborn.repositories import WHPictureRepository
+from vkreborn.vkbottle import labeler
 
 
 @labeler.chat_message(text="<_:prefix>whreset", moder=True)

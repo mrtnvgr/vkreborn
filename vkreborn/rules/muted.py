@@ -1,5 +1,6 @@
 from vkbottle.dispatch.rules import ABCRule
 from vkbottle.user import Message
+
 from vkreborn.repositories import MutedUserRepository
 
 

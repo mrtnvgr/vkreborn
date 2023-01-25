@@ -8,7 +8,7 @@
 #### **Примеры использования**:
 - `bassboost` (`bassboost`)
   > Повышение громкости баса на +7.4db
-- `bassboost -3` (`fx <gain:float>`)
+- `bassboost -3` (`fx <gain:gain>`)
   > Понижение громкости баса на -3.0db
 
 

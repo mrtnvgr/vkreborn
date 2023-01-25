@@ -8,9 +8,9 @@ from vkreborn.vkbottle import labeler
 defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
-@labeler.message(text="<_:prefix>bassboost <gain:float>", **defaults)
-@labeler.message(text="<_:prefix>basscut <gain:float>", **defaults)
-@labeler.message(text="<_:prefix>bass <gain:float>", **defaults)
+@labeler.message(text="<_:prefix>bassboost <gain:gain>", **defaults)
+@labeler.message(text="<_:prefix>basscut <gain:gain>", **defaults)
+@labeler.message(text="<_:prefix>bass <gain:gain>", **defaults)
 @error_handler.catch
 async def bassboost_handler(message: Message, gain: float):
     return await make(message, BassEffect(gain=gain))

@@ -5,6 +5,33 @@ from vbml import Patcher
 
 ABS_FLOAT_RE = r"(?:\d+?)(?:[\.\,]?\d*)"
 
+TT_URL_RE = r"""
+(?x)
+^
+    https?://
+    (?:
+       (?:www|m)\.
+       (?:tiktok.com)\/
+       (?:v|embed|trending|h5/share/usr/|share/user/|@[a-zA-Z]*/video)
+       (?:\/)?
+       (?:\?shareId=)?
+    )
+    (?P<id>[\da-z]+)
+$
+"""
+
+PERCENTAGE_RE = r"""
+(?x)
+^
+    (?:
+        (?:^(?!-))
+        (?:[+]?)
+    )
+    (?P<pt>\d*[\,\.]?\d*)
+    (?:[%]?)
+$
+"""
+
 patcher = Patcher()
 
 
@@ -47,20 +74,18 @@ def custom_float_validator(value: str):
 
 @patcher.validator("percentage")
 def percentage_validator(value: str):
-    pattern = re.compile(
-        r"^[+]?(?:\d+(?:\.\d*)?)|(?:\d*[\.\,]\d+)|[%]?$", re.IGNORECASE
-    )
-    if pattern.match(value):
-        value = value.removeprefix("+").removesuffix("%")
-        value = value.replace(",", ".", 1)
-        value = float(value)
+    pattern = re.compile(PERCENTAGE_RE, re.IGNORECASE)
+    match = pattern.match(value)
+    if not match:
+        return
+    value = str_to_float(match.groups()[0])
 
-        if value > 100:
-            return 100
-        elif value < 0:
-            return 0
+    if value > 100:
+        return 100
+    elif value < 0:
+        return 0
 
-        return value
+    return value
 
 
 @patcher.validator("gain")
@@ -71,19 +96,7 @@ def gain_validator(value: str):
 
 @patcher.validator("tt_url")
 def tt_url_validator(value: str):
-    pattern = re.compile(
-        r"""(?x)^
-        https?://
-        (?:
-           (?:www|m)\.
-           (?:tiktok.com)\/
-           (?:v|embed|trending|h5/share/usr/|share/user/|@[a-zA-Z]*/video)
-           (?:\/)?
-           (?:\?shareId=)?
-        )
-        (?P<id>[\da-z]+)$
-    """
-    )
+    pattern = re.compile(TT_URL_RE)
     return value if pattern.match(value) else None
 
 

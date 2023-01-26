@@ -3,35 +3,6 @@ import shlex
 
 from vbml import Patcher
 
-ABS_FLOAT_RE = r"(?:\d+?)(?:[\.\,]?\d*)"
-
-TT_URL_RE = r"""
-(?x)
-^
-    https?://
-    (?:
-       (?:www|m)\.
-       (?:tiktok.com)\/
-       (?:v|embed|trending|h5/share/usr/|share/user/|@[a-zA-Z]*/video)
-       (?:\/)?
-       (?:\?shareId=)?
-    )
-    (?P<id>[\da-z]+)
-$
-"""
-
-PERCENTAGE_RE = r"""
-(?x)
-^
-    (?:
-        (?:^(?!-))
-        (?:[+]?)
-    )
-    (?P<pt>\d*[\,\.]?\d*)
-    (?:[%]?)
-$
-"""
-
 patcher = Patcher()
 
 
@@ -62,19 +33,19 @@ def wh_switches_validator(value: str):
 
 @patcher.validator("abs_float")
 def custom_abs_float_validator(value: str):
-    pattern = re.compile(f"^{ABS_FLOAT_RE}$", re.IGNORECASE)
+    pattern = re.compile(r"^\d+?[\.\,]?\d*$", re.IGNORECASE)
     return str_to_float(value) if pattern.match(value) else None
 
 
 @patcher.validator("float")
 def custom_float_validator(value: str):
-    pattern = re.compile(f"^[+-]?{ABS_FLOAT_RE}$", re.IGNORECASE)
+    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*$", re.IGNORECASE)
     return str_to_float(value) if pattern.match(value) else None
 
 
 @patcher.validator("percentage")
 def percentage_validator(value: str):
-    pattern = re.compile(PERCENTAGE_RE, re.IGNORECASE)
+    pattern = re.compile(r"^(?:[+]?)(\d*[\,\.]?\d*)(?:[%]?)$", re.IGNORECASE)
     match = pattern.match(value)
     if not match:
         return
@@ -90,13 +61,13 @@ def percentage_validator(value: str):
 
 @patcher.validator("gain")
 def gain_validator(value: str):
-    pattern = re.compile(f"^[+-]?{ABS_FLOAT_RE}(db)?$", re.IGNROECASE)
+    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*(db)?$", re.IGNROECASE)
     return value if pattern.match(value) else None
 
 
 @patcher.validator("tt_url")
 def tt_url_validator(value: str):
-    pattern = re.compile(TT_URL_RE)
+    pattern = re.compile(r"^.*tiktok\.com.*([\da-z]+).*$")
     return value if pattern.match(value) else None
 
 

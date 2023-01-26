@@ -10,6 +10,10 @@ from vkreborn.vkbottle import labeler
 @error_handler.catch
 async def tiktok_handler(message: Message, url: str):
     resp = await AiohttpClient().request_json(f"https://tikwm.com/api?url={url}")
+
+    if resp.get("code") == -1:
+        return await message.reply("Неправильная ссылка")
+
     video_url = resp["data"]["play"]
     video_bytes = await AiohttpClient().request_content(video_url)
     attachment = await VideoUploader(message.ctx_api).upload(video_bytes)

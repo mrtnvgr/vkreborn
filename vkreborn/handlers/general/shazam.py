@@ -26,6 +26,9 @@ async def shazam_func(message: Message, attachments: list):
         shazam_response: str = await shazam.recognize_song(data)
         response.append(await format_data(shazam_response))
 
+    if len(response) > 1:
+        response = [f"{str(i).zfill(2)} {line}" for i, line in enumerate(response)]
+
     if response:
         return await message.reply("\n".join(response))
 
@@ -35,4 +38,4 @@ async def format_data(resp: dict):
         track = resp["track"]
         return f"{track['subtitle']} - {track['title']}"
     except KeyError:
-        return "Ошибка"
+        return "Не найдено!"

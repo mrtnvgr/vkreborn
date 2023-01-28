@@ -10,6 +10,7 @@ defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
 @labeler.message(text="<_:prefix>shazam", **defaults)
+@labeler.message(text="<_:prefix>шазам", **defaults)
 @error_handler.catch
 async def shazam_handler(message: Message):
     attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)

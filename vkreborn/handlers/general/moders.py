@@ -6,6 +6,7 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.message(text="<_:prefix>moders")
+@labeler.message(text="<_:prefix>модеры")
 @error_handler.catch
 async def moders_handler(message: Message):
     repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)

@@ -2,9 +2,9 @@
 <br>
 
 #### **Алиасы**:
-- `nc`, `nightcore`, `core` - 1.35 / .env `FX_NIGHTCORE_SPEED`
+- `nc`, `нк`, `nightcore`, `найткор`, `найткоре`, `core`, `коре`, `кор` - 1.35 / .env `FX_NIGHTCORE_SPEED`
   > Найткор
-- `dc`, `daycore` - 0.70 / .env `FX_DAYCORE_SPEED`
+- `dc`, `дк`, `daycore`, `дейкоре`, `дэйкоре`, `дейкор`, `дэйкор` - 0.70 / .env `FX_DAYCORE_SPEED`
   > Дэйкор
 
 

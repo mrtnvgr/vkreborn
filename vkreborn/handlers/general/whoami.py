@@ -6,6 +6,10 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.chat_message(text="<_:prefix>whoami")
+@labeler.chat_message(text="<_:prefix>вхуамай")
+@labeler.chat_message(text="<_:prefix>вхуами")
+@labeler.chat_message(text="<_:prefix>хуамай")
+@labeler.chat_message(text="<_:prefix>хуами")
 @error_handler.catch
 async def whoami_handler(message: Message):
     repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)

@@ -15,7 +15,10 @@ def translate(string: str):
     return string.translate(change)
 
 
+@labeler.message(ReplyMessageRule(), text="<_:prefix>fl", blocking=False)
+@labeler.message(ReplyMessageRule(), text="<_:prefix>фл", blocking=False)
 @labeler.message(ReplyMessageRule(), text="<_:prefix>fixlayout", blocking=False)
+@labeler.message(ReplyMessageRule(), text="<_:prefix>фикслайаут", blocking=False)
 @error_handler.catch
 async def fixlayout_handler(message: Message):
     text = message.reply_message.text

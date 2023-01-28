@@ -28,6 +28,10 @@ async def muted_user_handler(message: Message):
 
 
 @labeler.chat_message(text="<_:prefix>muted")
+@labeler.chat_message(text="<_:prefix>мутед")
+@labeler.chat_message(text="<_:prefix>мьютед")
+@labeler.chat_message(text="<_:prefix>мутэд")
+@labeler.chat_message(text="<_:prefix>мьютэд")
 @error_handler.catch
 async def muted_here_handler(message: Message):
     repo = MutedUserRepository(muted_where=message.chat_id)

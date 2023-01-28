@@ -9,6 +9,7 @@ defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
 @labeler.message(text="<_:prefix>reverse", **defaults)
+@labeler.message(text="<_:prefix>реверс", **defaults)
 @error_handler.catch
 async def reverse_handler(message: Message):
     return await make(message, ReverseEffect())

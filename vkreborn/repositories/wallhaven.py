@@ -9,9 +9,9 @@ from vkreborn.database.models import WHPicture
 class WHPictureRepository:
     def __init__(
         self,
-        picture_id: Optional[str | None] = None,
-        where_id: Optional[int | None] = None,
-        from_id: Optional[int | None] = None,
+        picture_id: Optional[str] = None,
+        where_id: Optional[int] = None,
+        from_id: Optional[int] = None,
     ):
         self.picture_id = picture_id
 

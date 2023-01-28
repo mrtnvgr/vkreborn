@@ -10,10 +10,10 @@ from vkreborn.database.models import MutedUser
 class MutedUserRepository:
     def __init__(
         self,
-        user_id: Optional[int | None] = None,
-        muted_where: Optional[int | None] = None,
-        muted_by: Optional[int | None] = None,
-        muted_until: Optional[datetime | None] = None,
+        user_id: Optional[int] = None,
+        muted_where: Optional[int] = None,
+        muted_by: Optional[int] = None,
+        muted_until: Optional[datetime] = None,
     ):
         self.user_id = user_id
         self.muted_where = muted_where

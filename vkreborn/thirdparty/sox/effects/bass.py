@@ -5,7 +5,7 @@ from vkreborn.thirdparty.sox.effects import BaseEffect
 
 
 class BassEffect(BaseEffect):
-    def __init__(self, gain: Optional[float | None]):
+    def __init__(self, gain: Optional[float]):
         if gain is None:
             self.gain = FX_BASS_GAIN
             self.default = True

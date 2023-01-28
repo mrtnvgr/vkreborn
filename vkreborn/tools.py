@@ -7,7 +7,7 @@ from vkbottle_types.objects import MessagesMessageAttachment, WallWallpostAttach
 
 async def get_attachments(
     message: Message,
-    attachment_types: Optional[list | None] = None,
+    attachment_types: Optional[list] = None,
     unpack: bool = True,
 ):
     # NOTE: Check FAQ

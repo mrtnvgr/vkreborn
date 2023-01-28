@@ -6,6 +6,9 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.private_message(text="<_:prefix>whreset")
+@labeler.private_message(text="<_:prefix>вхрезет")
+@labeler.private_message(text="<_:prefix>вхрезэт")
+@labeler.private_message(text="<_:prefix>вхрэзэт")
 @error_handler.catch
 async def pm_whreset_handler(message: Message):
     repo = WHPictureRepository(where_id=message.chat_id)

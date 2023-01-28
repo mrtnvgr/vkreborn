@@ -15,6 +15,9 @@ defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
 @labeler.message(text="<_:prefix>dm <text:list>", **defaults)
+@labeler.message(text="<_:prefix>дм <text:list>", **defaults)
+@labeler.message(text="<_:prefix>demotivator <text:list>", **defaults)
+@labeler.message(text="<_:prefix>демотиватор <text:list>", **defaults)
 @error_handler.catch
 async def dm_default_handler(message: Message, text: list):
     text = text[:2]

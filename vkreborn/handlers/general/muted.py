@@ -32,6 +32,7 @@ async def muted_user_handler(message: Message):
 @labeler.chat_message(text="<_:prefix>мьютед")
 @labeler.chat_message(text="<_:prefix>мутэд")
 @labeler.chat_message(text="<_:prefix>мьютэд")
+@labeler.chat_message(text="<_:prefix>inmute")
 @labeler.chat_message(text="<_:prefix>вмуте")
 @labeler.chat_message(text="<_:prefix>вмьюте")
 @labeler.chat_message(text="<_:prefix>замученые")

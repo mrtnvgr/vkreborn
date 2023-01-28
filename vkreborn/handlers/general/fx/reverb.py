@@ -9,12 +9,16 @@ defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
 
 
 @labeler.message(text="<_:prefix>reverb", **defaults)
+@labeler.message(text="<_:prefix>реверб", **defaults)
+@labeler.message(text="<_:prefix>ревер", **defaults)
 @error_handler.catch
 async def reverb_default_handler(message: Message):
     return await make(message, ReverbEffect())
 
 
 @labeler.message(text="<_:prefix>reverb <wet:percentage>", **defaults)
+@labeler.message(text="<_:prefix>реверб <wet:percentage>", **defaults)
+@labeler.message(text="<_:prefix>ревер <wet:percentage>", **defaults)
 @error_handler.catch
 async def reverb_wet_handler(message: Message, wet: float):
     return await make(message, ReverbEffect(wet=wet))

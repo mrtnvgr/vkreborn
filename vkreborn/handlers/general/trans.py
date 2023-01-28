@@ -6,6 +6,12 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.message(text="<_:prefix>trans", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>транс", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>translate", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>перевод", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>перевести", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>translator", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>переводчик", reply=True, blocking=False)
 @error_handler.catch
 async def trans_handler(message: Message):
     content = message.reply_message.text
@@ -14,6 +20,12 @@ async def trans_handler(message: Message):
 
 
 @labeler.message(text="<_:prefix>trans <to>", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>транс <to>", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>translate <to>", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>перевод <to>", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>перевести <to>", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>translator <to>", reply=True, blocking=False)
+@labeler.message(text="<_:prefix>переводчик <to>", reply=True, blocking=False)
 @error_handler.catch
 async def trans_to_handler(message: Message, to: str):
     content = message.reply_message.text
@@ -22,7 +34,6 @@ async def trans_to_handler(message: Message, to: str):
 
 
 async def translate(content: str, to: str = "ru"):
-
     try:
         translator = AsyncTranslator()
         response = await translator.translate(text=content, lang_tgt=to)

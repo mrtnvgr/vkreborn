@@ -14,4 +14,4 @@ class ReverbEffect(BaseEffect):
 
     @property
     def fx_name(self) -> str:
-        return f"reverb {self.wet}%" if not self.default else "reverb"
+        return f"reverb {self.wet:g}%" if not self.default else "reverb"

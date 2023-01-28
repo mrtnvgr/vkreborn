@@ -8,9 +8,12 @@ from vkreborn.handlers import labelers
 from vkreborn.middlewares import middlewares
 from vkreborn.response_validator import CaptchaResponseValidator
 
+import os
 
 @logger.catch
 def main():
+
+    os.chdir(os.path.dirname(__file__))
 
     loop_wrapper = LoopWrapper(on_startup=[setup_db()])
     user = User(VKTOKEN, loop_wrapper=loop_wrapper)

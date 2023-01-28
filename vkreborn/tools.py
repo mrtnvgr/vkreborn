@@ -1,5 +1,6 @@
 from typing import Optional
 
+from loguru import logger
 from vkbottle.http import AiohttpClient
 from vkbottle.user import Message
 from vkbottle_types.objects import MessagesMessageAttachment, WallWallpostAttachment
@@ -74,7 +75,10 @@ async def download_attachment(attachment):
         link: str = attachment.audio.url
     elif attachment.audio_message:
         link: str = attachment.audio_message.link_mp3
+    elif attachment.photo:
+        link: str = attachment.photo.sizes[-1].url
     else:
+        logger.error(attachment)
         raise Exception("NOT SUPPORTED")
 
     return await get_url_bytes(link)

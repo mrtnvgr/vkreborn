@@ -27,4 +27,6 @@
 
 - [Скачивание видео с](list/tiktok.md) [TikTok](https://tiktok.com)
 
+- [Демотиваторы](list/dm.md)
+
 - [Помощь](list/help.md)

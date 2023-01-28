@@ -1,4 +1,5 @@
 from vkreborn.handlers.general import (
+    demotivator,
     fixlayout,
     helphandler,
     moders,
@@ -16,6 +17,7 @@ from vkreborn.handlers.general.fx import fx_labelers
 general_labelers = {
     new_user.labeler,
     muted.labeler,
+    demotivator.labeler,
     *fx_labelers,
     fixlayout.labeler,
     whoami.labeler,

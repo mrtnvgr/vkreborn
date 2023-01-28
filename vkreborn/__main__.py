@@ -1,3 +1,5 @@
+import os
+
 from loguru import logger
 from vkbottle import User
 from vkbottle.tools.dev.loop_wrapper import LoopWrapper
@@ -8,7 +10,6 @@ from vkreborn.handlers import labelers
 from vkreborn.middlewares import middlewares
 from vkreborn.response_validator import CaptchaResponseValidator
 
-import os
 
 @logger.catch
 def main():

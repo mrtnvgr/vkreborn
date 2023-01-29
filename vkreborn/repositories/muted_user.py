@@ -71,9 +71,7 @@ class MutedUserRepository:
 
     async def list_by_muted_where(self):
         async with engine.connect() as conn:
-            query = select(MutedUser.user_id).where(
-                MutedUser.muted_where == self.muted_where
-            )
+            query = select(MutedUser.user_id).where(MutedUser.muted_where == self.muted_where)
             users = (await conn.execute(query)).fetchall()
             return [user[0] for user in users]
 

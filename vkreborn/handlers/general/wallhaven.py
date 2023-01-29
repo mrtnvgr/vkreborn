@@ -53,23 +53,13 @@ async def wh_query_handler(message: Message, q: str):
 
 @labeler.message(text="<_:prefix>wh <q> <categories:wh_switches>", blocking=False)
 @labeler.message(text="<_:prefix>вх <q> <categories:wh_switches>", blocking=False)
-@labeler.message(
-    text="<_:prefix>wallhaven <q> <categories:wh_switches>", blocking=False
-)
-@labeler.message(
-    text="<_:prefix>валлхавен <q> <categories:wh_switches>", blocking=False
-)
-@labeler.message(
-    text="<_:prefix>воллхавен <q> <categories:wh_switches>", blocking=False
-)
+@labeler.message(text="<_:prefix>wallhaven <q> <categories:wh_switches>", blocking=False)
+@labeler.message(text="<_:prefix>валлхавен <q> <categories:wh_switches>", blocking=False)
+@labeler.message(text="<_:prefix>воллхавен <q> <categories:wh_switches>", blocking=False)
 @labeler.message(text="<_:prefix>валхавен <q> <categories:wh_switches>", blocking=False)
 @labeler.message(text="<_:prefix>волхавен <q> <categories:wh_switches>", blocking=False)
-@labeler.message(
-    text="<_:prefix>валлхавэн <q> <categories:wh_switches>", blocking=False
-)
-@labeler.message(
-    text="<_:prefix>воллхавэн <q> <categories:wh_switches>", blocking=False
-)
+@labeler.message(text="<_:prefix>валлхавэн <q> <categories:wh_switches>", blocking=False)
+@labeler.message(text="<_:prefix>воллхавэн <q> <categories:wh_switches>", blocking=False)
 @labeler.message(text="<_:prefix>валхавэн <q> <categories:wh_switches>", blocking=False)
 @labeler.message(text="<_:prefix>волхавэн <q> <categories:wh_switches>", blocking=False)
 @labeler.message(text="<_:prefix>валлхавн <q> <categories:wh_switches>", blocking=False)
@@ -152,9 +142,7 @@ async def send_random_single(message: Message, **kwargs):
     photo = await get_random_picture(message, **kwargs)
     if not photo:
         return
-    attachment = await PhotoMessageUploader(message.ctx_api).upload(
-        photo, message.chat_id
-    )
+    attachment = await PhotoMessageUploader(message.ctx_api).upload(photo, message.chat_id)
     return await message.reply(attachment=attachment)
 
 

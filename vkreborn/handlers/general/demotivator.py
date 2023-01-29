@@ -141,7 +141,5 @@ async def _draw_text(
     # Рисуем фон
     txt = Image.new("RGB", (w_txt, h_txt + font_add), main_fill)
     # Добавляем шрифт на фон
-    ImageDraw.Draw(txt).text(
-        (0, 0), text=text, font=font, fill=text_fill, align=text_align
-    )
+    ImageDraw.Draw(txt).text((0, 0), text=text, font=font, fill=text_fill, align=text_align)
     return txt

@@ -13,9 +13,7 @@ class UserRepository:
 
     async def get_user(self) -> User:
         async with engine.connect() as conn:
-            query = select(User).where(
-                User.user_id == self.user_id, User.chat_id == self.chat_id
-            )
+            query = select(User).where(User.user_id == self.user_id, User.chat_id == self.chat_id)
             user: Optional[User] = (await conn.execute(query)).fetchone()
             return user
 
@@ -29,9 +27,7 @@ class UserRepository:
 
     async def get_moder_ids(self):
         async with engine.connect() as conn:
-            query = select(User.user_id).where(
-                User.chat_id == self.chat_id, User.is_moder
-            )
+            query = select(User.user_id).where(User.chat_id == self.chat_id, User.is_moder)
             moders: User = (await conn.execute(query)).fetchall()
             return [moder[0] for moder in moders]
 

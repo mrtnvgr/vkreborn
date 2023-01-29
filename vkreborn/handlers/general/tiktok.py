@@ -19,7 +19,5 @@ async def tiktok_handler(message: Message, url: str):
 
     video_url = resp["data"]["play"]
     video_bytes = await AiohttpClient().request_content(video_url)
-    attachment = await VideoUploader(message.ctx_api).upload(
-        video_bytes, is_private=True
-    )
+    attachment = await VideoUploader(message.ctx_api).upload(video_bytes, is_private=True)
     return await message.reply(attachment=attachment)

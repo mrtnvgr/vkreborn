@@ -27,6 +27,4 @@ class CaptchaResponseValidator(ABCResponseValidator):
             logger.info("Too many requests per second catched! Rescheduling event...")
         else:
             return response
-        return await CaptchaRequestRescheduler().reschedule(
-            ctx_api, method, data, response
-        )
+        return await CaptchaRequestRescheduler().reschedule(ctx_api, method, data, response)

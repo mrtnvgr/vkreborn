@@ -16,12 +16,8 @@ async def takemoder_handler(message: Message, user: dict):
 
     moders = await repo.get_moder_ids()
     if repo.user_id not in moders:
-        return await message.reply(
-            f"Пользователь {user['domain']} не является модератором"
-        )
+        return await message.reply(f"Пользователь {user['domain']} не является модератором")
 
     await repo.set_moder(False)
 
-    return await message.reply(
-        f"Пользователь {user['domain']} снят с должности модератора"
-    )
+    return await message.reply(f"Пользователь {user['domain']} снят с должности модератора")

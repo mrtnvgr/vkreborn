@@ -14,10 +14,7 @@ async def moders_handler(message: Message):
 
     moders_info = await message.ctx_api.users.get(moder_ids, fields=["domain"])
 
-    moders = [
-        f"{moder.first_name} {moder.last_name} ({moder.domain})"
-        for moder in moders_info
-    ]
+    moders = [f"{moder.first_name} {moder.last_name} ({moder.domain})" for moder in moders_info]
     moders.insert(0, "Модераторы:" if len(moders) > 1 else "Модератор:")
 
     return await message.reply("\n".join(moders))

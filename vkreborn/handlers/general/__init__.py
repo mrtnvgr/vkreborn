@@ -12,6 +12,7 @@ from vkreborn.handlers.general import (
     trans,
     wallhaven,
     whoami,
+    whomuted,
 )
 from vkreborn.handlers.general.fx import fx_labelers
 
@@ -19,6 +20,7 @@ general_labelers = {
     new_user.labeler,
     muted.labeler,
     mutedby.labeler,
+    whomuted.labeler,
     demotivator.labeler,
     *fx_labelers,
     fixlayout.labeler,

@@ -13,7 +13,7 @@
 
 - [Отправка картинок](list/wh.md) ([wallhaven](https://wallhaven.cc))
 
-- [Роль пользователя в беседе](list/whoami.md)
+- [Роль пользователя в беседе](list/who.md)
 
 - [Очистка кэша чата (ЛС) команды wh](list/whreset.md)
 

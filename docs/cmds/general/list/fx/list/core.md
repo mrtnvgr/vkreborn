@@ -4,9 +4,12 @@
 #### **Алиасы и дефолтные множители скорости**:
 - `nc`, `nk`, `нк`, `nightcore`, `nightkore`, `найткор`, `найткоре`, `core`, `kore`, `коре`, `кор` - 1.35 / .env `FX_NIGHTCORE_SPEED`
   > Найткор
+- `snc`, `snk`, `снк`, `softnightcore`, `softnightkore`, `софтнайткор`, `софтнайткоре` - 1.17 / .env `FX_SOFTNIGHTCORE_SPEED`
+  > Софт найткор
 - `dc`, `dk`, `дк`, `daycore`, `daykore`, `дейкоре`, `дэйкоре`, `дейкор`, `дэйкор` - 0.70 / .env `FX_DAYCORE_SPEED`
   > Дэйкор
-
+- `sdc`, `sdk`, `сдк`, `softdaycore`, `softdaykore`, `софтдейкоре`, `софтдейкор`, `софтдэйкоре`, `софтдейкоре` - 0.85 / .env `FX_SOFTDAYCORE_SPEED`
+  > Софт дэйкор
 
 
 #### **Примеры использования**:

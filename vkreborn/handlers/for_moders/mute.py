@@ -8,6 +8,12 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:int>", moder=True)
+@labeler.chat_message(text="<_:prefix>муте <user:mention> <minutes:int>", moder=True)
+@labeler.chat_message(text="<_:prefix>мут <user:mention> <minutes:int>", moder=True)
+@labeler.chat_message(text="<_:prefix>мьюте <user:mention> <minutes:int>", moder=True)
+@labeler.chat_message(text="<_:prefix>мьют <user:mention> <minutes:int>", moder=True)
+@labeler.chat_message(text="<_:prefix>silence <user:mention> <minutes:int>", moder=True)
+@labeler.chat_message(text="<_:prefix>сайленс <user:mention> <minutes:int>", moder=True)
 @error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: float):
 

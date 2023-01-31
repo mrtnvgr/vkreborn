@@ -107,7 +107,7 @@ async def expand_bg(picture, text):
     x = min(picture.size)
     w_txt, h_txt = text.size
     w_proc = 25 * (w_txt // 100)
-    h_proc = 25 * (h_txt // 100)
+    h_proc = 50 * (h_txt // 100)
     back = Image.new("RGB", (w_txt + (w_proc * 2), h_txt + (h_proc * 2)), (0, 0, 0))
     back.paste(text, (w_proc, h_proc))
     back.thumbnail((x, x))

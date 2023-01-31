@@ -13,9 +13,8 @@ from vkreborn.vkbottle import labeler
 @error_handler.catch
 async def kick_handler(message: Message, user: dict):
     kick_resp = await kick(message=message, user=user)
-    if not kick_resp:
-        return kick_resp
-    await message.reply(f"Пользователь {user['domain']} исключен")
+    if kick_resp:
+        await message.reply(f"Пользователь {user['domain']} исключен")
 
 
 @labeler.chat_message(text="<_:prefix>invite <user:mention>", moder=True)
@@ -47,6 +46,7 @@ async def kick(message: Message, user: dict):
         await message.ctx_api.messages.remove_chat_user(
             chat_id=message.chat_id, user_id=user["id"]
         )
+        return True
     except VKAPIError[935]:
         await message.reply(f"Пользователь {user['domain']} не состоит в беседе")
         return False

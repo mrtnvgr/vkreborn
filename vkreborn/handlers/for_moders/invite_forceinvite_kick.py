@@ -29,6 +29,10 @@ async def invite_handler(message: Message, user: dict):
 
 
 @labeler.chat_message(text="<_:prefix>forceinvite <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>форсинвайт <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>форсеинвайт <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>форсинвайте <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>форсеинвайте <user:mention>", moder=True)
 @error_handler.catch
 async def forceinvite_handler(message: Message, user: dict):
     await kick(message=message, user_id=user["id"])

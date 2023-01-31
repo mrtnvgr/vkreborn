@@ -5,7 +5,7 @@ from vkreborn.repositories import UserRepository
 from vkreborn.vkbottle import labeler
 
 
-@labeler.message(new_user=True)
+@labeler.message(new_user=True, blocking=False)
 @error_handler.catch
 async def new_user_handler(message: Message):
     account = await message.ctx_api.users.get()

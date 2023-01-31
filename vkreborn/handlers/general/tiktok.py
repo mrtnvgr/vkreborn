@@ -6,10 +6,10 @@ from vkreborn.error_handler import error_handler
 from vkreborn.vkbottle import labeler
 
 
-@labeler.message(text="<_:prefix>tiktok <url:tt_url>", blocking=False)
-@labeler.message(text="<_:prefix>tt <url:tt_url>", blocking=False)
-@labeler.message(text="<_:prefix>тикток <url:tt_url>", blocking=False)
-@labeler.message(text="<_:prefix>тт <url:tt_url>", blocking=False)
+@labeler.message(text="<_:prefix>tiktok <url:tt_url>")
+@labeler.message(text="<_:prefix>tt <url:tt_url>")
+@labeler.message(text="<_:prefix>тикток <url:tt_url>")
+@labeler.message(text="<_:prefix>тт <url:tt_url>")
 @error_handler.catch
 async def tiktok_handler(message: Message, url: str):
     resp = await AiohttpClient().request_json(f"https://tikwm.com/api?url={url}")

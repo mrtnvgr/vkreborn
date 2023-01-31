@@ -11,7 +11,7 @@ from vkreborn.tools import download_attachment, get_attachments
 from vkreborn.vkbottle import labeler
 
 SUPPORTED_ATTACHMENTS = ["photo"]
-defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
+defaults = {"attachment": SUPPORTED_ATTACHMENTS}
 
 
 @labeler.message(text="<_:prefix>dm <text:list>", **defaults)

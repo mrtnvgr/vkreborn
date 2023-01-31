@@ -5,7 +5,7 @@ from vkreborn.thirdparty.sox import SUPPORTED_ATTACHMENTS, make
 from vkreborn.thirdparty.sox.effects import ReverseEffect
 from vkreborn.vkbottle import labeler
 
-defaults = {"attachment": SUPPORTED_ATTACHMENTS, "blocking": False}
+defaults = {"attachment": SUPPORTED_ATTACHMENTS}
 
 
 @labeler.message(text="<_:prefix>reverse", **defaults)

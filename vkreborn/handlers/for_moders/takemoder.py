@@ -6,6 +6,16 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.chat_message(text="<_:prefix>takemoder <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>такемодер <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>такемодерку <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>тэйкмодер <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>тэйкмодерку <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>тейкмодер <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>тейкмодерку <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>забратьмодера <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>забратьмодерку <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>снятьсмодера <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>снятьсмодерки <user:mention>", moder=True)
 @error_handler.catch
 async def takemoder_handler(message: Message, user: dict):
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)

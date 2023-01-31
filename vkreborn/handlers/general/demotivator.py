@@ -73,8 +73,8 @@ async def create(content: bytes, header: str, footer: str):
 
 
 async def add_frames(picture):
-    picture = ImageOps.expand(picture, 6, (0, 0, 0))
-    picture = ImageOps.expand(picture, 2, (255, 255, 255))
+    picture = ImageOps.expand(picture, 5, (0, 0, 0))
+    picture = ImageOps.expand(picture, 3, (255, 255, 255))
     return picture
 
 

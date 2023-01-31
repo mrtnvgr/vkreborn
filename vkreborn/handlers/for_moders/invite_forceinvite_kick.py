@@ -7,6 +7,9 @@ from vkreborn.vkbottle import labeler
 
 
 @labeler.chat_message(text="<_:prefix>kick <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>кик <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>кикнуть <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>исключить <user:mention>", moder=True)
 @error_handler.catch
 async def kick_handler(message: Message, user: dict):
     kick_resp = await kick(message=message, user=user)

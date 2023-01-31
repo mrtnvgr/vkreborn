@@ -19,6 +19,7 @@ async def kick_handler(message: Message, user: dict):
 
 @labeler.chat_message(text="<_:prefix>invite <user:mention>", moder=True)
 @labeler.chat_message(text="<_:prefix>инвайт <user:mention>", moder=True)
+@labeler.chat_message(text="<_:prefix>инвайте <user:mention>", moder=True)
 @labeler.chat_message(text="<_:prefix>пригласить <user:mention>", moder=True)
 @labeler.chat_message(text="<_:prefix>добавить <user:mention>", moder=True)
 @error_handler.catch

@@ -4,7 +4,6 @@ from vkreborn.handlers.general import (
     helphandler,
     moders,
     muted,
-    muted_user,
     mutedby,
     roll,
     shazam,
@@ -18,7 +17,6 @@ from vkreborn.handlers.general import (
 from vkreborn.handlers.general.fx import fx_labelers
 
 general_labelers = {
-    muted_user.labeler,
     muted.labeler,
     mutedby.labeler,
     whomuted.labeler,

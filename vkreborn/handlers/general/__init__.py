@@ -6,7 +6,6 @@ from vkreborn.handlers.general import (
     muted,
     muted_user,
     mutedby,
-    new_user,
     roll,
     shazam,
     tiktok,
@@ -19,7 +18,6 @@ from vkreborn.handlers.general import (
 from vkreborn.handlers.general.fx import fx_labelers
 
 general_labelers = {
-    new_user.labeler,
     muted_user.labeler,
     muted.labeler,
     mutedby.labeler,

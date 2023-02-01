@@ -21,7 +21,7 @@ async def mute_user_handler(message: Message, user: dict, minutes: float):
     repo_user = await repo.get_user()
 
     if repo_user and repo_user.is_moder:
-        return
+        return await message.reply("Модераторов мьютить нельзя")
 
     muted_until = datetime.now() + timedelta(minutes=minutes)
     repo = MutedUserRepository(

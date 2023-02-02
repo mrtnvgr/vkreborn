@@ -19,5 +19,17 @@ async def tiktok_handler(message: Message, url: str):
 
     video_url = resp["data"]["play"]
     video_bytes = await AiohttpClient().request_content(video_url)
-    attachment = await VideoUploader(message.ctx_api).upload(video_bytes, is_private=True)
+
+    author = resp["data"]["author"]
+    video_author = f'{author["nickname"]} (@{author["unique_id"]})'
+
+    video_title = resp["data"]["title"]
+    video_name = f" - {video_title}" if video_title else ""
+
+    attachment = await VideoUploader(message.ctx_api).upload(
+        video_bytes,
+        name=f"{video_author}{video_name}",
+        description="(This video was uploaded automatically via vkr)",
+        is_private=True,
+    )
     return await message.reply(attachment=attachment)

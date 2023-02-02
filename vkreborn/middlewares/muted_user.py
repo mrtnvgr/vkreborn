@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from loguru import logger
 from vkbottle import BaseMiddleware
 from vkbottle.exception_factory import VKAPIError
 from vkbottle.user import Message
@@ -26,5 +25,5 @@ class MutedUserMiddleware(BaseMiddleware[Message]):
                 delete_for_all=True,
             )
             self.stop("User is muted")
-        except VKAPIError[15] as ex:
-            logger.debug(ex.description)
+        except VKAPIError[924]:
+            return await repo.delete()

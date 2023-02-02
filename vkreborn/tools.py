@@ -12,11 +12,15 @@ async def get_attachments(
     unpack: bool = True,
 ):
     # NOTE: Check FAQ
+
     attachments = []
+
     if message.attachments:
         attachments = message.attachments
+
     elif message.reply_message and message.reply_message.attachments:
         attachments = message.reply_message.attachments
+
     elif message.fwd_messages:
         for msg in message.fwd_messages:
             attachments.extend(await get_attachments(msg))

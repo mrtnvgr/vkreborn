@@ -5,6 +5,8 @@ from vbml import Patcher
 
 patcher = Patcher()
 
+TT_URL_RE = r"(https?:\/\/)?(www|m)(\.tiktok\.com)(\/.*\/|\/trending.?shareId=)([\d]*)(\.html)?"
+
 
 @patcher.validator("list")
 def list_validator(value: str):
@@ -65,7 +67,7 @@ def gain_validator(value: str):
 
 @patcher.validator("tt_url")
 def tt_url_validator(value: str):
-    pattern = re.compile(r"^.*tiktok\.com.*([\da-z]+).*$")
+    pattern = re.compile(f"^{TT_URL_RE}$")
     return value if pattern.match(value) else None
 
 

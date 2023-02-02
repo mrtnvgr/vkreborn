@@ -15,37 +15,38 @@ def list_validator(value: str):
 
 @patcher.validator("mention")
 def mention_validator(value: str):
-    pattern = re.compile(r"^\[id([0-9]+)\|@([A-Za-z0-9]+)]$", re.IGNORECASE)
+    pattern = re.compile(r"^\[id([0-9]+)\|@([A-Za-z0-9]+)]$")
     match = pattern.match(value)
     return {"id": int(match.groups()[0]), "domain": match.groups()[1]} if match else None
 
 
 @patcher.validator("prefix")
 def prefix_validator(value: str):
-    return True if value == "%!" else None
+    pattern = re.compile(r"^(%!|%)$")
+    return value if pattern.match(value) else None
 
 
 @patcher.validator("wh_switches")
 def wh_switches_validator(value: str):
-    pattern = re.compile(r"^[01]{3}$", re.IGNORECASE)
+    pattern = re.compile(r"^[01]{3}$")
     return value if pattern.match(value) else None
 
 
 @patcher.validator("abs_float")
 def custom_abs_float_validator(value: str):
-    pattern = re.compile(r"^\d+?[\.\,]?\d*$", re.IGNORECASE)
+    pattern = re.compile(r"^\d+?[\.\,]?\d*$")
     return str_to_float(value) if pattern.match(value) else None
 
 
 @patcher.validator("float")
 def custom_float_validator(value: str):
-    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*$", re.IGNORECASE)
+    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*$")
     return str_to_float(value) if pattern.match(value) else None
 
 
 @patcher.validator("percentage")
 def percentage_validator(value: str):
-    pattern = re.compile(r"^(?:[+]?)(\d*[\,\.]?\d*)(?:[%]?)$", re.IGNORECASE)
+    pattern = re.compile(r"^(?:[+]?)(\d*[\,\.]?\d*)(?:[%]?)$")
     match = pattern.match(value)
     if not match:
         return
@@ -61,13 +62,13 @@ def percentage_validator(value: str):
 
 @patcher.validator("gain")
 def gain_validator(value: str):
-    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*(db)?$", re.IGNROECASE)
+    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*(db)?$")
     return value if pattern.match(value) else None
 
 
 @patcher.validator("tt_url")
 def tt_url_validator(value: str):
-    pattern = re.compile(f"^{TT_URL_RE}$")
+    pattern = re.compile(f"^{TT_URL_RE}$", re.IGNORECASE)
     return value if pattern.match(value) else None
 
 

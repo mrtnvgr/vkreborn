@@ -6,7 +6,7 @@
 
 
 #### **Примеры использования**:
-- `tempo 1.2` (`tempo <tempo:abs_float>`)
+- `tempo 1.2` (`tempo <tempo:factor>`)
   > Повышение темпа на 20%
 
 

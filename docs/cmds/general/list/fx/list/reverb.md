@@ -8,7 +8,7 @@
 #### **Примеры использования**:
 - `reverb` (`reverb`)
   > Реверб 80%
-- `reverb 100%` (`reverb <wet:percentage>`)
+- `reverb 100%` (`reverb <wet:factor>`)
   > Реверб 100%
 
 

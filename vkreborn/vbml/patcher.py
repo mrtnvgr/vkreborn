@@ -32,20 +32,32 @@ def wh_switches_validator(value: str):
     return value if pattern.match(value) else None
 
 
-@patcher.validator("abs_float")
-def custom_abs_float_validator(value: str):
-    pattern = re.compile(r"^\d+?[\.\,]?\d*$")
-    return str_to_float(value) if pattern.match(value) else None
-
-
 @patcher.validator("float")
 def custom_float_validator(value: str):
     pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*$")
     return str_to_float(value) if pattern.match(value) else None
 
 
-@patcher.validator("percentage")
-def percentage_validator(value: str):
+@patcher.validator("gain")
+def gain_validator(value: str):
+    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*(db)?$")
+    return value if pattern.match(value) else None
+
+
+@patcher.validator("tt_url")
+def tt_url_validator(value: str):
+    pattern = re.compile(f"^{TT_URL_RE}$", re.IGNORECASE)
+    return value if pattern.match(value) else None
+
+
+@patcher.validator("factor")
+def factor_validator(value: str):
+    percentage = _percentage_validator(value)
+    abs_float = _custom_abs_float_validator(value)
+    return percentage or abs_float
+
+
+def _percentage_validator(value: str):
     pattern = re.compile(r"^(?:[+]?)(\d*[\,\.]?\d*)(?:[%]?)$")
     match = pattern.match(value)
     if not match:
@@ -60,16 +72,9 @@ def percentage_validator(value: str):
     return value
 
 
-@patcher.validator("gain")
-def gain_validator(value: str):
-    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*(db)?$")
-    return value if pattern.match(value) else None
-
-
-@patcher.validator("tt_url")
-def tt_url_validator(value: str):
-    pattern = re.compile(f"^{TT_URL_RE}$", re.IGNORECASE)
-    return value if pattern.match(value) else None
+def _custom_abs_float_validator(value: str):
+    pattern = re.compile(r"^(x)?\d+?[\.\,]?\d*$")
+    return str_to_float(value) if pattern.match(value) else None
 
 
 def str_to_float(value: str):

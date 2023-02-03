@@ -16,9 +16,9 @@ async def reverb_default_handler(message: Message):
     return await make(message, ReverbEffect())
 
 
-@labeler.message(text="<_:prefix>reverb <wet:percentage>", **defaults)
-@labeler.message(text="<_:prefix>реверб <wet:percentage>", **defaults)
-@labeler.message(text="<_:prefix>ревер <wet:percentage>", **defaults)
+@labeler.message(text="<_:prefix>reverb <wet:factor>", **defaults)
+@labeler.message(text="<_:prefix>реверб <wet:factor>", **defaults)
+@labeler.message(text="<_:prefix>ревер <wet:factor>", **defaults)
 @error_handler.catch
 async def reverb_wet_handler(message: Message, wet: float):
     return await make(message, ReverbEffect(wet=wet))

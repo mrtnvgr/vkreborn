@@ -15,7 +15,7 @@ from vkreborn.vkbottle import labeler
 @labeler.chat_message(text="<_:prefix>silence <user:mention> <minutes:int>", moder=True)
 @labeler.chat_message(text="<_:prefix>сайленс <user:mention> <minutes:int>", moder=True)
 @error_handler.catch
-async def mute_user_handler(message: Message, user: dict, minutes: float):
+async def mute_user_handler(message: Message, user: dict, minutes: int):
 
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
     repo_user = await repo.get_user()

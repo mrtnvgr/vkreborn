@@ -105,7 +105,7 @@ async def get_random_picture(message: Message, **kwargs):
     search = await wh_search(sorting="random", **kwargs)
     picture = await pick_random_picture(message, search)
     if not picture:
-        await message.reply("К сожалению, фотографии по такому запросу закончились")
+        await message.reply("По данному запросу фотографий больше нет")
         return
     await register_picture(message, picture["id"])
     return await AiohttpClient().request_content(picture["path"])

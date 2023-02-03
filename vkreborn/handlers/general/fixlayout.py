@@ -1,4 +1,3 @@
-from vkbottle.dispatch.rules.base import ReplyMessageRule
 from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
@@ -15,11 +14,11 @@ def translate(string: str):
     return string.translate(change)
 
 
-@labeler.message(ReplyMessageRule(), text="<_:prefix>fl")
-@labeler.message(ReplyMessageRule(), text="<_:prefix>фл")
-@labeler.message(ReplyMessageRule(), text="<_:prefix>fixlayout")
-@labeler.message(ReplyMessageRule(), text="<_:prefix>фикслайаут")
+@labeler.message(text="<_:prefix>fl", reply=True)
+@labeler.message(text="<_:prefix>фл", reply=True)
+@labeler.message(text="<_:prefix>fixlayout", reply=True)
+@labeler.message(text="<_:prefix>фикслайаут", reply=True)
 @error_handler.catch
 async def fixlayout_handler(message: Message):
     text = message.reply_message.text
-    await message.reply(f'"{translate(text)}"')
+    await message.reply(f'Перевод: "{translate(text)}"')

@@ -30,4 +30,4 @@ async def takemoder_handler(message: Message, user: dict):
 
     await repo.set_moder(False)
 
-    return await message.reply(f"Пользователь {user['domain']} снят с должности модератора")
+    return await message.reply(f"Пользователь {user['domain']} теперь больше не модератор")

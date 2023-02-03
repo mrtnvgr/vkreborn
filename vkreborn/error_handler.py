@@ -6,10 +6,9 @@ error_handler = ErrorHandler(redirect_arguments=True)
 
 
 @error_handler.register_undefined_error_handler
-async def undefined_handler(e: BaseException, message: Message, **_):
+async def undefined_handler(e: BaseException, message: Message, **args):
     try:
         await message.reply("Что-то пошло не так, произошла неожиданная ошибка!")
-    except Exception as ex:
-        logger.error(f"Exception in error_handler: {ex}")
     finally:
-        logger.error(f"{message.from_id}: {e}")
+        logger.exception(f"Ошибка у {message.from_id}: {e}")
+        logger.error(f"Аргументы: {args}")

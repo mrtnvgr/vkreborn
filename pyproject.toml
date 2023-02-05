@@ -34,6 +34,7 @@ line-length = 98
 format = "grouped"
 max_line_length = 98
 show_source = true
+exclude = ["migrations", ".git", "__pycache__"]
 
 [tool.flakeheaven.plugins]
 pyflakes = ["+*", "-F403", "-F405"]

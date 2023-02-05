@@ -10,6 +10,3 @@ class WHPicture(Base):
     picture_id = Column(String, nullable=False)
     where_id = Column(Integer)
     from_id = Column(Integer)
-
-    def __repr__(self):
-        return f"<WHPicture: {self.picture_id}>"

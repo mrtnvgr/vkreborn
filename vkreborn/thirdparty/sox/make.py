@@ -2,6 +2,7 @@ from subprocess import check_output
 
 from vkbottle import AudioUploader
 from vkbottle.user import Message
+from vkbottle_types.objects import MessagesMessageAttachment
 
 from vkreborn.thirdparty.sox.effects import BaseEffect
 from vkreborn.tools import download_attachment, get_attachments
@@ -43,12 +44,10 @@ async def make_title(title: str, *effects: list[BaseEffect]):
     return f"{title} +| {', '.join(effect_names)}"
 
 
-async def get_audio_title(attachment) -> str:
+async def get_audio_title(attachment: MessagesMessageAttachment) -> str:
     if attachment.audio:
         return attachment.audio.title
 
     elif attachment.audio_message:
-        # TODO: vkbottle_types#39
-        # if attachment.audio_message.transcript:
-        #     return attachment.audio_message.transcript
-        return "Голосовое сообщение"
+        transcript = attachment.audio_message.transcript
+        return transcript if transcript else "Голосовое сообщение"

@@ -14,6 +14,7 @@ from vkreborn.handlers.general import (
     whois,
     whomuted,
 )
+from vkreborn.handlers.general.dupe import dupe_labelers
 from vkreborn.handlers.general.fx import fx_labelers
 
 general_labelers = {
@@ -21,6 +22,7 @@ general_labelers = {
     mutedby.labeler,
     whomuted.labeler,
     demotivator.labeler,
+    *dupe_labelers,
     *fx_labelers,
     fixlayout.labeler,
     whoami.labeler,

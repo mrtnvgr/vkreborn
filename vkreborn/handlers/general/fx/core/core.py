@@ -18,10 +18,6 @@ ALIASES = [
     *DAYCORE_ALIASES,
     *SOFTDAYCORE_ALIASES,
     *SOFTNIGHTCORE_ALIASES,
-    "core",
-    "kore",
-    "коре",
-    "кор",
 ]
 
 

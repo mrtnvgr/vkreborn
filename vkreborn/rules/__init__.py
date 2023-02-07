@@ -1,3 +1,4 @@
+from vkreborn.rules.alias import AliasRule
 from vkreborn.rules.attachment import AttachmentRule
 from vkreborn.rules.moder import ModerRule
 from vkreborn.rules.owner import OwnerRule
@@ -8,4 +9,5 @@ __all__ = [
     "ReplyMessageRule",
     "AttachmentRule",
     "OwnerRule",
+    "AliasRule",
 ]

@@ -7,6 +7,7 @@ from vkbottle import PhotoMessageUploader
 from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
+from vkreborn.rules import AliasRule
 from vkreborn.tools import download_attachment, get_attachments
 from vkreborn.vkbottle import labeler
 
@@ -14,10 +15,7 @@ SUPPORTED_ATTACHMENTS = ["photo"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS}
 
 
-@labeler.message(text="<_:prefix>dm <text:list>", **defaults)
-@labeler.message(text="<_:prefix>дм <text:list>", **defaults)
-@labeler.message(text="<_:prefix>demotivator <text:list>", **defaults)
-@labeler.message(text="<_:prefix>демотиватор <text:list>", **defaults)
+@labeler.message(AliasRule(["dm", "дм", "demotivator", "демотиватор"], "<text:list>"), **defaults)
 @error_handler.catch
 async def dm_default_handler(message: Message, text: list):
     text = text[:2]

@@ -1,6 +1,7 @@
 from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
 
@@ -14,10 +15,7 @@ def translate(string: str):
     return string.translate(change)
 
 
-@labeler.message(text="<_:prefix>fl", reply=True)
-@labeler.message(text="<_:prefix>фл", reply=True)
-@labeler.message(text="<_:prefix>fixlayout", reply=True)
-@labeler.message(text="<_:prefix>фикслайаут", reply=True)
+@labeler.message(AliasRule(["fl", "фл", "fixlayout", "фикслайаут"]), reply=True)
 @error_handler.catch
 async def fixlayout_handler(message: Message):
     text = message.reply_message.text

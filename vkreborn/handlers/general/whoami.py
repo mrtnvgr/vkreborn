@@ -2,14 +2,13 @@ from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import UserRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = ["whoami", "вхуамай", "вхуами", "хуамай", "хуами"]
 
-@labeler.chat_message(text="<_:prefix>whoami")
-@labeler.chat_message(text="<_:prefix>вхуамай")
-@labeler.chat_message(text="<_:prefix>вхуами")
-@labeler.chat_message(text="<_:prefix>хуамай")
-@labeler.chat_message(text="<_:prefix>хуами")
+
+@labeler.chat_message(AliasRule(ALIASES))
 @error_handler.catch
 async def whoami_handler(message: Message):
     repo = UserRepository(user_id=message.from_id, chat_id=message.chat_id)

@@ -4,16 +4,13 @@ from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import MutedUserRepository, UserRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = ["mute", "муте", "мут", "мьюте", "мьют", "silence", "сайленс"]
 
-@labeler.chat_message(text="<_:prefix>mute <user:mention> <minutes:int>", moder=True)
-@labeler.chat_message(text="<_:prefix>муте <user:mention> <minutes:int>", moder=True)
-@labeler.chat_message(text="<_:prefix>мут <user:mention> <minutes:int>", moder=True)
-@labeler.chat_message(text="<_:prefix>мьюте <user:mention> <minutes:int>", moder=True)
-@labeler.chat_message(text="<_:prefix>мьют <user:mention> <minutes:int>", moder=True)
-@labeler.chat_message(text="<_:prefix>silence <user:mention> <minutes:int>", moder=True)
-@labeler.chat_message(text="<_:prefix>сайленс <user:mention> <minutes:int>", moder=True)
+
+@labeler.chat_message(AliasRule(ALIASES, "<user:mention> <minutes:int>"), moder=True)
 @error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: int):
 
@@ -37,19 +34,3 @@ async def mute_user_handler(message: Message, user: dict, minutes: int):
     return await message.reply(
         f"Пользователь {user['domain']} замьючен до {formatted_date}",
     )
-
-
-@labeler.chat_message(text="<_:prefix>unmute <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>унмуте <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>унмут <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>унмьюте <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>унмьют <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>анмуте <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>анмут <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>анмьюте <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>анмьют <user:mention>", moder=True)
-@error_handler.catch
-async def unmute_user_handler(message: Message, user: dict):
-    repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
-    await repo.delete()
-    return await message.reply(f"Пользователь {user['domain']} размьючен")

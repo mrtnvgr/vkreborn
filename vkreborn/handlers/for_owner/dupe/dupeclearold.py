@@ -2,18 +2,23 @@ from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import DupeChatRepository, DupeItemRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = [
+    "dupeclearold",
+    "дюпслеаролд",
+    "дюпклеаролд",
+    "дюпсклиролд",
+    "дюпклиролд",
+    "дюпеслеаролд",
+    "дюпеклеаролд",
+    "дюпесклиролд",
+    "дюпеклиролд",
+]
 
-@labeler.chat_message(text="<_:prefix>dupeclearold", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпслеаролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпклеаролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпсклиролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпклиролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпеслеаролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпеклеаролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпесклиролд", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпеклиролд", owner=True)
+
+@labeler.chat_message(AliasRule(ALIASES), owner=True)
 @error_handler.catch
 async def dupeclear_old_handler(message: Message):
     item_repo = DupeItemRepository()

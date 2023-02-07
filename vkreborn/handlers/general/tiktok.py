@@ -5,14 +5,14 @@ from vkbottle.http import AiohttpClient
 from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
+from vkreborn.rules import AliasRule
 from vkreborn.vbml.patcher import TT_URL_RE
 from vkreborn.vkbottle import labeler
 
+ALIASES = ["tiktok", "tt", "тикток", "тт"]
 
-@labeler.message(text="<_:prefix>tiktok <url:tt_url>")
-@labeler.message(text="<_:prefix>tt <url:tt_url>")
-@labeler.message(text="<_:prefix>тикток <url:tt_url>")
-@labeler.message(text="<_:prefix>тт <url:tt_url>")
+
+@labeler.message(AliasRule(ALIASES, "<url:tt_url>"))
 @error_handler.catch
 async def tiktok_handler(message: Message, url: str):
     attachment = await download(message=message, url=url)
@@ -20,10 +20,7 @@ async def tiktok_handler(message: Message, url: str):
         return await message.reply(attachment=attachment)
 
 
-@labeler.message(text="<_:prefix>tiktok", reply=True)
-@labeler.message(text="<_:prefix>tt", reply=True)
-@labeler.message(text="<_:prefix>тикток", reply=True)
-@labeler.message(text="<_:prefix>тт", reply=True)
+@labeler.message(AliasRule(ALIASES), reply=True)
 @error_handler.catch
 async def tiktok_reply_handler(message: Message):
     pattern = re.compile(TT_URL_RE, re.IGNORECASE)

@@ -2,21 +2,26 @@ from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import MutedUserRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = [
+    "muted",
+    "мутед",
+    "мьютед",
+    "мутэд",
+    "мьютэд",
+    "inmute",
+    "вмуте",
+    "вмьюте",
+    "замученые",
+    "замученные",
+    "замьюченые",
+    "замьюченные",
+]
 
-@labeler.chat_message(text="<_:prefix>muted")
-@labeler.chat_message(text="<_:prefix>мутед")
-@labeler.chat_message(text="<_:prefix>мьютед")
-@labeler.chat_message(text="<_:prefix>мутэд")
-@labeler.chat_message(text="<_:prefix>мьютэд")
-@labeler.chat_message(text="<_:prefix>inmute")
-@labeler.chat_message(text="<_:prefix>вмуте")
-@labeler.chat_message(text="<_:prefix>вмьюте")
-@labeler.chat_message(text="<_:prefix>замученые")
-@labeler.chat_message(text="<_:prefix>замученные")
-@labeler.chat_message(text="<_:prefix>замьюченые")
-@labeler.chat_message(text="<_:prefix>замьюченные")
+
+@labeler.chat_message(AliasRule(ALIASES))
 @error_handler.catch
 async def muted_here_handler(message: Message):
     repo = MutedUserRepository(muted_where=message.chat_id)

@@ -8,84 +8,47 @@ from vkbottle.user import Message
 from vkreborn.config import WALLHAVEN_API_KEY
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import WHPictureRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = [
+    "wh",
+    "вх",
+    "wallhaven",
+    "валлхавен",
+    "воллхавен",
+    "валхавен",
+    "волхавен",
+    "валлхавэн",
+    "воллхавэн",
+    "валхавэн",
+    "волхавэн",
+    "валлхавн",
+    "воллхавн",
+    "валхавн",
+    "волхавн",
+]
 
-@labeler.message(text="<_:prefix>wh")
-@labeler.message(text="<_:prefix>вх")
-@labeler.message(text="<_:prefix>wallhaven")
-@labeler.message(text="<_:prefix>валлхавен")
-@labeler.message(text="<_:prefix>воллхавен")
-@labeler.message(text="<_:prefix>валхавен")
-@labeler.message(text="<_:prefix>волхавен")
-@labeler.message(text="<_:prefix>валлхавэн")
-@labeler.message(text="<_:prefix>воллхавэн")
-@labeler.message(text="<_:prefix>валхавэн")
-@labeler.message(text="<_:prefix>волхавэн")
-@labeler.message(text="<_:prefix>валлхавн")
-@labeler.message(text="<_:prefix>воллхавн")
-@labeler.message(text="<_:prefix>валхавн")
-@labeler.message(text="<_:prefix>волхавн")
+
+@labeler.message(AliasRule(ALIASES))
 @error_handler.catch
 async def wh_noargs_handler(message: Message):
     return await send_random_single(message)
 
 
-@labeler.message(text="<_:prefix>wh <q>")
-@labeler.message(text="<_:prefix>вх <q>")
-@labeler.message(text="<_:prefix>wallhaven <q>")
-@labeler.message(text="<_:prefix>валлхавен <q>")
-@labeler.message(text="<_:prefix>воллхавен <q>")
-@labeler.message(text="<_:prefix>валхавен <q>")
-@labeler.message(text="<_:prefix>волхавен <q>")
-@labeler.message(text="<_:prefix>валлхавэн <q>")
-@labeler.message(text="<_:prefix>воллхавэн <q>")
-@labeler.message(text="<_:prefix>валхавэн <q>")
-@labeler.message(text="<_:prefix>волхавэн <q>")
-@labeler.message(text="<_:prefix>валлхавн <q>")
-@labeler.message(text="<_:prefix>воллхавн <q>")
-@labeler.message(text="<_:prefix>валхавн <q>")
-@labeler.message(text="<_:prefix>волхавн <q>")
+@labeler.message(AliasRule(ALIASES, "<q>"))
 @error_handler.catch
 async def wh_query_handler(message: Message, q: str):
     return await send_random_single(message, q=q)
 
 
-@labeler.message(text="<_:prefix>wh <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>вх <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>wallhaven <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>валлхавен <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>воллхавен <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>валхавен <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>волхавен <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>валлхавэн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>воллхавэн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>валхавэн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>волхавэн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>валлхавн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>воллхавн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>валхавн <q> <categories:wh_switches>")
-@labeler.message(text="<_:prefix>волхавн <q> <categories:wh_switches>")
+@labeler.message(AliasRule(ALIASES, "<q> <categories:wh_switches>"))
 @error_handler.catch
 async def wh_query_categories_handler(message: Message, q: str, categories: str):
     return await send_random_single(message, q=q, categories=categories)
 
 
-@labeler.message(text="<_:prefix>wh <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>вх <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>wallhaven <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>валлхавен <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>воллхавен <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>валхавен <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>волхавен <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>валлхавэн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>воллхавэн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>валхавэн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>волхавэн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>валлхавн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>воллхавн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>валхавн <q> <categories:wh_switches> <purity:wh_switches>")
-@labeler.message(text="<_:prefix>волхавн <q> <categories:wh_switches> <purity:wh_switches>")
+@labeler.message(AliasRule(ALIASES, "<q> <categories:wh_switches> <purity:wh_switches>"))
 @error_handler.catch
 async def wh_query_categories_purity_handler(
     message: Message, q: str, categories: str, purity: str

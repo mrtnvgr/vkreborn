@@ -2,6 +2,7 @@ from shazamio import Shazam
 from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
+from vkreborn.rules import AliasRule
 from vkreborn.tools import download_attachment, get_attachments
 from vkreborn.vkbottle import labeler
 
@@ -9,8 +10,7 @@ SUPPORTED_ATTACHMENTS = ["audio", "audio_message"]
 defaults = {"attachment": SUPPORTED_ATTACHMENTS}
 
 
-@labeler.message(text="<_:prefix>shazam", **defaults)
-@labeler.message(text="<_:prefix>шазам", **defaults)
+@labeler.message(AliasRule(["shazam", "шазам"]), **defaults)
 @error_handler.catch
 async def shazam_handler(message: Message):
     attachments = await get_attachments(message, SUPPORTED_ATTACHMENTS)

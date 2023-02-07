@@ -2,14 +2,13 @@ from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import UserRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = ["givemoder", "гивмодер", "гивемодер", "датьмодера", "датьмодерку"]
 
-@labeler.chat_message(text="<_:prefix>givemoder <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>гивмодер <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>гивемодер <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>датьмодера <user:mention>", moder=True)
-@labeler.chat_message(text="<_:prefix>датьмодерку <user:mention>", moder=True)
+
+@labeler.chat_message(AliasRule(ALIASES, "<user:mention>"), moder=True)
 @error_handler.catch
 async def givemoder_handler(message: Message, user: dict):
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)

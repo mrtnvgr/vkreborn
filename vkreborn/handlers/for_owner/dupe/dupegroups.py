@@ -2,14 +2,13 @@ from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
 from vkreborn.repositories import DupeChatRepository
+from vkreborn.rules import AliasRule
 from vkreborn.vkbottle import labeler
 
+ALIASES = ["dupegroups", "дюпгроупс", "дюпгрупс", "дюпегроупс", "дюпегрупс"]
 
-@labeler.chat_message(text="<_:prefix>dupegroups", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпгроупс", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпгрупс", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпегроупс", owner=True)
-@labeler.chat_message(text="<_:prefix>дюпегрупс", owner=True)
+
+@labeler.chat_message(AliasRule(ALIASES), owner=True)
 @error_handler.catch
 async def dupegroups_handler(message: Message):
     repo = DupeChatRepository()

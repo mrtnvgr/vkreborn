@@ -5,8 +5,8 @@ from vkreborn.thirdparty.sox.effects import BaseEffect
 
 class ReverbEffect(BaseEffect):
     def __init__(self, wet: Optional[float] = None):
-        self.wet = wet
         self.default = False if wet else True
+        self.wet = wet if wet else 80
 
     @property
     def filter(self) -> str:

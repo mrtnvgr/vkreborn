@@ -15,8 +15,12 @@ async def givemoder_handler(message: Message, user: dict):
 
     moders = await repo.get_moder_ids()
     if repo.user_id in moders:
-        return await message.reply(f"Пользователь {user['domain']} уже является модератором")
+        return await message.reply(
+            f"Пользователь {user['domain']} уже является модератором", disable_mentions=True
+        )
 
     await repo.set_moder(True)
 
-    return await message.reply(f"Пользователь {user['domain']} теперь модератор")
+    return await message.reply(
+        f"Пользователь {user['domain']} теперь модератор", disable_mentions=True
+    )

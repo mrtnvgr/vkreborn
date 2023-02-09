@@ -41,5 +41,5 @@ async def mute_user_handler(message: Message, user: dict, minutes: int):
     formatted_date = muted_until.strftime("%H:%M:%S %d.%m.%Y")
 
     return await message.reply(
-        f"Пользователь {user['domain']} замьючен до {formatted_date}",
+        f"Пользователь {user['domain']} замьючен до {formatted_date}", disable_mentions=True
     )

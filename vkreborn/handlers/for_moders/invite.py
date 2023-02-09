@@ -11,7 +11,7 @@ ALIASES = ["invite", "инвайт", "инвайте", "пригласить", "
 @error_handler.catch
 async def invite_handler(message: Message, user: dict):
     await invite(message=message, user_id=user["id"])
-    return await message.reply(f"Пользователь {user['domain']} приглашен")
+    return await message.reply(f"Пользователь {user['domain']} приглашен", disable_mentions=True)
 
 
 async def invite(message: Message, user_id: int, visible_messages_count: int = 250):

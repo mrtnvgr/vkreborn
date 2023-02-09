@@ -15,7 +15,7 @@ def list_validator(value: str):
 
 @patcher.validator("mention")
 def mention_validator(value: str):
-    pattern = re.compile(r"^\[id([0-9]+)\|@([A-Za-z0-9]+)]$")
+    pattern = re.compile(r"^\[id([0-9]+)\|(@[A-Za-z0-9]+)]$")
     match = pattern.match(value)
     return {"id": int(match.groups()[0]), "domain": match.groups()[1]} if match else None
 

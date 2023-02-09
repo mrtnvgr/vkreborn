@@ -24,4 +24,4 @@ async def muted_by_handler(message: Message, user: dict):
     for user in users:
         text.append(f"{user.first_name} {user.last_name} ({user.domain})")
 
-    return await message.reply("\n".join(text))
+    return await message.reply("\n".join(text), disable_mentions=True)

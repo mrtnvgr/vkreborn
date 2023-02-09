@@ -25,8 +25,12 @@ async def whomuted_handler(message: Message, user: dict):
     user_info = await repo.get()
 
     if not user_info:
-        return await message.reply(f"Пользователь {user['domain']} не замьючен")
+        return await message.reply(
+            f"Пользователь {user['domain']} не замьючен", disable_mentions=True
+        )
 
     moder = (await message.ctx_api.users.get(user_info.muted_by, fields=["domain"]))[0]
     moder_info = f"{moder.first_name} {moder.last_name} ({moder.domain})"
-    return await message.reply(f"Пользователя {user['domain']} замьютил:\n{moder_info}")
+    return await message.reply(
+        f"Пользователя {user['domain']} замьютил:\n{moder_info}", disable_mentions=True
+    )

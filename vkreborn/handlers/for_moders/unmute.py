@@ -23,4 +23,4 @@ ALIASES = [
 async def unmute_user_handler(message: Message, user: dict):
     repo = MutedUserRepository(user_id=user["id"], muted_where=message.chat_id)
     await repo.delete()
-    return await message.reply(f"Пользователь {user['domain']} размьючен")
+    return await message.reply(f"Пользователь {user['domain']} размьючен", disable_mentions=True)

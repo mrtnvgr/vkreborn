@@ -14,7 +14,7 @@ ALIASES = ["kick", "кик", "кикнуть", "исключить"]
 async def kick_handler(message: Message, user: dict):
     kick_resp = await kick(message=message, user=user)
     if kick_resp:
-        await message.reply(f"Пользователь {user['domain']} исключен")
+        await message.reply(f"Пользователь {user['domain']} исключен", disable_mentions=True)
 
 
 async def kick(message: Message, user: dict):
@@ -31,5 +31,7 @@ async def kick(message: Message, user: dict):
         )
         return True
     except VKAPIError[935]:
-        await message.reply(f"Пользователь {user['domain']} не состоит в беседе")
+        await message.reply(
+            f"Пользователь {user['domain']} не состоит в беседе", disable_mentions=True
+        )
         return False

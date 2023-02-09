@@ -40,8 +40,9 @@ def custom_float_validator(value: str):
 
 @patcher.validator("gain")
 def gain_validator(value: str):
-    pattern = re.compile(r"^[+-]?\d+?[\.\,]?\d*(db)?$")
-    return value if pattern.match(value) else None
+    pattern = re.compile(r"(?:\+)?(-?\d+?[\.\,]?\d*)(?:db)?")
+    match = pattern.match(value)
+    return str_to_float(match.groups()[0]) if match else None
 
 
 @patcher.validator("tt_url")

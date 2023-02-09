@@ -13,4 +13,4 @@ ALIASES = ["forceinvite", "форсинвайт", "форсеинвайт", "ф�
 @error_handler.catch
 async def forceinvite_handler(message: Message, user: dict):
     await kick(message=message, user=user)
-    await invite(message=message, user_id=user["id"])
+    await invite(message=message, user_id=user["id"], visible_messages_count=0)

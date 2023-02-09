@@ -13,9 +13,18 @@ ALIASES = ["mute", "муте", "мут", "мьюте", "мьют", "silence", "�
 @labeler.chat_message(AliasRule(ALIASES, "<user:mention> <minutes:int>"), moder=True)
 @error_handler.catch
 async def mute_user_handler(message: Message, user: dict, minutes: int):
-
     repo = UserRepository(user_id=user["id"], chat_id=message.chat_id)
     repo_user = await repo.get_user()
+
+    chat_members = (
+        await message.ctx_api.messages.get_conversation_members(peer_id=message.peer_id)
+    ).items
+    account = await message.ctx_api.users.get()
+    for member in chat_members:
+        if member.member_id == account[0].id and not member.is_admin:
+            return await message.reply("У бота нет прав администратора беседы")
+        if member.member_id == user["id"] and member.is_admin:
+            return await message.reply("Администраторов мьютить нельзя")
 
     if repo_user and repo_user.is_moder:
         return await message.reply("Модераторов мьютить нельзя")

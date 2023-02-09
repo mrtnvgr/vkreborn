@@ -45,11 +45,11 @@ class DupeMiddleware(BaseMiddleware[Message]):
                 cmids=self.event.conversation_message_id,
                 delete_for_all=True,
             )
-        except VKAPIError[924]:
+        except VKAPIError:
             word = "Вложение" if len(duped_attachments) == 1 else "Вложения"
             word2 = "дубликат" if len(duped_attachments) == 1 else "дубликаты"
             indexes = [str(attachments.index(attachment) + 1) for attachment in duped_attachments]
-            return self.event.reply(f"{word} {', '.join(indexes)} {word2}")
+            return await self.event.reply(f"{word} {', '.join(indexes)} {word2}")
 
         new_attachments = [
             get_attachment_string(i) for i in attachments if i not in duped_attachments

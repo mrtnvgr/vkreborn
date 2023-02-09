@@ -18,7 +18,7 @@ class DupeMiddleware(BaseMiddleware[Message]):
             return
 
         # Итерация через вложения
-        attachments = await get_attachments(self.event)
+        attachments = await get_attachments(self.event, reply=False)
         duped_attachments = []
         for attachment in attachments:
 

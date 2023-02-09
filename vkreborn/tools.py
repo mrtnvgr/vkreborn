@@ -8,6 +8,7 @@ from vkbottle_types.objects import MessagesMessageAttachment, WallWallpostAttach
 async def get_attachments(
     message: Message,
     attachment_types: Optional[list] = None,
+    reply: bool = True,
     unpack: bool = True,
 ):
     # NOTE: Check FAQ
@@ -18,7 +19,7 @@ async def get_attachments(
         attachments = message.attachments
 
     elif message.reply_message and message.reply_message.attachments:
-        attachments = message.reply_message.attachments
+        attachments = message.reply_message.attachments if reply else []
 
     elif message.fwd_messages:
         for msg in message.fwd_messages:

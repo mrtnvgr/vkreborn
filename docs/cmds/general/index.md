@@ -31,6 +31,8 @@
 
 - [Создание QR-Кодов](list/qrcreate.md)
 
+- [Считывание QR-Кодов](list/qrread.md)
+
 - [Демотиваторы](list/dm.md)
 
 - [Помощь](list/help.md)

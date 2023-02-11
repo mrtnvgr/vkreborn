@@ -6,6 +6,7 @@ from vkreborn.handlers.general import (
     muted,
     mutedby,
     qrcreate,
+    qrread,
     roll,
     shazam,
     tiktok,
@@ -35,6 +36,7 @@ general_labelers = {
     tiktok.labeler,
     wallhaven.labeler,
     qrcreate.labeler,
+    qrread.labeler,
     helphandler.labeler,
 }
 

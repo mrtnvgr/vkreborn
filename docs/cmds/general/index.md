@@ -29,6 +29,8 @@
 
 - [Скачивание видео с](list/tiktok.md) [TikTok](https://tiktok.com)
 
+- [Создание QR-Кодов](list/qrcreate.md)
+
 - [Демотиваторы](list/dm.md)
 
 - [Помощь](list/help.md)

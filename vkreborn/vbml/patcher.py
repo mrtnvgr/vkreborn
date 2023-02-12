@@ -80,3 +80,9 @@ def _custom_abs_float_validator(value: str):
 
 def str_to_float(value: str):
     return float(value.replace(",", "."))
+
+
+@patcher.validator("url")
+def url_validator(value: str):
+    pattern = re.compile(r"^(?:https?://)?(?:[\w]+\.)(?:\.?[\w]{2,})+(?:/)?$", re.IGNORECASE)
+    return value if pattern.match(value) else None

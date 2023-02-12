@@ -33,6 +33,8 @@
 
 - [Считывание QR-Кодов](list/qrread.md)
 
+- [Сокращение URL](list/tinyurl.md)
+
 - [Демотиваторы](list/dm.md)
 
 - [Помощь](list/help.md)

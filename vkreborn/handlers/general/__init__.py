@@ -10,6 +10,7 @@ from vkreborn.handlers.general import (
     roll,
     shazam,
     tiktok,
+    tinyurl,
     trans,
     wallhaven,
     whoami,
@@ -37,6 +38,7 @@ general_labelers = {
     wallhaven.labeler,
     qrcreate.labeler,
     qrread.labeler,
+    tinyurl.labeler,
     helphandler.labeler,
 }
 

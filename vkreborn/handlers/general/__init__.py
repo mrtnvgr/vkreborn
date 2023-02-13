@@ -2,6 +2,7 @@ from vkreborn.handlers.general import (
     demotivator,
     fixlayout,
     helphandler,
+    mix,
     moders,
     muted,
     mutedby,
@@ -23,6 +24,7 @@ from vkreborn.handlers.general.fx import fx_labelers
 general_labelers = {
     muted.labeler,
     mutedby.labeler,
+    mix.labeler,
     whomuted.labeler,
     demotivator.labeler,
     *dupe_labelers,

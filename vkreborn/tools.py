@@ -87,3 +87,12 @@ async def download_attachment(attachment: MessagesMessageAttachment):
         raise Exception("NOT SUPPORTED")
 
     return await get_url_bytes(link)
+
+
+async def get_audio_title(attachment: MessagesMessageAttachment):
+    if attachment.audio:
+        return attachment.audio.title
+
+    elif attachment.audio_message:
+        transcript = attachment.audio_message.transcript
+        return transcript if transcript else "Голосовое сообщение"

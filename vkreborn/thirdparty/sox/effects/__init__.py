@@ -5,6 +5,7 @@ from vkreborn.thirdparty.sox.effects.reverb import ReverbEffect
 from vkreborn.thirdparty.sox.effects.reverse import ReverseEffect
 from vkreborn.thirdparty.sox.effects.speed import SpeedEffect
 from vkreborn.thirdparty.sox.effects.tempo import TempoEffect
+from vkreborn.thirdparty.sox.effects.volume import VolumeEffect
 
 __all__ = [
     "BaseEffect",
@@ -14,4 +15,5 @@ __all__ = [
     "ReverseEffect",
     "RawEffect",
     "ReverbEffect",
+    "VolumeEffect",
 ]

@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-vkbottle = {git = "https://github.com/vkbottle/vkbottle.git", rev = "dev"}
+vkbottle = "^4.3.12"
 loguru = "^0.6.0"
 SQLAlchemy = "^1.4.46"
 async-google-trans-new = "^1.4.6"

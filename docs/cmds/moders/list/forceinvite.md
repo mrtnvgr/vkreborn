@@ -7,6 +7,8 @@
 
 #### **Примеры использования**:
 - `forceinvite @id1` (`forceinvite <user:mention>`)
+- `forceinvite` (`forceinvite`)
+  > Ответ на сообщение пользователя
 
 
 #### **Описание**:

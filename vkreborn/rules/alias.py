@@ -11,15 +11,13 @@ class AliasRule(ABCRule[Message]):
     def __init__(
         self,
         aliases: Union[list[str], str],
-        args: Union[list[str], str, None] = None,
+        args: Union[str, None] = None,
         prefix: str = "<_:prefix>",
     ):
         if type(aliases) is str:
             aliases = [aliases]
-        if type(args) is str:
-            args = [args]
         self.aliases = aliases
-        self.args = " ".join(args) if args else None
+        self.args = args
         self.prefix = prefix
 
     async def check(self, event: Message) -> bool:
@@ -33,7 +31,7 @@ class AliasRule(ABCRule[Message]):
 
             result = patcher.check(pattern, event.text)
 
-            if result not in (False, None):
-                return result
+            if result:
+                return bool(result)
 
         return False

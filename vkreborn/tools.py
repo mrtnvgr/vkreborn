@@ -75,15 +75,17 @@ async def get_url_bytes(url: str):
 
 
 async def download_attachment(attachment: MessagesMessageAttachment):
+    link = None
     if attachment.audio:
-        link: str = attachment.audio.url
+        link = attachment.audio.url
     elif attachment.audio_message:
-        link: str = attachment.audio_message.link_mp3
-    elif attachment.photo:
-        link: str = attachment.photo.sizes[-1].url
+        link = attachment.audio_message.link_mp3
+    elif attachment.photo and attachment.photo.sizes:
+        link = attachment.photo.sizes[-1].url
     elif attachment.doc:
-        link: str = attachment.doc.url
-    else:
+        link = attachment.doc.url
+
+    if not link:
         raise Exception("NOT SUPPORTED")
 
     return await get_url_bytes(link)

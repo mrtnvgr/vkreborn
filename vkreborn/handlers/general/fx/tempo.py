@@ -10,7 +10,7 @@ defaults = {"attachment": SUPPORTED_ATTACHMENTS}
 ALIASES = ["tempo", "темпо", "темп", "темпоу", "тэмпо", "тэмп", "тэмпоу"]
 
 
-@labeler.message(AliasRule(ALIASES), **defaults)
+@labeler.message(AliasRule(ALIASES, "<tempo:factor>"), **defaults)
 @error_handler.catch
 async def tempo_handler(message: Message, tempo: float):
     return await make(message, TempoEffect(tempo=tempo))

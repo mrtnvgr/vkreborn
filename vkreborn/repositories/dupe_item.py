@@ -54,3 +54,11 @@ class DupeItemRepository:
             query = delete(DupeItem).where(DupeItem.group == self.group)
             await conn.execute(query)
             await conn.commit()
+
+    async def delete(self):
+        async with engine.connect() as conn:
+            query = delete(DupeItem).where(
+                DupeItem.group == self.group, DupeItem.hash == self.hash
+            )
+            await conn.execute(query)
+            await conn.commit()

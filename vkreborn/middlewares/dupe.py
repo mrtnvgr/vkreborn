@@ -1,12 +1,9 @@
-from hashlib import file_digest
-from io import BytesIO
-
 from vkbottle import BaseMiddleware, VKAPIError
 from vkbottle.user import Message
 from vkbottle_types.objects import MessagesMessageAttachment
 
 from vkreborn.repositories import DupeChatRepository, DupeItemRepository
-from vkreborn.tools import download_attachment, get_attachments
+from vkreborn.tools import get_attachment_hash, get_attachments
 
 
 class DupeMiddleware(BaseMiddleware[Message]):
@@ -56,20 +53,6 @@ class DupeMiddleware(BaseMiddleware[Message]):
         ]
         if new_attachments:
             await self.event.answer(attachment=new_attachments, payload='{"ignore":"me"}')
-
-
-async def get_attachment_hash(attachment: MessagesMessageAttachment):
-    try:
-        attachment_bytes = await download_attachment(attachment)
-    except Exception:
-        if attachment.video and attachment.video.id:
-            attachment_bytes = str(attachment.video.id).encode()
-        elif attachment.wall and attachment.wall.id:
-            attachment_bytes = str(attachment.wall.id).encode()
-        else:
-            return False
-
-    return file_digest(BytesIO(attachment_bytes), "sha512").digest()
 
 
 def get_attachment_string(attachment: MessagesMessageAttachment):

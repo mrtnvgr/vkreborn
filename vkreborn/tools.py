@@ -1,3 +1,5 @@
+from hashlib import file_digest
+from io import BytesIO
 from typing import Optional
 
 from vkbottle.http import AiohttpClient
@@ -89,6 +91,20 @@ async def download_attachment(attachment: MessagesMessageAttachment):
         raise Exception("NOT SUPPORTED")
 
     return await get_url_bytes(link)
+
+
+async def get_attachment_hash(attachment: MessagesMessageAttachment):
+    try:
+        attachment_bytes = await download_attachment(attachment)
+    except Exception:
+        if attachment.video and attachment.video.id:
+            attachment_bytes = str(attachment.video.id).encode()
+        elif attachment.wall and attachment.wall.id:
+            attachment_bytes = str(attachment.wall.id).encode()
+        else:
+            return False
+
+    return file_digest(BytesIO(attachment_bytes), "sha512").digest()
 
 
 async def get_audio_title(attachment: MessagesMessageAttachment):

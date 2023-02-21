@@ -13,4 +13,6 @@
 
 - [Очистка кэша всех дюп-групп](list/dupeclearall.md)
 
+- [Очистка кэша ошибочных вложений](list/dupemistake.md)
+
 - [Глобальная очистка кэша команды wh](list/whgreset.md)

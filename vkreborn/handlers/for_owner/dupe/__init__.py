@@ -3,6 +3,7 @@ from vkreborn.handlers.for_owner.dupe import (
     dupeclearall,
     dupeclearold,
     dupegroups,
+    dupemistake,
     dupeoff,
     dupeon,
 )
@@ -14,6 +15,7 @@ dupe_labelers = {
     dupeclearall.labeler,
     dupeclearold.labeler,
     dupeclear.labeler,
+    dupemistake.labeler,
 }
 
 __all__ = ["dupe_labelers"]

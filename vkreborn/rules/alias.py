@@ -20,11 +20,11 @@ class AliasRule(ABCRule[Message]):
         self.args = args
         self.prefix = prefix
 
-    async def check(self, event: Message) -> bool:
+    async def check(self, event: Message):
         for alias in self.aliases:
             pattern_line = f"{self.prefix}{alias}"
 
-            if self.args is not None:
+            if self.args:
                 pattern_line = f"{pattern_line} {self.args}"
 
             pattern = Pattern(pattern_line)
@@ -32,6 +32,4 @@ class AliasRule(ABCRule[Message]):
             result = patcher.check(pattern, event.text)
 
             if result:
-                return bool(result)
-
-        return False
+                return result

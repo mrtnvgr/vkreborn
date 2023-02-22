@@ -1,6 +1,6 @@
 from typing import Optional
 
-from sqlalchemy.sql import delete, insert, select
+from sqlalchemy.sql import delete, insert, select, text
 
 from vkreborn.database import engine
 from vkreborn.database.models import DupeItem
@@ -62,3 +62,8 @@ class DupeItemRepository:
             )
             await conn.execute(query)
             await conn.commit()
+
+    async def count_all(self):
+        async with engine.connect() as conn:
+            query = text("SELECT COUNT(*) FROM dupe_items")
+            return (await conn.execute(query)).first()[0]

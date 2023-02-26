@@ -73,3 +73,13 @@ class DupeItemRepository:
             query = text("SELECT COUNT(*) FROM dupe_items WHERE dupe_items.group = :group")
             query = query.bindparams(group=self.group)
             return (await conn.execute(query)).first()[0]
+
+    async def count_groups(self, groups: list[str]):
+        results = {}
+        async with engine.connect() as conn:
+            for group in groups:
+                query = text("SELECT COUNT(*) FROM dupe_items WHERE dupe_items.group = :group")
+                query = query.bindparams(group=group)
+                result = (await conn.execute(query)).first()[0]
+                results[group] = result
+        return results

@@ -10,7 +10,7 @@ TT_URL_RE = r"(https?:\/\/)?(www|m)(\.tiktok\.com)(\/.*\/|\/trending.?shareId=)(
 
 @patcher.validator("list")
 def list_validator(value: str):
-    return shlex.split(value, posix=True)
+    return [item.removesuffix(",") for item in shlex.split(value, posix=True)]
 
 
 @patcher.validator("mention")
@@ -86,3 +86,8 @@ def str_to_float(value: str):
 def url_validator(value: str):
     pattern = re.compile(r"^(?:https?://)?(?:[\w]+\.)(?:\.?[\w]{2,})+(?:/)?$", re.IGNORECASE)
     return value if pattern.match(value) else None
+
+
+@patcher.validator("literally_str")
+def literally_str(value: str):
+    return value if len(shlex.split(value, posix=True)) == 1 else None

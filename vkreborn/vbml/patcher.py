@@ -89,5 +89,5 @@ def url_validator(value: str):
 
 
 @patcher.validator("literally_str")
-def literally_str(value: str):
+def literally_str_validator(value: str):
     return value if len(shlex.split(value, posix=True)) == 1 else None

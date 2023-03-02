@@ -52,9 +52,13 @@ async def download(message: Message, url: str, errors: bool = True):
     video_title = resp["data"]["title"]
     video_name = f" - {video_title}" if video_title else ""
 
+    requester = await message.reply_message.get_user(fields=["domain"])
+    description = ["(This video was uploaded automatically via vkr)"]
+    description.append(f"Requested by: @{requester.domain}")
+
     return await VideoUploader(message.ctx_api).upload(
         video_bytes,
         name=f"{video_author}{video_name}",
-        description="(This video was uploaded automatically via vkr)",
+        description="\n".join(description),
         is_private=True,
     )

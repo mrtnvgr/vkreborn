@@ -118,7 +118,7 @@ async def parse_resp(message: Message, resp: dict):
                     await message.reply(f"Unsupported video type?: {media_type}")
 
         # Scrape photo from t3
-        elif kind == "t3" and thing["data"]["url"].endswith(".png"):
+        elif kind == "t3" and thing["data"]["url"][-3:] in ["png", "jpg"]:
             photo_bytes = await AiohttpClient().request_content(thing["data"]["url"])
             photo = await PhotoMessageUploader(message.ctx_api).upload(photo_bytes)
             attachments.append(photo)

@@ -29,8 +29,9 @@ async def tiktok_reply_handler(message: Message):
     if not matches:
         return
 
-    attachments = [await download(message=message, url=match, errors=False) for match in matches]
-    attachments = [attachment for attachment in attachments if attachment]
+    attachments = [
+        await download(message=message, url=match, errors=False) for match in matches if match
+    ]
 
     return await message.reply(attachment=attachments)
 

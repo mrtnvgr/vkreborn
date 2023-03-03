@@ -1,4 +1,5 @@
 import re
+from html import unescape
 from subprocess import check_output
 from typing import Optional
 
@@ -127,7 +128,8 @@ async def parse_resp(message: Message, resp: dict):
             for photo in thing["data"]["media_metadata"].values():
                 if photo["e"] == "Image":
                     best_quality = photo["p"][-1]
-                    photo_url = best_quality["u"]
+                    # Why???
+                    photo_url = unescape(best_quality["u"])
 
                     photo = await _upload_photo(message, photo_url)
                     attachments.append(photo)

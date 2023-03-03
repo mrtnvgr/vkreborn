@@ -4,7 +4,7 @@ from subprocess import check_output
 from typing import Optional
 
 from aiofiles.tempfile import NamedTemporaryFile
-from vkbottle import PhotoMessageUploader, VideoUploader
+from vkbottle import DocMessagesUploader, PhotoMessageUploader, VideoUploader
 from vkbottle.http import AiohttpClient
 from vkbottle.user import Message
 
@@ -124,7 +124,7 @@ async def parse_resp(message: Message, resp: dict):
             attachments.append(photo)
 
         # Scrape photo gallery from t3
-        elif kind == "t3" and thing["data"]["media_metadata"]:
+        elif kind == "t3" and thing["data"].get("media_metadata"):
             for photo in thing["data"]["media_metadata"].values():
                 if photo["e"] == "Image":
                     best_quality = photo["p"][-1]
@@ -136,6 +136,12 @@ async def parse_resp(message: Message, resp: dict):
 
                 else:
                     await message.reply(f"Unsupported gallery photo type?: {photo['e']}")
+
+        # Scrape gif from t3
+        elif kind == "t3" and thing["data"]["url"][-3:] == "gif":
+            gif_bytes = await AiohttpClient().request_content(thing["data"]["url"])
+            gif = await DocMessagesUploader(message.ctx_api).upload(gif_bytes)
+            attachments.append(gif)
 
         # These "continue" case is here to prevent false positives
         elif kind in ["t3", "t1"]:

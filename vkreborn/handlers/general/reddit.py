@@ -119,9 +119,21 @@ async def parse_resp(message: Message, resp: dict):
 
         # Scrape photo from t3
         elif kind == "t3" and thing["data"]["url"][-3:] in ["png", "jpg"]:
-            photo_bytes = await AiohttpClient().request_content(thing["data"]["url"])
-            photo = await PhotoMessageUploader(message.ctx_api).upload(photo_bytes)
+            photo = await _upload_photo(message, thing["data"]["url"])
             attachments.append(photo)
+
+        # Scrape photo gallery from t3
+        elif kind == "t3" and thing["data"]["media_metadata"]:
+            for photo in thing["data"]["media_metadata"].values():
+                if photo["e"] == "Image":
+                    best_quality = photo["p"][-1]
+                    photo_url = best_quality["u"]
+
+                    photo = await _upload_photo(message, photo_url)
+                    attachments.append(photo)
+
+                else:
+                    await message.reply(f"Unsupported gallery photo type?: {photo['e']}")
 
         # These "continue" case is here to prevent false positives
         elif kind in ["t3", "t1"]:
@@ -167,6 +179,11 @@ async def _upload_video(
         description=description,
         is_private=True,
     )
+
+
+async def _upload_photo(message: Message, url: str):
+    photo_bytes = await AiohttpClient().request_content(url)
+    return await PhotoMessageUploader(message.ctx_api).upload(photo_bytes)
 
 
 async def _join_video_with_audio(video_bytes: bytes, audio_bytes: bytes):

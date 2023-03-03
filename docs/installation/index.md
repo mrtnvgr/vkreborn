@@ -24,3 +24,4 @@ poetry install
 #### **Зависимости**:
 - **PostgreSQL**
 - [SoX](https://sox.sourceforge.net/) (для аудио эффектов)
+- [FFmpeg](https://ffmpeg.org/)

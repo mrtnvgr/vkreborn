@@ -39,7 +39,6 @@ async def get_attachments(
 
 async def _convert_wall_attachments(attachments: list[MessagesMessageAttachment]):
     for attachment in attachments[:]:
-
         if attachment.wall:
             wall_attachments = attachment.wall.attachments
         elif attachment.wall_reply:

@@ -1,12 +1,10 @@
 import asyncio
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from alembic import context
+from sqlalchemy import engine_from_config, pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import AsyncEngine
-
-from alembic import context
 
 from vkreborn.config import SQLALCHEMY_DATABASE_URI
 from vkreborn.database.models import User
@@ -57,7 +55,8 @@ def run_migrations_offline() -> None:
 
 
 def do_run_migrations(connection: Connection) -> None:
-    context.configure(connection=connection, target_metadata=target_metadata, compare_type=True)
+    context.configure(connection=connection,
+                      target_metadata=target_metadata, compare_type=True)
 
     with context.begin_transaction():
         context.run_migrations()

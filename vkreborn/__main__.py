@@ -13,7 +13,6 @@ from vkreborn.response_validator import CaptchaResponseValidator
 
 @logger.catch
 def main():
-
     os.chdir(os.path.dirname(__file__))
 
     loop_wrapper = LoopWrapper(on_startup=[setup_db()])

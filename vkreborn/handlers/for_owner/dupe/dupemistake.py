@@ -44,7 +44,6 @@ async def dupemistake_handler(message: Message):
         return
 
     for attachment in attachments:
-
         # Получаем хэш вложения
         attachment_hash = await get_attachment_hash(attachment)
         if not attachment_hash:

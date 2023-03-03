@@ -8,6 +8,7 @@ from vkreborn.handlers.general import (
     mutedby,
     qrcreate,
     qrread,
+    reddit,
     roll,
     shazam,
     tiktok,
@@ -42,6 +43,7 @@ general_labelers = {
     qrread.labeler,
     tinyurl.labeler,
     helphandler.labeler,
+    reddit.labeler,
 }
 
 __all__ = ["general_labelers"]

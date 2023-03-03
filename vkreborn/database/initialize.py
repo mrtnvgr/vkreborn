@@ -1,6 +1,7 @@
-from vkreborn.database import Base, engine
+from vkreborn.database import engine
+from vkreborn.database.models import User
 
 
 async def setup_db():
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+        await conn.run_sync(User.metadata.create_all)

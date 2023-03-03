@@ -7,6 +7,9 @@ patcher = Patcher()
 
 TT_URL_RE = r"(https?:\/\/)?(www|m)(\.tiktok\.com)(\/.*\/|\/trending.?shareId=)([\d]*)(\.html)?"
 
+# Credits: https://regex101.com/r/TaMmkV/7
+REDDIT_URL_RE = r"^http(?:s)?://(?:www\.)?(?:[\w-]+?\.)?reddit.com(/r/|/user/)?(?(1)([\w:\.]{2,21}))(/comments/)?(?(3)(\w{5,9})(?:/[\w%\\\\-]+)?)?(?(4)/(\w{3,9}))?/?(\?)?(?(6)(\S+))?(\#)?(?(8)(\S+))?$"
+
 
 @patcher.validator("list")
 def list_validator(value: str):
@@ -91,3 +94,9 @@ def url_validator(value: str):
 @patcher.validator("literally_str")
 def literally_str_validator(value: str):
     return value if len(shlex.split(value, posix=True)) == 1 else None
+
+
+@patcher.validator("reddit_post_url")
+def reddit_post_url_validator(value: str):
+    pattern = re.compile(REDDIT_URL_RE)
+    return value if pattern.match(value) else None

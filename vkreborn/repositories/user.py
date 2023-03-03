@@ -33,7 +33,6 @@ class UserRepository:
 
     async def set_moder(self, value: bool):
         async with engine.connect() as conn:
-
             user = await self.get_user()
             if not user:
                 await self.add_user()

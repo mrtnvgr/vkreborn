@@ -18,7 +18,6 @@ class DupeMiddleware(BaseMiddleware[Message]):
         attachments = await get_attachments(self.event, reply=False)
         duped_attachments = []
         for attachment in attachments:
-
             # Получаем хэш вложения
             attachment_hash = await get_attachment_hash(attachment)
             if not attachment_hash:

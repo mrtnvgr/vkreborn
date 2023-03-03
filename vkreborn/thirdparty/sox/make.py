@@ -15,7 +15,6 @@ async def make(message: Message, *fx: list[BaseEffect]):
     new_attachments = []
 
     for attachment in attachments:
-
         content = await download_attachment(attachment)
         title = await get_audio_title(attachment)
 

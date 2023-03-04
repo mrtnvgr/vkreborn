@@ -41,15 +41,19 @@ async def dupecount_handler(message: Message):
     dupe_chat_repo = DupeChatRepository()
     groups = await dupe_chat_repo.get_all_groups()
     results = await dupe_item_repo.count_groups(groups=groups)
-    reply = await compile_results(results=results)
+    reply = await compile_results(results=results, summary=True)
     await message.reply(reply)
 
 
-async def compile_results(results: list[str]):
+async def compile_results(results: list[str], summary: bool = False):
     if len(results) > 1:
         answer = [f'"{group}": {count}' for group, count in results.items()]
+        count = sum([int(count) for count in results.values()])
         answer.insert(0, "Количество вложений в дюп-группах:\n")
-        return "\n".join(answer)
     else:
         group, count = list(results.items())[0]
         return f'Количество вложений в дюп-группе "{group}": {count}'
+
+    if summary:
+        answer.append(f"\nИтого: {count}")
+    return "\n".join(answer)

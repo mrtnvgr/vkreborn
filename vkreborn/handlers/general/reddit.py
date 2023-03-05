@@ -63,7 +63,7 @@ async def reddit_reply_handler(message: Message):
 
 
 async def cross_post(message: Message, url: str):
-    url = url.split("?", 1)[0].removesuffix("/")
+    url = url.split("?")[0].removesuffix("/")
     resp = await AiohttpClient().request_json(f"{url}/.json")
 
     if "error" in resp:
@@ -173,7 +173,7 @@ async def _upload_video(
         title=title,
     )
 
-    video_url = video_url.split("?", 1)[0]
+    video_url = video_url.split("?")[0]
     audio_url = f"{'/'.join(video_url.split('/')[:-1])}/DASH_audio.mp4"
 
     client = AiohttpClient()

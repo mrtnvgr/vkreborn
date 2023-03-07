@@ -17,7 +17,7 @@ asyncpg = "^0.27.0"
 setuptools = "^67.5.1"
 pillow = "^9.4.0"
 orjson = "^3.8.7"
-alembic = "^1.10.0"
+alembic = "^1.10.1"
 
 [tool.poetry.group.test.dependencies]
 flakeheaven = {git = "https://github.com/flakeheaven/flakeheaven.git"}

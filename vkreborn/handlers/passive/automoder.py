@@ -9,6 +9,7 @@ from vkreborn.vkbottle import labeler
 @labeler.raw_event(UserEventType.CHAT_INFO_EDIT, dataclass=RawUserEvent)
 @error_handler.catch
 async def automoder_handler(event: RawUserEvent):
+    # TODO: change only if we have admin privileges here
     peer_id = event.object[2]
     chat_id = 2_000_000 - peer_id
     repo = UserRepository(user_id=event.object[3], chat_id=chat_id)

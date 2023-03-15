@@ -14,6 +14,11 @@ class DupeMiddleware(BaseMiddleware[Message]):
         if not chat_groups:
             return
 
+        # Получаем количество вложений из БД
+        none_item_repo = DupeItemRepository()
+        individual_counts = await none_item_repo.count_groups(groups=chat_groups)
+        summary_count = await none_item_repo.count_all()
+
         # Итерация через вложения
         attachments = await get_attachments(self.event, reply=False)
         duped_attachments = []
@@ -31,6 +36,16 @@ class DupeMiddleware(BaseMiddleware[Message]):
                 duped_attachments.append(attachment)
             else:
                 await item_repo.add_to_groups(groups=chat_groups)
+
+        # Проверяем майлстоуны
+        new_individual_counts = await none_item_repo.count_groups(groups=chat_groups)
+        await check_for_individual_milestones(
+            message=self.event, counts=individual_counts, new_counts=new_individual_counts
+        )
+        new_summary_count = await none_item_repo.count_all()
+        await check_for_summary_milestone(
+            message=self.event, count=summary_count, new_count=new_summary_count
+        )
 
         if not duped_attachments:
             return
@@ -52,6 +67,26 @@ class DupeMiddleware(BaseMiddleware[Message]):
         ]
         if new_attachments:
             await self.event.answer(attachment=new_attachments, payload='{"ignore":"me"}')
+
+
+async def check_for_individual_milestones(
+    message: Message, counts: dict[str, int], new_counts: dict[str, int], gap: int = 100
+):
+    for group in counts.keys():
+        count = counts[group]
+        new_count = new_counts[group]
+
+        if count // gap < new_count // gap:
+            reply = f'🎉Дюп-группа "{group}" преодолела отметку в {new_count * gap} вложений!🎉'
+            await message.reply(reply)
+
+
+async def check_for_summary_milestone(
+    message: Message, count: int, new_count: int, gap: int = 100
+):
+    if count // gap < new_count // gap:
+        reply = f"🎉Количество вложений со всех дюп-групп достигло {new_count * gap}!🎉"
+        await message.reply(reply)
 
 
 def get_attachment_string(attachment: MessagesMessageAttachment):

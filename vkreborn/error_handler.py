@@ -12,3 +12,6 @@ async def undefined_handler(e: BaseException, message: Message, **args):
     finally:
         logger.exception(f"Ошибка у {message.from_id}: {e}")
         logger.error(f"Аргументы: {args}")
+
+
+# TODO: https://github.com/vkbottle/vkbottle/commit/ed58f58e0247f5c6011f3eb3cd4b1b87c6da7452#comments

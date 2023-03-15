@@ -22,7 +22,8 @@ async def dupecount_group_handler(message: Message, group: str):
     repo = DupeItemRepository(group=group)
     count = await repo.count_group()
     reply = await compile_results(results=[count])
-    await message.reply(reply)
+    if reply:
+        await message.reply(reply)
 
 
 @labeler.chat_message(AliasRule(ALIASES, "<groups:list>"), owner=True)
@@ -31,7 +32,8 @@ async def dupecount_groups_handler(message: Message, groups: list[str]):
     repo = DupeItemRepository()
     results = await repo.count_groups(groups=groups)
     reply = await compile_results(results=results)
-    await message.reply(reply)
+    if reply:
+        await message.reply(reply)
 
 
 @labeler.chat_message(AliasRule(ALIASES), owner=True)
@@ -42,10 +44,14 @@ async def dupecount_handler(message: Message):
     groups = await dupe_chat_repo.get_all_groups()
     results = await dupe_item_repo.count_groups(groups=groups)
     reply = await compile_results(results=results, summary=True)
-    await message.reply(reply)
+    if reply:
+        await message.reply(reply)
 
 
 async def compile_results(results: list[str], summary: bool = False):
+    if len(results) == 0:
+        return
+
     if len(results) > 1:
         answer = [f'"{group}": {count}' for group, count in results.items()]
         count = sum([int(count) for count in results.values()])

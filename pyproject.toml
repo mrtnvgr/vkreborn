@@ -8,11 +8,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-vkbottle = "^4.3.12"
+vkbottle = {git = "https://github.com/vkbottle/vkbottle", rev = "dev"}
 loguru = "^0.6.0"
 SQLAlchemy = "^2.0.6"
 async-google-trans-new = "^1.4.6"
-shazamio = "^0.3.1.1"
+shazamio = {git = "https://github.com/mrtnvgr/shazamio", rev = "bump-aiofiles"}
 asyncpg = "^0.27.0"
 setuptools = "^67.6.0"
 pillow = "^9.4.0"

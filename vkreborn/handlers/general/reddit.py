@@ -182,7 +182,7 @@ async def _upload_video(
 
     result_bytes = await _join_video_with_audio(video_bytes, audio_bytes)
     return await VideoUploader(message.ctx_api).upload(
-        result_bytes,
+        file_source=result_bytes,
         name=f"u/{redditor} - {title}",
         description=description,
         is_private=True,

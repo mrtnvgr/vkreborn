@@ -14,4 +14,12 @@ async def undefined_handler(e: BaseException, message: Message, **args):
         logger.error(f"Аргументы: {args}")
 
 
-# TODO: https://github.com/vkbottle/vkbottle/commit/ed58f58e0247f5c6011f3eb3cd4b1b87c6da7452#comments
+@error_handler.register_error_handler(ValueError)
+async def deleted_message_handler(e: BaseException, message: Message, **args):
+    if (
+        hasattr(e, "message")
+        and e.message.startswith("Message with id")
+        and e.message.endswith("not found, perhaps it was deleted")
+    ):
+        return
+    await undefined_handler(e, message)

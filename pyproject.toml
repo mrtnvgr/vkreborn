@@ -21,7 +21,7 @@ alembic = "^1.10.2"
 
 [tool.poetry.group.test.dependencies]
 flakeheaven = {git = "https://github.com/flakeheaven/flakeheaven.git"}
-pylint = "^2.17.0"
+pylint = "^2.17.1"
 black = "^23.1.0"
 
 [tool.isort]

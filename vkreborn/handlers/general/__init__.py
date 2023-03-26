@@ -11,6 +11,7 @@ from vkreborn.handlers.general import (
     reddit,
     roll,
     shazam,
+    stable_diffusion,
     tiktok,
     tinyurl,
     trans,
@@ -44,6 +45,7 @@ general_labelers = {
     tinyurl.labeler,
     helphandler.labeler,
     reddit.labeler,
+    stable_diffusion.labeler,
 }
 
 __all__ = ["general_labelers"]

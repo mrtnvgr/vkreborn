@@ -45,4 +45,6 @@
 
 - [Микс аудио](list/mix.md)
 
+- [Stable Diffusion](list/stable_diffusion.md)
+
 - [Помощь](list/help.md)

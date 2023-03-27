@@ -10,7 +10,7 @@ ALIASES = ["fl", "фл", "fixlayout", "фикслайаут"]
 def translate(string: str):
     ru = """ёйцукенгшщзхъфывапролджэячсмитьбю.Ё"№;%:?ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"""
     en = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~@#$%^&QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?"""
-    if any(i in string for i in ru):
+    if any(i in string and i.isalnum() for i in ru):
         change = string.maketrans(ru, en)
     else:
         change = string.maketrans(en, ru)

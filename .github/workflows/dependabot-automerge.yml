@@ -1,15 +1,11 @@
 name: Dependabot auto-merge
 
-on:
-  workflow_run:
-    workflows: ["Pull-request"]
-    types:
-      - completed
+on: pull_request
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' && github.event.workflow_run.conclusion == 'success'
+    if: github.actor == 'dependabot[bot]'
     steps:
       - uses: asottile/workflows/.github/actions/fast-checkout@v1.4.1
 

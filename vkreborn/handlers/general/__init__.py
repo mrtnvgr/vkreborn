@@ -1,4 +1,5 @@
 from vkreborn.handlers.general import (
+    convert_circle,
     demotivator,
     fixlayout,
     helphandler,
@@ -44,6 +45,7 @@ general_labelers = {
     tinyurl.labeler,
     helphandler.labeler,
     reddit.labeler,
+    convert_circle.labeler,
 }
 
 __all__ = ["general_labelers"]

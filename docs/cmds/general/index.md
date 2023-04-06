@@ -45,4 +45,6 @@
 
 - [Микс аудио](list/mix.md)
 
+- [Кружок -> Видео](list/convert_circle.md)
+
 - [Помощь](list/help.md)

@@ -1,3 +1,4 @@
+from vkbottle import VKAPIError
 from vkbottle.user import Message
 
 from vkreborn.error_handler import error_handler
@@ -24,10 +25,15 @@ async def invite_reply_handler(message: Message):
 async def invite(
     message: Message, user: dict, visible_messages_count: int = 250, reply: bool = True
 ):
-    await message.ctx_api.messages.add_chat_user(
-        chat_id=message.chat_id,
-        user_id=user["id"],
-        visible_messages_count=visible_messages_count,
-    )
+    try:
+        await message.ctx_api.messages.add_chat_user(
+            chat_id=message.chat_id,
+            user_id=user["id"],
+            visible_messages_count=visible_messages_count,
+        )
+    except VKAPIError[15]:
+        await message.reply("Не могу добавить этого пользователя")
+        return
+
     if reply:
         await message.reply(f"Пользователь {user['domain']} приглашен", disable_mentions=True)

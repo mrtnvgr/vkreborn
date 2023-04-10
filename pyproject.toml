@@ -9,7 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 vkbottle = {git = "https://github.com/vkbottle/vkbottle", rev = "dev"}
-loguru = "^0.6.0"
+loguru = "^0.7.0"
 SQLAlchemy = "^2.0.9"
 async-google-trans-new = "^1.4.6"
 shazamio = {git = "https://github.com/mrtnvgr/shazamio", rev = "bump-aiofiles"}

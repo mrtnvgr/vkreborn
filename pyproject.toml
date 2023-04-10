@@ -16,7 +16,7 @@ shazamio = {git = "https://github.com/mrtnvgr/shazamio", rev = "bump-aiofiles"}
 asyncpg = "^0.27.0"
 setuptools = "^67.6.1"
 pillow = "^9.5.0"
-orjson = "^3.8.9"
+orjson = "^3.8.10"
 alembic = "^1.10.3"
 
 [tool.poetry.group.test.dependencies]

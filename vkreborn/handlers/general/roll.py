@@ -32,15 +32,10 @@ wrap = lambda text: f'Результат: "{text}"'
 
 
 async def randint(message: Message, start: int, end: int):
-    try:
-        response = random.randint(start, end)
-        await message.reply(wrap(response))
-    except ValueError:
-        await message.reply(
-            "Ошибка. Конечное число меньше начального."
-            "\n(Если вы хотели выбрать одно из чисел, a не из диапазона, то "
-            f'попробуйте "{start}, {end}", а не "{start}-{end}".)'
-        )
+    if end > start:
+        start, end = end, start
+    response = random.randint(start, end)
+    await message.reply(wrap(response))
 
 
 def cleanup(value: str):

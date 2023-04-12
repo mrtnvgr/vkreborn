@@ -54,7 +54,7 @@ async def dupeoff_one_handler(message: Message, group: str):
     repo = DupeChatRepository(chat_id=message.chat_id, group=group)
 
     if not await repo.check_group():
-        return await message.reply(f'Текущий чат не состоит в группе "{group}"')
+        return await message.reply(f'Текущий чат не состоит в дюп-группе "{group}"')
 
     await repo.delete_from_group()
     return await message.reply(f'Текущий чат удален из дюп-группы "{group}"')

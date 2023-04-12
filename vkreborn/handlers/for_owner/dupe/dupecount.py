@@ -48,11 +48,12 @@ async def dupecount_handler(message: Message):
         await message.reply(reply)
 
 
-async def compile_results(results: list[str], summary: bool = False):
+async def compile_results(results: dict[int], summary: bool = False):
     if len(results) == 0:
         return
 
     if len(results) > 1:
+        results = dict(sorted(results, key=lambda item: item[1], reverse=True))
         answer = [f'"{group}": {count}' for group, count in results.items()]
         count = sum([int(count) for count in results.values()])
         answer.insert(0, "Количество вложений в дюп-группах:\n")

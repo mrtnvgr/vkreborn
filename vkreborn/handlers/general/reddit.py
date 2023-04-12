@@ -100,15 +100,15 @@ async def parse_resp(message: Message, resp: dict):
             post_info["body"] = thing["data"]["selftext"]
             has_post_info = True
 
-        # Scrape video from t3
+        # Scrape video and gif from t3
         if kind == "t3" and thing["data"]["is_video"]:
             for media_type, media in thing["data"]["media"].items():
                 if media_type == "reddit_video":
-                    # WARN: is_gif
                     # WARN: over_18
-                    video = await _upload_video(
+                    videofunc = _upload_video if media["is_gif"] else _upload_video_with_audio
+                    video = await videofunc(
                         message=message,
-                        video_url=media["fallback_url"],
+                        video=media["fallback_url"],
                         subreddit=thing["data"]["subreddit"],
                         redditor=thing["data"]["author"],
                         title=thing["data"]["title"],
@@ -163,17 +163,37 @@ async def parse_resp(message: Message, resp: dict):
 
 
 async def _upload_video(
-    message: Message, video_url: str, subreddit: str, redditor: str, title: str
+    message: Message,
+    video: Optional[str | bytes],
+    subreddit: str,
+    redditor: str,
+    title: str,
+    is_gif: bool = True,
 ):
+    if type(video) is str:
+        video = await AiohttpClient().request_content(video)
+
+    videotype = "GIF" if is_gif else "VIDEO"
     description = await _generate_description(
         message=message,
-        desctype="VIDEO FROM REDDIT CROSSPOST via VKR",
+        desctype=f"{videotype} FROM REDDIT CROSSPOST via VKR",
         subreddit=subreddit,
         redditor=redditor,
         title=title,
     )
 
-    video_url = video_url.split("?")[0]
+    return await VideoUploader(message.ctx_api).upload(
+        file_source=video,
+        name=f"u/{redditor} - {title}",
+        description=description,
+        is_private=True,
+    )
+
+
+async def _upload_video_with_audio(
+    message: Message, video: str, subreddit: str, redditor: str, title: str
+):
+    video_url = video.split("?")[0]
     audio_url = f"{'/'.join(video_url.split('/')[:-1])}/DASH_audio.mp4"
 
     client = AiohttpClient()
@@ -181,11 +201,13 @@ async def _upload_video(
     audio_bytes = await client.request_content(audio_url)
 
     result_bytes = await _join_video_with_audio(video_bytes, audio_bytes)
-    return await VideoUploader(message.ctx_api).upload(
-        file_source=result_bytes,
-        name=f"u/{redditor} - {title}",
-        description=description,
-        is_private=True,
+    return await _upload_video(
+        message=message,
+        video=result_bytes,
+        subreddit=subreddit,
+        redditor=redditor,
+        title=title,
+        is_gif=False,
     )
 
 

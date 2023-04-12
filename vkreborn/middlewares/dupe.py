@@ -77,7 +77,8 @@ async def check_for_individual_milestones(
         new_count = new_counts[group]
 
         if count // gap < new_count // gap:
-            reply = f'🎉Дюп-группа "{group}" преодолела отметку в {new_count} вложений!🎉'
+            milestone = new_count // gap * gap
+            reply = f'🎉 Дюп-группа "{group}" преодолела отметку в {milestone} вложений! 🎉'
             await message.reply(reply)
 
 
@@ -85,7 +86,8 @@ async def check_for_summary_milestone(
     message: Message, count: int, new_count: int, gap: int = 100
 ):
     if count // gap < new_count // gap:
-        reply = f"🎉Количество вложений со всех дюп-групп достигло {new_count}!🎉"
+        milestone = new_count // gap * gap
+        reply = f"🎉 Количество вложений со всех дюп-групп достигло {milestone}! 🎉"
         await message.reply(reply)
 
 

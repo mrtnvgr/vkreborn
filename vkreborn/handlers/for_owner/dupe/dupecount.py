@@ -53,7 +53,7 @@ async def compile_results(results: dict[int], summary: bool = False):
         return
 
     if len(results) > 1:
-        results = dict(sorted(results, key=lambda item: item[1], reverse=True))
+        results = dict(sorted(results.items(), key=lambda x: x[1], reverse=True))
         answer = [f'"{group}": {count}' for group, count in results.items()]
         count = sum([int(count) for count in results.values()])
         answer.insert(0, "Количество вложений в дюп-группах:\n")

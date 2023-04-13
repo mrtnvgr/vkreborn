@@ -32,7 +32,7 @@ wrap = lambda text: f'Результат: "{text}"'
 
 
 async def randint(message: Message, start: int, end: int):
-    if end > start:
+    if start > end:
         start, end = end, start
     response = random.randint(start, end)
     await message.reply(wrap(response))

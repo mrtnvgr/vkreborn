@@ -8,11 +8,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-vkbottle = {git = "https://github.com/vkbottle/vkbottle", rev = "dev"}
+vkbottle = { git = "https://github.com/vkbottle/vkbottle", rev = "dev" }
 loguru = "^0.7.0"
 SQLAlchemy = "^2.0.9"
 async-google-trans-new = "^1.4.6"
-shazamio = {git = "https://github.com/mrtnvgr/shazamio", rev = "bump-aiofiles"}
+shazamio = { git = "https://github.com/mrtnvgr/shazamio" }
 asyncpg = "^0.27.0"
 setuptools = "^67.6.1"
 pillow = "^9.5.0"
@@ -20,7 +20,7 @@ orjson = "^3.8.9"
 alembic = "^1.10.3"
 
 [tool.poetry.group.test.dependencies]
-flakeheaven = {git = "https://github.com/flakeheaven/flakeheaven.git"}
+flakeheaven = { git = "https://github.com/flakeheaven/flakeheaven.git" }
 pylint = "^2.17.2"
 black = "^23.3.0"
 

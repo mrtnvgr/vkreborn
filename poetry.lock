@@ -1460,8 +1460,8 @@ pytest-asyncio = "^0.20.3"
 [package.source]
 type = "git"
 url = "https://github.com/mrtnvgr/shazamio"
-reference = "bump-aiofiles"
-resolved_reference = "87d2420b3740456a1fa4d17f2ec06907062c6ba0"
+reference = "HEAD"
+resolved_reference = "1385498e9e3824cc83984425d772c091377068bd"
 
 [[package]]
 name = "sniffio"
@@ -1853,4 +1853,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "5ab8a9f4bf5b38c98f92f673a4b72bef52b42adccecd2eef7106effd2b291ba1"
+content-hash = "76fc8f3c8144f5f2ab977b8144119d5d3bc28665532dcfd2fce1b159e0bbed89"

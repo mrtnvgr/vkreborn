@@ -27,7 +27,7 @@ async def trans_to_handler(message: Message, to: str):
     return await message.reply(response)
 
 
-async def translate(content: str, to: Optional[str] = None):
+async def translate(content: str, to: str = "auto"):
     try:
         to = expand_to_arg(to)
         translator = AsyncTranslator()

@@ -17,9 +17,10 @@ async def undefined_handler(e: BaseException, message: Message, **args):
 @error_handler.register_error_handler(ValueError)
 async def deleted_message_handler(e: BaseException, message: Message, **args):
     if (
-        hasattr(e, "message")
-        and e.message.startswith("Message with id")
-        and e.message.endswith("not found, perhaps it was deleted")
+        hasattr(e, "args")
+        and e.args
+        and e.args[0].startswith("Message with id")
+        and e.args[0].endswith("not found, perhaps it was deleted")
     ):
         return
     await undefined_handler(e, message)

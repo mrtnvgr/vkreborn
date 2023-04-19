@@ -7,7 +7,22 @@ from vkreborn.thirdparty.sox.effects import VolumeEffect
 from vkreborn.vkbottle import labeler
 
 defaults = {"attachment": SUPPORTED_ATTACHMENTS}
-ALIASES = ["volume", "вольюм", "волюме", "волъюм", "vol", "вол", "громкость"]
+ALIASES = [
+    "volume",
+    "вольюм",
+    "волюме",
+    "волъюм",
+    "vol",
+    "вол",
+    "громкость",
+    "gain",
+    "гайн",
+    "гейн",
+    "гэйн",
+    "гаин",
+    "геин",
+    "гэин",
+]
 
 
 @labeler.message(AliasRule(ALIASES, "<volume:gain>"), **defaults)

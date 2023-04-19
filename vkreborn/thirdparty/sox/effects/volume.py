@@ -11,4 +11,4 @@ class VolumeEffect(BaseEffect):
 
     @property
     def fx_name(self) -> str:
-        return f"volume {self.volume}"
+        return f"volume {self._get_gain_string(self.volume)}"

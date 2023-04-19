@@ -28,6 +28,6 @@ class BassEffect(BaseEffect):
             return ""
 
         if not self.default:
-            name += f" {self.gain}"
+            name += f" {self._get_gain_string(self.gain)}"
 
         return name

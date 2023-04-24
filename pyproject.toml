@@ -14,7 +14,7 @@ SQLAlchemy = "^2.0.9"
 async-google-trans-new = "^1.4.6"
 shazamio = { git = "https://github.com/mrtnvgr/shazamio" }
 asyncpg = "^0.27.0"
-setuptools = "^67.7.1"
+setuptools = "^67.7.2"
 pillow = "^9.5.0"
 orjson = "^3.8.9"
 alembic = "^1.10.3"

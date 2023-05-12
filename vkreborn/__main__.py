@@ -2,7 +2,7 @@ import os
 
 from loguru import logger
 from vkbottle import User
-from vkbottle.tools.loop_wrapper import LoopWrapper
+from vkbottle.tools import LoopWrapper
 
 from vkreborn.config import VKTOKEN
 from vkreborn.database.initialize import setup_db

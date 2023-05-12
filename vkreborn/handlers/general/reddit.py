@@ -254,7 +254,10 @@ async def _generate_description(
         description.append(f'"{title}"\n')
     if body:
         description.append(f"\n{body}\n")
-    description.append(desctype)
-    description.append(f"Originally posted by u/{redditor} on r/{subreddit}")
-    description.append(f"Requester: @{user_domain}")
+
+    info = await message.ctx_api.users.get()
+    if info[0].id != message.from_id:
+        description.append(desctype)
+        description.append(f"Originally posted by u/{redditor} on r/{subreddit}")
+        description.append(f"Requester: @{user_domain}")
     return "\n".join(description)

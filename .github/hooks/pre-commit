@@ -1,6 +1,0 @@
-#!/bin/sh
-
-poetry run isort vkreborn/ || exit 1
-poetry run black vkreborn/ || exit 1
-poetry run flakeheaven lint || exit 1
-git add --update .

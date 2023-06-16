@@ -1,0 +1,9 @@
+vkbottle @ git+https://github.com/vkbottle/vkbottle@dev
+loguru
+SQLAlchemy
+async-google-trans-new
+shazamio @ git+https://github.com/mrtnvgr/shazamio
+asyncpg
+pillow
+orjson
+alembic

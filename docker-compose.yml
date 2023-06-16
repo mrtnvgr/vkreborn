@@ -1,0 +1,26 @@
+version: "3"
+services:
+  vkr:
+    build: .
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      - db
+    volumes:
+      - cwd:/app
+
+  db:
+    image: "postgres:alpine"
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_DB: vkreborn
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  cwd:
+  db-data:

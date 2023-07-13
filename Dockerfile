@@ -1,13 +1,13 @@
 FROM python:3.11-alpine
 
-RUN apk add --no-cache gcc g++ musl-dev python3-dev ffmpeg sox git
+RUN apk add --no-cache ffmpeg sox git
 
 WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY vkreborn vkreborn
 
 CMD ["python", "-m", "vkreborn"]

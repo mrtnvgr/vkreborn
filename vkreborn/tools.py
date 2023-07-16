@@ -96,10 +96,12 @@ async def get_attachment_hash(attachment: MessagesMessageAttachment):
     try:
         attachment_bytes = await download_attachment(attachment)
     except Exception:
-        if attachment.video and attachment.video.id:
-            attachment_bytes = str(attachment.video.id).encode()
-        elif attachment.wall and attachment.wall.id:
-            attachment_bytes = str(attachment.wall.id).encode()
+        if attachment.video:
+            video = attachment.video
+            attachment_bytes = f"video_{video.owner_id}_{video.id}".encode()
+        elif attachment.wall:
+            wall = attachment.wall
+            attachment_bytes = f"wall_{wall.owner_id}_{wall.id}".encode()
         else:
             return False
 

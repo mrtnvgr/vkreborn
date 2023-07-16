@@ -3,7 +3,7 @@ from vkbottle.user import Message
 from vkbottle_types.objects import MessagesMessageAttachment
 
 from vkreborn.repositories import DupeChatRepository, DupeItemRepository
-from vkreborn.tools import get_attachment_hash, get_attachments
+from vkreborn.tools import get_attachment_hash, get_old_attachment_hash, get_attachments
 
 
 class DupeMiddleware(BaseMiddleware[Message]):
@@ -23,6 +23,14 @@ class DupeMiddleware(BaseMiddleware[Message]):
         attachments = await get_attachments(self.event, reply=False)
         duped_attachments = []
         for attachment in attachments:
+            # Удаление старых вложений
+            old_hash = await get_old_attachment_hash(attachment)
+
+            if old_hash:
+                for group in chat_groups:
+                    old_repo = DupeItemRepository(hash=old_hash, group=group)
+                    await old_repo.delete()
+
             # Получаем хэш вложения
             attachment_hash = await get_attachment_hash(attachment)
             if not attachment_hash:

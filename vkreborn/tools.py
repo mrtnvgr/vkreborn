@@ -108,6 +108,17 @@ async def get_attachment_hash(attachment: MessagesMessageAttachment):
     return file_digest(BytesIO(attachment_bytes), "sha512").digest()
 
 
+async def get_old_attachment_hash(attachment: MessagesMessageAttachment):
+    if attachment.video:
+        attachment_bytes = str(attachment.video.id).encode()
+    elif attachment.wall:
+        attachment_bytes = str(attachment.wall.id).encode()
+    else:
+        return False
+
+    return file_digest(BytesIO(attachment_bytes), "sha512").digest()
+
+
 async def get_audio_title(attachment: MessagesMessageAttachment):
     if attachment.audio:
         return attachment.audio.title
